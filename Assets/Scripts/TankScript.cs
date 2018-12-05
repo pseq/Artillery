@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class TankScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    float gunAngle;
+    float maxGunAngle = 90f;
+    Transform gun;
+    Transform body;
 
-    public void Test ()
-    {
-        Debug.Log("RIGT");
+    // Use this for initialization
+    void Start () {
+		gun = gameObject.transform.GetChild(0).GetChild(0);
+        body = gameObject.transform.GetChild(0);
+        Debug.Log(gun.name + " " + gun);
+        //gun.eulerAngles = new Vector3(0f,0f,0f);
+
     }
 
-    public void Test1()
+    // Update is called once per frame
+    void Update () {
+		
+	}
+
+    public void GunAngleChange (Vector2 scroll)
     {
-        Debug.Log("STOP");
+        //Debug.Log(scroll);
+        gunAngle = (1f - scroll.y) * maxGunAngle + body.eulerAngles.z;
+        gun.eulerAngles = new Vector3(0f,0f,gunAngle);
     }
 }
