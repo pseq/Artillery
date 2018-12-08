@@ -24,7 +24,6 @@ public class AngleScrollScript : MonoBehaviour {
 
     public void PlayTick()
     {
-        Debug.Log("last:"+lastPosition + " cur:" + scRect.verticalNormalizedPosition + " delta:" + Mathf.Abs(lastPosition - scRect.verticalNormalizedPosition));
         if (Mathf.Abs(lastPosition - scRect.verticalNormalizedPosition) > tickStep)
         {
             tick.Play();

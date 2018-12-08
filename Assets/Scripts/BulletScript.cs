@@ -11,15 +11,16 @@ public class BulletScript : MonoBehaviour {
     // Use this for initializationz
     void Start () {
         terrain = GameObject.Find("Terrain");
-	}
+        //GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1000);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // при столкновении снаряда с повехностью делаем дырку и удаляем снаряд
         if (collision.gameObject.name == "Terrain")
         {
-            collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
-            Destroy(gameObject);
+            //collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
+            //Destroy(gameObject);
         }
     }
 
