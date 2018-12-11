@@ -74,4 +74,8 @@ public class GunScript : MonoBehaviour {
         gunAngle *= -1f;
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }
+
+    public void BulletChooser(int bulletTag) {
+        // здесь выбрать из словаря снаряд
+    }
 }

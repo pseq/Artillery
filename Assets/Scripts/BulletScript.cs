@@ -7,7 +7,6 @@ public class BulletScript : MonoBehaviour {
 	public float explDiam;
     public GameObject terrain;
 
-
     // Use this for initializationz
     void Start () {
         terrain = GameObject.Find("Terrain");
