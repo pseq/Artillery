@@ -21,6 +21,12 @@ public class GunScript : MonoBehaviour {
     float lastScroll;
     Rigidbody2D bulletRigid;
     AudioSource tick;
+    Dictionary<int,int> arsenal;
+    //tmp
+    public GameObject bullet_fug;
+    public GameObject bullet_sub;
+    public GameObject bullet_frag;
+
 
     // Use this for initialization
     void Start () {
@@ -29,8 +35,20 @@ public class GunScript : MonoBehaviour {
 
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
+
+        //Заполняем арсенал
+        arsenal = MakeArsenal();
+        //arsenal = new Dictionary<int, int>();
     }
 	
+    public Dictionary<int,int> MakeArsenal() {
+        Dictionary<int,int> ars = new Dictionary<int,int>();
+        ars.Add(0,5); // bullet_fug
+        ars.Add(1,4); // bullet_sub
+        ars.Add(2,3); // bullet_frag
+        return ars;
+    }
+
     public void Fire ()
     {
         bullet.transform.SetParent(transform);
