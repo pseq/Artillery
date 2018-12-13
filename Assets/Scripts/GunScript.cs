@@ -49,12 +49,6 @@ public class GunScript : MonoBehaviour {
         return ars;
     }
 
-    public int[] GetArsenalKeys() {
-        int[] keys = new int[arsenal.Count];
-        arsenal.Keys.CopyTo(keys,0);
-        return keys;
-    }
-
     public void Fire ()
     {
         bullet.transform.SetParent(transform);
