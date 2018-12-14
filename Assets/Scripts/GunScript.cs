@@ -6,7 +6,9 @@ using System;
 
 public class GunScript : MonoBehaviour {
 
-    public GameObject bullet;
+    GameObject bullet;
+    public GameObject poolObject;
+    PoolManagerScript poolManager;
     public GameObject fireSpot;
     public float firePowerMultipler = 6f;
     public float maxGunAngle = 90f;
@@ -22,41 +24,51 @@ public class GunScript : MonoBehaviour {
     Rigidbody2D bulletRigid;
     AudioSource tick;
     Dictionary<int,int> arsenal;
-    //tmp
-    public GameObject bullet_fug;
-    public GameObject bullet_sub;
-    public GameObject bullet_frag;
-
 
     // Use this for initialization
     void Start () {
-        bulletRigid = bullet.GetComponent<Rigidbody2D>();
         tick = gameObject.GetComponent<AudioSource>();
+        poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
 
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
 
         //Заполняем арсенал
         arsenal = MakeArsenal();
-        //arsenal = new Dictionary<int, int>();
+        Debug.Log("Arsenal maked" + gameObject.name);
+        // test
+        //poolObject.SetActive(true);
+        //bullet = SelectBullet(1);
+        //bulletRigid = bullet.GetComponent<Rigidbody2D>();
+    }
+
+    public GameObject SelectBullet(int key) {
+        return poolManager.GetFromPool(key);
     }
 	
     public Dictionary<int,int> MakeArsenal() {
         Dictionary<int,int> ars = new Dictionary<int,int>();
         ars.Add(0,5); // bullet_fug
         ars.Add(1,4); // bullet_sub
-        ars.Add(2,3); // bullet_frag
+        //ars.Add(2,3); // bullet_frag
         return ars;
     }
 
     public int[] GetArsenalKeys() {
         int[] keys = new int[arsenal.Count];
         arsenal.Keys.CopyTo(keys,0);
+		Debug.Log("keys " + keys);
+
         return keys;
     }
 
     public void Fire ()
     {
+        // delete
+        bullet = SelectBullet(1);
+        bulletRigid = bullet.GetComponent<Rigidbody2D>();
+
+        bullet.SetActive(true);
         bullet.transform.SetParent(transform);
         bulletRigid.angularVelocity = 0f;
         bulletRigid.rotation = transform.eulerAngles.z;
@@ -97,9 +109,5 @@ public class GunScript : MonoBehaviour {
         forwardDirection *= -1f;
         gunAngle *= -1f;
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
-    }
-
-    public void BulletChooser(int bulletTag) {
-        // здесь выбрать из словаря снаряд
     }
 }
