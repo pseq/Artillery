@@ -33,10 +33,6 @@ public class GunScript : MonoBehaviour {
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
 
-        //Заполняем арсенал
-        arsenal = MakeArsenal();
-        Debug.Log("Arsenal maked" + gameObject.name);
-        // test
         //poolObject.SetActive(true);
         //bullet = SelectBullet(1);
         //bulletRigid = bullet.GetComponent<Rigidbody2D>();
@@ -46,14 +42,23 @@ public class GunScript : MonoBehaviour {
         return poolManager.GetFromPool(key);
     }
 	
-    public Dictionary<int,int> MakeArsenal() {
-        Dictionary<int,int> ars = new Dictionary<int,int>();
-        ars.Add(0,5); // bullet_fug
-        ars.Add(1,4); // bullet_sub
+    public int[] MakeArsenal() {
+        // создание арсенала
+        arsenal = new Dictionary<int,int>();
+        arsenal.Add(0,5); // bullet_fug
+        arsenal.Add(1,4); // bullet_sub
         //ars.Add(2,3); // bullet_frag
-        return ars;
+
+        // получение ключей арсенала
+        int[] keys = new int[arsenal.Count];
+        arsenal.Keys.CopyTo(keys,0);
+		//Debug.Log("keys " + keys);
+
+        return keys;
+        //return arsenal;
     }
 
+/*
     public int[] GetArsenalKeys() {
         int[] keys = new int[arsenal.Count];
         arsenal.Keys.CopyTo(keys,0);
@@ -61,7 +66,7 @@ public class GunScript : MonoBehaviour {
 
         return keys;
     }
-
+*/
     public void Fire ()
     {
         // delete

@@ -13,18 +13,14 @@ public class PoolManagerScript : MonoBehaviour {
 		pool = new Dictionary<int, GameObject>();
 		PoolFillingStart();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void PoolFillingStart() {
-		//ищем все танки и просматриваем их арсеналы
+		//ищем все танки, заполняем и просматриваем их арсеналы
 		GameObject[] guns = GameObject.FindGameObjectsWithTag("gun");
+		Debug.Log("Guns? " + guns);
 		foreach(GameObject gun in guns) {
 		Debug.Log("What in arsenal? " + gun.name);
-		int[] arsenalKeys = gun.GetComponent<GunScript>().GetArsenalKeys();
+		int[] arsenalKeys = gun.GetComponent<GunScript>().MakeArsenal();
 		Debug.Log("arsenalKeys " + arsenalKeys);
 		// просматриваем арсенал, и если снаряда ещё нет в пуле, добавляем его в пул
 		foreach(int arsKey in arsenalKeys) {
