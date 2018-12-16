@@ -6,9 +6,11 @@ using System;
 
 public class GunScript : MonoBehaviour {
 
-    GameObject bullet;
+    public GameObject bullet;
     public GameObject poolObject;
+    public GameObject dropDown;
     PoolManagerScript poolManager;
+    DDScript ddScript;
     public GameObject fireSpot;
     public float firePowerMultipler = 6f;
     public float maxGunAngle = 90f;
@@ -24,38 +26,49 @@ public class GunScript : MonoBehaviour {
     Rigidbody2D bulletRigid;
     AudioSource tick;
     Dictionary<int,int> arsenal;
+    int[] arsKeys;
+
+    void Awake() {
+        poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
+        ddScript = dropDown.gameObject.GetComponent<DDScript>();
+    }
 
     // Use this for initialization
     void Start () {
         tick = gameObject.GetComponent<AudioSource>();
-        poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
-
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
+        SelectBullet(0);
 
         //poolObject.SetActive(true);
         //bullet = SelectBullet(1);
         //bulletRigid = bullet.GetComponent<Rigidbody2D>();
     }
 
-    public GameObject SelectBullet(int key) {
-        return poolManager.GetFromPool(key);
+    public void SelectBullet(int key) {
+        bullet = poolManager.GetFromPool(arsKeys[key]);
     }
-	
+
     public int[] MakeArsenal() {
         // создание арсенала
         arsenal = new Dictionary<int,int>();
-        arsenal.Add(0,5); // bullet_fug
-        arsenal.Add(1,4); // bullet_sub
-        //ars.Add(2,3); // bullet_frag
+        //arsenal.Add(0,5); // bullet_fug
+        arsenal.Add(1,6); // bullet_sub
+        arsenal.Add(7,5); // bullet_frag
+        arsenal.Add(0,4); // bullet_frag
+        arsenal.Add(6,3); // bullet_frag
+        arsenal.Add(2,2); // bullet_frag
+        arsenal.Add(5,1); // bullet_frag
 
         // получение ключей арсенала
-        int[] keys = new int[arsenal.Count];
-        arsenal.Keys.CopyTo(keys,0);
-		//Debug.Log("keys " + keys);
+        arsKeys = new int[arsenal.Count];
+        int[] arsValues = new int[arsenal.Count];
+        arsenal.Keys.CopyTo(arsKeys,0);
+        arsenal.Values.CopyTo(arsValues,0);
+        // создаем список снарядов в меню
+        ddScript.CreateDDList(arsKeys, arsValues);
 
-        return keys;
-        //return arsenal;
+        return arsKeys;
     }
 
 /*
@@ -70,8 +83,10 @@ public class GunScript : MonoBehaviour {
     public void Fire ()
     {
         // delete
-        bullet = SelectBullet(1);
+        // bullet = SelectBullet(1);
         bulletRigid = bullet.GetComponent<Rigidbody2D>();
+
+        
 
         bullet.SetActive(true);
         bullet.transform.SetParent(transform);

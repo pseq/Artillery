@@ -6,12 +6,16 @@ public class PoolManagerScript : MonoBehaviour {
 
 	public Dictionary<int,GameObject> pool;
 	public GameObject[] bulletsCatalog;
+	public Sprite[] bulletIconsCatalog;
 	
 	// Use this for initialization
 	void Start () {
-		// заменить словарт на массив из двухэлементных массивов
 		pool = new Dictionary<int, GameObject>();
 		PoolFillingStart();
+	}
+
+	public Sprite GetBulletIcon(int key) {
+		return bulletIconsCatalog[key];
 	}
 
 	void PoolFillingStart() {

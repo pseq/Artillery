@@ -27,7 +27,7 @@ public class TestScript : MonoBehaviour {
 	}
 
     public void OnDropchanged(int choose) {
-        Debug.Log("Choosed:"+ choose);
+        Debug.Log("TESTOBJECT DDChoosed:"+ choose);
     } 
 
 

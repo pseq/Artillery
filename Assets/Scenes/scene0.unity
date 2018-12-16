@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 97344259}
   - component: {fileID: 97344258}
   - component: {fileID: 97344257}
+  - component: {fileID: 97344260}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -416,7 +417,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -442,16 +443,21 @@ MonoBehaviour:
   m_ItemImage: {fileID: 915570907}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: 3
-      m_Image: {fileID: 21300008, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
-    - m_Text: 5
-      m_Image: {fileID: 21300010, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
-    - m_Text: 2
-      m_Image: {fileID: 21300006, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 97344260}
+        m_MethodName: DropdownValueChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &97344258
@@ -491,6 +497,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97344255}
   m_CullTransparentMesh: 0
+--- !u!114 &97344260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97344255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4ffe037843f6c46877ef09dd4e7461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObject: {fileID: 803509842}
+  gun: {fileID: 1602040404}
 --- !u!1 &142387597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1383,20 @@ MonoBehaviour:
   - {fileID: 1457135199982646, guid: 07e5435bc1076974c8befd59ecf9b6b5, type: 3}
   - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
   - {fileID: 323039743560262350, guid: 12abc191f5621ed4ab778f9b677c657f, type: 3}
-  - {fileID: 6193252039555221615, guid: bd9f4c49626b7e44890fcc4ac30899f0, type: 3}
+  - {fileID: 1457135199982646, guid: 07e5435bc1076974c8befd59ecf9b6b5, type: 3}
+  - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
+  - {fileID: 323039743560262350, guid: 12abc191f5621ed4ab778f9b677c657f, type: 3}
+  - {fileID: 1457135199982646, guid: 07e5435bc1076974c8befd59ecf9b6b5, type: 3}
+  - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
+  bulletIconsCatalog:
+  - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300008, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300008, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
 --- !u!4 &803509844
 Transform:
   m_ObjectHideFlags: 0
@@ -1501,7 +1534,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915570905}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1514,7 +1547,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300008, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3371,7 +3404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c234d2bde693454c98f7b052d1f3ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
   poolObject: {fileID: 803509842}
+  dropDown: {fileID: 97344255}
   fireSpot: {fileID: 2092605401}
   firePowerMultipler: 5
   maxGunAngle: 90
@@ -3418,12 +3453,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.87, y: 0.34}
+  m_Size: {x: 1.88, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3770,7 +3805,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.81333333}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3955,7 +3990,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 
 --- !u!222 &1758141389
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4205,7 +4240,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1694211932}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.81333333
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4304,12 +4339,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
+  m_Sprite: {fileID: 21300002, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.2, y: 1.18}
+  m_Size: {x: 3.2, y: 1.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
