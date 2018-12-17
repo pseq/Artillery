@@ -21,11 +21,11 @@ public class PoolManagerScript : MonoBehaviour {
 	void PoolFillingStart() {
 		//ищем все танки, заполняем и просматриваем их арсеналы
 		GameObject[] guns = GameObject.FindGameObjectsWithTag("gun");
-		Debug.Log("Guns? " + guns);
+//		Debug.Log("Guns? " + guns);
 		foreach(GameObject gun in guns) {
-		Debug.Log("What in arsenal? " + gun.name);
+//		Debug.Log("What in arsenal? " + gun.name);
 		int[] arsenalKeys = gun.GetComponent<GunScript>().MakeArsenal();
-		Debug.Log("arsenalKeys " + arsenalKeys);
+//		Debug.Log("arsenalKeys " + arsenalKeys);
 		// просматриваем арсенал, и если снаряда ещё нет в пуле, добавляем его в пул
 		foreach(int arsKey in arsenalKeys) {
 				if (!pool.ContainsKey(arsKey)) {

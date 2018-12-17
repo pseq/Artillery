@@ -7,6 +7,7 @@ using System;
 public class GunScript : MonoBehaviour {
 
     public GameObject bullet;
+    int currentBulletKey;
     public GameObject poolObject;
     public GameObject dropDown;
     PoolManagerScript poolManager;
@@ -39,26 +40,27 @@ public class GunScript : MonoBehaviour {
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
         SelectBullet(0);
-
-        //poolObject.SetActive(true);
-        //bullet = SelectBullet(1);
-        //bulletRigid = bullet.GetComponent<Rigidbody2D>();
     }
 
-    public void SelectBullet(int key) {
+    public void SelectBullet(int key) { // key from arskey & dd
+        if (arsKeys.Length > 0) {
         bullet = poolManager.GetFromPool(arsKeys[key]);
+        bulletRigid = bullet.GetComponent<Rigidbody2D>();
+        currentBulletKey = arsKeys[key]; // from arsenal
+        }
+        else bullet = null;        
     }
 
     public int[] MakeArsenal() {
         // создание арсенала
         arsenal = new Dictionary<int,int>();
         //arsenal.Add(0,5); // bullet_fug
-        arsenal.Add(1,6); // bullet_sub
-        arsenal.Add(7,5); // bullet_frag
-        arsenal.Add(0,4); // bullet_frag
-        arsenal.Add(6,3); // bullet_frag
-        arsenal.Add(2,2); // bullet_frag
-        arsenal.Add(5,1); // bullet_frag
+        arsenal.Add(0,500); // bullet_sub
+        arsenal.Add(7,500); // bullet_frag
+        //arsenal.Add(0,4); // bullet_frag
+        arsenal.Add(6,300); // bullet_frag
+        arsenal.Add(2,200); // bullet_frag
+        arsenal.Add(5,100); // bullet_frag
 
         // получение ключей арсенала
         arsKeys = new int[arsenal.Count];
@@ -71,23 +73,10 @@ public class GunScript : MonoBehaviour {
         return arsKeys;
     }
 
-/*
-    public int[] GetArsenalKeys() {
-        int[] keys = new int[arsenal.Count];
-        arsenal.Keys.CopyTo(keys,0);
-		Debug.Log("keys " + keys);
-
-        return keys;
-    }
-*/
     public void Fire ()
     {
-        // delete
-        // bullet = SelectBullet(1);
-        bulletRigid = bullet.GetComponent<Rigidbody2D>();
-
-        
-
+        if (bullet) {
+        // fire
         bullet.SetActive(true);
         bullet.transform.SetParent(transform);
         bulletRigid.angularVelocity = 0f;
@@ -95,7 +84,27 @@ public class GunScript : MonoBehaviour {
         bulletRigid.velocity = Vector3.zero;
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
+
+        // del from arsenal
+        //Debug.Log("GUN ars before " + arsenal[currentBulletKey]);
+        arsenal[currentBulletKey] --;
+        if (arsenal[currentBulletKey] < 1) {
+            int[] newArsKeys = new int[arsKeys.Length - 1];
+            int i = 0;
+            foreach(int arsKey in arsKeys) {
+                if (arsenal[arsKey] > 0) {
+                    newArsKeys[i] = arsKey;
+                    i ++;
+                }
+            }
+            arsKeys = newArsKeys;
+        }
+        //Debug.Log("GUN ars after " + arsenal[currentBulletKey]);
+        // del from DD
+        ddScript.SetCurrentBulletCount(arsenal[currentBulletKey]);
+        }
     }
+
 
     public void GunAngleChange (Vector2 scroll)
     {
