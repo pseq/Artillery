@@ -51,14 +51,14 @@ public class DDScript : MonoBehaviour
         if (currentCount > 0) {
             dd.options[dd.value].text = currentCount.ToString();
             dd.RefreshShownValue();
-            Debug.Log("DD ddval minus " + dd.value);
+            //Debug.Log("DD ddval minus " + dd.value);
         }
         else {
 
             dd.options.RemoveAt(dd.value);
             dd.value = 0;
             dd.RefreshShownValue();
-            Debug.Log("DD dd.options " + dd.options);
+            //Debug.Log("DD dd.options " + dd.options);
             DropdownValueChanged();
         }
     }

@@ -86,7 +86,6 @@ public class GunScript : MonoBehaviour {
         bullet.transform.position = fireSpot.transform.position;
 
         // del from arsenal
-        //Debug.Log("GUN ars before " + arsenal[currentBulletKey]);
         arsenal[currentBulletKey] --;
         if (arsenal[currentBulletKey] < 1) {
             int[] newArsKeys = new int[arsKeys.Length - 1];
@@ -99,7 +98,6 @@ public class GunScript : MonoBehaviour {
             }
             arsKeys = newArsKeys;
         }
-        //Debug.Log("GUN ars after " + arsenal[currentBulletKey]);
         // del from DD
         ddScript.SetCurrentBulletCount(arsenal[currentBulletKey]);
         }

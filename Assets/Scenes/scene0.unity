@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 19559105}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: terrain
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1388,6 +1388,7 @@ MonoBehaviour:
   - {fileID: 323039743560262350, guid: 12abc191f5621ed4ab778f9b677c657f, type: 3}
   - {fileID: 1457135199982646, guid: 07e5435bc1076974c8befd59ecf9b6b5, type: 3}
   - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
+  - {fileID: 160172600886731209, guid: f7984751fb4c93344bc8bef1229ea9ad, type: 3}
   bulletIconsCatalog:
   - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
@@ -1397,6 +1398,7 @@ MonoBehaviour:
   - {fileID: 21300008, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  - {fileID: 0}
 --- !u!4 &803509844
 Transform:
   m_ObjectHideFlags: 0
