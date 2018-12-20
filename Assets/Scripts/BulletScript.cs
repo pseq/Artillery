@@ -17,7 +17,7 @@ public class BulletScript : MonoBehaviour {
         trailer.SetActive(false);
 
         // деактивируем снаряд при добавлении в пул
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void OnEnable() {
@@ -34,7 +34,7 @@ public class BulletScript : MonoBehaviour {
         }
 
         TrailerOff();
-        BackToPool();
+        //BackToPool();
     }
 
     void BackToPool() {
