@@ -56,10 +56,10 @@ public class GunScript : MonoBehaviour {
         arsenal = new Dictionary<int,int>();
         //arsenal.Add(0,5); // bullet_fug
         arsenal.Add(0,500); // bullet_sub
-        arsenal.Add(7,500); // bullet_frag
+        //arsenal.Add(7,500); // bullet_frag
         //arsenal.Add(0,4); // bullet_frag
-        arsenal.Add(6,300); // bullet_frag
-        arsenal.Add(2,200); // bullet_frag
+        //arsenal.Add(6,300); // bullet_frag
+        //arsenal.Add(2,200); // bullet_frag
         arsenal.Add(5,100); // bullet_frag
 
         // получение ключей арсенала
@@ -79,9 +79,9 @@ public class GunScript : MonoBehaviour {
         // fire
         bullet.SetActive(true);
         bullet.transform.SetParent(transform);
-        bulletRigid.angularVelocity = 0f;
+        //bulletRigid.angularVelocity = 0f;
         bulletRigid.rotation = transform.eulerAngles.z;
-        bulletRigid.velocity = Vector3.zero;
+        //bulletRigid.velocity = Vector3.zero;
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
 
