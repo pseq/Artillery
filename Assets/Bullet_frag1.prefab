@@ -92,7 +92,22 @@ PrefabInstance:
     - target: {fileID: 50094225573751440, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 50094225573751440, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50094225573751440, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50094225573751440, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: m_SleepingMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 58880623497760982, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}

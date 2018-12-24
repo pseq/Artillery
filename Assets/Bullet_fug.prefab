@@ -97,7 +97,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0.1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 2
@@ -135,6 +135,7 @@ MonoBehaviour:
   terrain: {fileID: 0}
   trailer_pref: {fileID: 160172600886731209, guid: f7984751fb4c93344bc8bef1229ea9ad,
     type: 3}
+  trailer: {fileID: 0}
   fragment_pref: {fileID: 0}
   fragNum: 0
   explForce: 0

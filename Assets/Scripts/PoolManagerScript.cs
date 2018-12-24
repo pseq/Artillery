@@ -22,15 +22,17 @@ public class PoolManagerScript : MonoBehaviour {
 		//ищем все танки, заполняем и просматриваем их арсеналы
 		GameObject[] guns = GameObject.FindGameObjectsWithTag("gun");
 		foreach(GameObject gun in guns) {
-		int[] arsenalKeys = gun.GetComponent<GunScript>().MakeArsenal();
-		// просматриваем арсенал, и если снаряда ещё нет в пуле, добавляем его в пул
-		foreach(int arsKey in arsenalKeys) {
+			GunScript gunScript = gun.GetComponent<GunScript>();
+			int[] arsenalKeys = gunScript.MakeArsenal();
+			// просматриваем арсенал, и если снаряда ещё нет в пуле, добавляем его в пул
+			foreach(int arsKey in arsenalKeys) {
 				if (!pool.ContainsKey(arsKey)) {
 					GameObject newBullet = Instantiate(bulletsCatalog[arsKey]);
 					BulletScript bulScr = newBullet.GetComponent<BulletScript>();
 					pool.Add(arsKey, newBullet);
 				} 
 			}
+			gunScript.SelectBullet(0);
 		}
 	}
 

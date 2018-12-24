@@ -21,6 +21,7 @@ public class DDScript : MonoBehaviour
         dd = GetComponent<Dropdown>();
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
         gunScript = gun.gameObject.GetComponent<GunScript>();
+        //gunScript.SelectBullet(0);
 
 
 //        Debug.Log("DD DdScript Started " + gameObject.name);

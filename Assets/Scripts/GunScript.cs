@@ -39,7 +39,7 @@ public class GunScript : MonoBehaviour {
         tick = gameObject.GetComponent<AudioSource>();
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
-        SelectBullet(0);
+        //SelectBullet(0);
     }
 
     public void SelectBullet(int key) { // key from arskey & dd
