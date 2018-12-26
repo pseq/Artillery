@@ -14,12 +14,17 @@ public class BulletScript : MonoBehaviour {
     public int fragNum;
     public float explForce;
     GameObject[] fragment_pool;
+    Collider2D collider;
+    DamageControllerScript damageControllerScript;
+    public int damage = 10;
 
 
     // Use this for initializationz
     void Start () {
         terrain = GameObject.Find("Terrain");
-        rigid = gameObject.GetComponent<Rigidbody2D>();       
+        rigid = gameObject.GetComponent<Rigidbody2D>();
+        collider = gameObject.GetComponent<Collider2D>();
+        damageControllerScript = FindObjectOfType<DamageControllerScript>();
 
         // создаем трейл
         trailer = Instantiate(trailer_pref);
@@ -47,6 +52,7 @@ public class BulletScript : MonoBehaviour {
             //Destroy(gameObject);
         }
 
+        MakeDamage();
         SetFragmentOnAndSpeed();
         TrailerOff();
         BackToPool();
@@ -83,6 +89,14 @@ public class BulletScript : MonoBehaviour {
             fragment.SetActive(true);
             float angle = 2f * Mathf.PI * (float) i / (float) fragNum;
             fragment.GetComponent<Rigidbody2D>().AddForce(new Vector2(explForce*Mathf.Cos(angle), explForce*Mathf.Sin(angle)), ForceMode2D.Impulse);
+        }
+    }
+
+    void MakeDamage() {
+        // TODO to Start for speed
+        Damagable[] damagables = damageControllerScript.GetDamagables();
+        foreach(Damagable dmg in damagables) {
+            if (collider.IsTouching(dmg.GetCollider())) dmg.GetHealth().HealthDecrease(damage);
         }
     }
 }
