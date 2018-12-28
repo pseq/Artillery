@@ -18,21 +18,18 @@ Rigidbody2D leftWheelRigid, rightWheelRigid;
         rightWheelRigid = rightWheelObj.GetComponent<Rigidbody2D>();
         leftWheelRigid = leftWheelObj.GetComponent<Rigidbody2D>();
 
-        Debug.Log("TANK CHILD 0 " + transform.GetChild(0).name);
-        Debug.Log("TANK CHILD 1 " + transform.GetChild(1).name);
-        Debug.Log("TANK CHILD 2 " + transform.GetChild(2).name);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Debug.Log("TANK CHILD 0 " + transform.GetChild(0).name);
+        //Debug.Log("TANK CHILD 1 " + transform.GetChild(1).name);
+        //Debug.Log("TANK CHILD 2 " + transform.GetChild(2).name);
+        //StartCoroutine(MoveCoroutine(1f));
     }
 
     public void Move(float dist) {
         // формула вычисления времени из расстояния
         float time = dist/speed;
 
+        //Debug
+        //Debug.Break();
         StartCoroutine(MoveCoroutine(time));
     }
 
@@ -43,8 +40,12 @@ Rigidbody2D leftWheelRigid, rightWheelRigid;
         if (time > 0) leftWheel.useMotor = true;
         else rightWheel.useMotor = true;
         //wait
+        Debug.Log("TANK START MOVE " + transform.name);
+
         yield return new WaitForSeconds(Mathf.Abs(time));
         // stop
+        Debug.Log("TANK STOP MOVE " + transform.name);
+
         rightWheelRigid.freezeRotation = true;
         leftWheelRigid.freezeRotation = true;
         rightWheel.useMotor = false;

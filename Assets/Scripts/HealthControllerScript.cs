@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthControllerScript : MonoBehaviour
 {
     public int health = 100;
+    public Animator animator;
     
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,14 @@ public class HealthControllerScript : MonoBehaviour
     public void HealthDecrease(int decrease) {
         health -= decrease;
         
-        if(health < 0) {
+        if(health <= 0) {
             SetHealthIndicator(0);
             Death();
             return;
         }
 
+        //to del
+        animator.SetTrigger("isDamaged");
         SetHealthIndicator(health);
     }
 
