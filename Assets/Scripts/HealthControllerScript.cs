@@ -4,36 +4,37 @@ using UnityEngine;
 
 public class HealthControllerScript : MonoBehaviour
 {
-    public int health = 100;
+    public int startHealth = 100;
+    float startIndicatorScale;
+    public int health;
     public Animator animator;
+    public GameObject healthIndicator;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    void Start() {
+        health = startHealth;
+        startIndicatorScale = healthIndicator.transform.localScale.x;
     }
-
-
     public void HealthDecrease(int decrease) {
         health -= decrease;
         
         if(health <= 0) {
-            SetHealthIndicator(0);
             Death();
             return;
         }
-
+        else DecreaseHealthIndicator(decrease);
+        
         //to del
         animator.SetTrigger("isDamaged");
-        SetHealthIndicator(health);
     }
 
     void Death() {
         Debug.Log(gameObject.name + " IS DEAD");
     }
 
-    void SetHealthIndicator(int indicHealth) {
-        Debug.Log(gameObject.name + " HEALTH=" + indicHealth);
-
+    void DecreaseHealthIndicator(int decrHealth) {
+        Debug.Log(gameObject.name + " HEALTH=" + health);
+        float scaleDecrease = startIndicatorScale * decrHealth / startHealth;
+        healthIndicator.transform.localScale -= new Vector3(scaleDecrease, 0, 0);
     }
 }

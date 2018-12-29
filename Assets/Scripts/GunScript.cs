@@ -79,9 +79,7 @@ public class GunScript : MonoBehaviour {
         // fire
         bullet.SetActive(true);
         bullet.transform.SetParent(transform);
-        //bulletRigid.angularVelocity = 0f;
         bulletRigid.rotation = transform.eulerAngles.z;
-        //bulletRigid.velocity = Vector3.zero;
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
 

@@ -28,7 +28,6 @@ public class PoolManagerScript : MonoBehaviour {
 			foreach(int arsKey in arsenalKeys) {
 				if (!pool.ContainsKey(arsKey)) {
 					GameObject newBullet = Instantiate(bulletsCatalog[arsKey]);
-					BulletScript bulScr = newBullet.GetComponent<BulletScript>();
 					pool.Add(arsKey, newBullet);
 				} 
 			}
