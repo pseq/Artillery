@@ -28,6 +28,7 @@ public class GunScript : MonoBehaviour {
     AudioSource tick;
     Dictionary<int,int> arsenal;
     int[] arsKeys;
+    Transform hBar;
 
     void Awake() {
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
@@ -39,6 +40,7 @@ public class GunScript : MonoBehaviour {
         tick = gameObject.GetComponent<AudioSource>();
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
+        hBar = transform.parent.GetChild(3);
         //SelectBullet(0);
     }
 
@@ -133,6 +135,7 @@ public class GunScript : MonoBehaviour {
     public void TurnAround() {
         forwardDirection *= -1f;
         gunAngle *= -1f;
+        hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }
 }

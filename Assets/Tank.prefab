@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1107628070689738977}
   - component: {fileID: 3200492036644460353}
+  - component: {fileID: 3155759707692215003}
   m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108302830630274148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.42, y: 2.66, z: 0}
+  m_LocalPosition: {x: 0.01, y: -0.13, z: 0}
   m_LocalScale: {x: 3.0422997, y: 0.32345155, z: 1}
   m_Children:
   - {fileID: 2929702849995711}
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5558fd8c3c6380c458ec1310d0090d53, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 895901503d775b24fa567ffbb3b0d528, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,6 +81,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3155759707692215003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108302830630274148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f052c9ea898024e8c1f7db64c828c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2365570704844531955
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2365570704844531955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.016, y: 0.011, z: 0}
+  m_LocalPosition: {x: -0.486, y: 8.55, z: 0}
   m_LocalScale: {x: 0.96763295, y: 0.728532, z: 1}
   m_Children: []
   m_Father: {fileID: 1107628070689738977}
@@ -557,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b597e171eaed9e46baeeef99e498f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 100
   health: 100
   animator: {fileID: 7684682491803305651}
   healthIndicator: {fileID: 2365570704844531955}
