@@ -29,10 +29,18 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
+    //test
+    GameObject testObject;
+    GameObject testObject2;
+    GameObject testObject3;
 
     void Awake() {
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
         ddScript = dropDown.gameObject.GetComponent<DDScript>();
+        //test
+        testObject = GameObject.FindGameObjectWithTag("test");
+        testObject2 = GameObject.FindGameObjectWithTag("test2");
+        testObject3 = GameObject.FindGameObjectWithTag("test3");
     }
 
     // Use this for initialization
@@ -82,7 +90,39 @@ public class GunScript : MonoBehaviour {
         bullet.SetActive(true);
         bullet.transform.SetParent(transform);
         bulletRigid.rotation = transform.eulerAngles.z;
+
+        //test0
+        float destX = testObject3.transform.localPosition.x;
+        float destY = testObject3.transform.localPosition.y;
+        float g = Mathf.Abs(Physics2D.gravity.y);
+        float a = Mathf.Deg2Rad * transform.eulerAngles.z;
+        float sina = Mathf.Sin(a);
+        float cosa = Mathf.Cos(a);
+        //float Voy = Mathf.Sqrt(destY * g * .5f /(Mathf.Sin(a) - 1));
+        //float Voy = Mathf.Sqrt(destY * g * .5f / Mathf.Abs(Mathf.Sin(a) - 1));
+        //float Vox = g * destX * .5f/ Voy;
+        //Debug.Log("VOX " + Vox + "    VOY " + Voy + "  Mathf.Sin(a) - 1 " + (Mathf.Sin(a) - 1));
+        float calcPower = bulletRigid.mass * (destX / cosa) * Mathf.Sqrt(g / (2 * (destX * Mathf.Tan(a) - destY)));
+        //float calcPower = destX * Mathf.Sqrt(g / (2 * cosa * (destX * sina - destY * cosa)));
+        //Vector2 calcPower = new Vector2(Vox, Voy) * bulletRigid.mass;
+        Debug.Log("GUN  calcPower " + calcPower);
+        Debug.Log("GUN  firePower " + firePower);
+
+
+        //bulletRigid.AddRelativeForce((new Vector2(forwardDirection * calcPower, 0f)) , ForceMode2D.Impulse);
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
+        // test
+        //Debug.Log("GUN BULLET SPEED " + bulletRigid.velocity);
+        //float bulletDist = fireSpot.transform.position.x + bulletRigid.velocity.magnitude * bulletRigid.velocity.magnitude * Mathf.Sin( a * 2) / g;
+        float bulletDist = fireSpot.transform.position.x + bulletRigid.velocity.magnitude * bulletRigid.velocity.magnitude * Mathf.Sin( a * 2) / g;
+        //Debug.Log("GUN BULLET DISTANCE " + bulletDist);
+        //Debug.DrawLine(new Vector2(bulletDist, 0), new Vector2(bulletDist, 100));
+        //Debug.DrawLine(new Vector2(bulletDist, 0), new Vector2(bulletDist, 100));
+        testObject.transform.position = new Vector3(bulletDist, 0,0);
+        testObject2.transform.position = fireSpot.transform.position;
+        //Debug.Break();
+        // \test
+
         bullet.transform.position = fireSpot.transform.position;
 
         // del from arsenal

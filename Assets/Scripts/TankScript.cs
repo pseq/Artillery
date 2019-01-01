@@ -40,11 +40,11 @@ Rigidbody2D leftWheelRigid, rightWheelRigid;
         if (time > 0) leftWheel.useMotor = true;
         else rightWheel.useMotor = true;
         //wait
-        Debug.Log("TANK START MOVE " + transform.name);
+        //Debug.Log("TANK START MOVE " + transform.name);
 
         yield return new WaitForSeconds(Mathf.Abs(time));
         // stop
-        Debug.Log("TANK STOP MOVE " + transform.name);
+        //Debug.Log("TANK STOP MOVE " + transform.name);
 
         rightWheelRigid.freezeRotation = true;
         leftWheelRigid.freezeRotation = true;

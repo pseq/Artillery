@@ -213,10 +213,4 @@ public class TerrainScript : MonoBehaviour {
         for (int i = 0; i < terrMap.Length; i++) terrMap2d[i] = terrMap[i];
         collider.points = terrMap2d;
     }
-
-    // Update is called once per frame
-    void Update () {
-
-    }
-
 }
