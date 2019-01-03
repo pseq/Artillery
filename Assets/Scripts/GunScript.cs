@@ -30,17 +30,17 @@ public class GunScript : MonoBehaviour {
     int[] arsKeys;
     Transform hBar;
     //test
-    GameObject testObject;
-    GameObject testObject2;
-    GameObject testObject3;
+    //GameObject testObject;
+    //GameObject testObject2;
+    //GameObject testObject3;
 
     void Awake() {
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
         ddScript = dropDown.gameObject.GetComponent<DDScript>();
         //test
-        testObject = GameObject.FindGameObjectWithTag("test");
-        testObject2 = GameObject.FindGameObjectWithTag("test2");
-        testObject3 = GameObject.FindGameObjectWithTag("test3");
+        //testObject = GameObject.FindGameObjectWithTag("test");
+        //testObject2 = GameObject.FindGameObjectWithTag("test2");
+        //testObject3 = GameObject.FindGameObjectWithTag("test3");
     }
 
     // Use this for initialization
@@ -92,12 +92,10 @@ public class GunScript : MonoBehaviour {
         bulletRigid.rotation = transform.eulerAngles.z;
 
         //test0
-        //float destX = testObject3.transform.localPosition.x;
-        //float destX = testObject3.transform.position.x;
-        float destX = testObject3.transform.position.x - fireSpot.transform.position.x;
+        //GunPowerToPoint(testObject3.transform.position);
+        //Debug.Break();
+        /*
         float destY = testObject3.transform.position.y - fireSpot.transform.position.y;
-        //float destY = testObject3.transform.localPosition.y;
-        //float destY = testObject3.transform.position.y;
         float g = Mathf.Abs(Physics2D.gravity.y);
         float a = Mathf.Deg2Rad * transform.eulerAngles.z;
         float sin2a = Mathf.Sin(a*2);
@@ -106,24 +104,14 @@ public class GunScript : MonoBehaviour {
         //float calcPower = bulletRigid.mass * Mathf.Sqrt(g * (destX - fireSpot.transform.position.x)/Mathf.Sin(2*a));
         //another formula
         float calcPower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
-        Debug.Log("GUN  calcPower " + calcPower);
-        Debug.Log("GUN  firePower " + firePower);
+        //Debug.Log("GUN  calcPower " + calcPower);
+        //Debug.Log("GUN  firePower " + firePower);
 
 
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection * calcPower, 0f)) , ForceMode2D.Impulse);
-        //bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
-        // test
-        //Debug.Log("GUN BULLET SPEED " + bulletRigid.velocity);
-        float bulletDist = fireSpot.transform.position.x + bulletRigid.velocity.magnitude * bulletRigid.velocity.magnitude * sin2a / g;
-        Debug.Log("GUN BULLET mv  " + bulletRigid.velocity.magnitude * bulletRigid.mass);
-        Debug.Log("GUN BULLET power  " + firePower);
-        //Debug.DrawLine(new Vector2(bulletDist, 0), new Vector2(bulletDist, 100));
-        //Debug.DrawLine(new Vector2(bulletDist, 0), new Vector2(bulletDist, 100));
-        testObject.transform.position = new Vector3(bulletDist, 0,0);
-        testObject2.transform.position = fireSpot.transform.position;
-        //Debug.Break();
-        // \test
+        */
 
+        bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
 
         // del from arsenal
@@ -156,6 +144,17 @@ public class GunScript : MonoBehaviour {
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
     }
 
+    public void GunPowerToPoint (Vector2 target) {
+        float destX = target.x - fireSpot.transform.position.x;
+        float destY = target.y - fireSpot.transform.position.y;
+        float g = Mathf.Abs(Physics2D.gravity.y);
+        float a = Mathf.Deg2Rad * transform.eulerAngles.z;
+        float sin2a = Mathf.Sin(a*2);
+        float cosa = Mathf.Cos(a);
+        // добавить обработку ошибок
+        firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+    }
+    
     public void GunPowerChange (Vector2 scroll)
     {
         float newFirePower = (1f - scroll.y) * firePowerMultipler;
