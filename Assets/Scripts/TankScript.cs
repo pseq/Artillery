@@ -9,6 +9,7 @@ WheelJoint2D leftWheel, rightWheel;
 Rigidbody2D leftWheelRigid, rightWheelRigid;
 public GameObject target;
 public float angleSearchStepGrad = 5f;
+public GunScript gunScript;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +32,14 @@ public float angleSearchStepGrad = 5f;
     }
     
     public void Aim() {
+        TurnaroundToEnemy(gameObject.transform, target.transform);
+        
         float angle = ShootAngleSearch(gameObject, target);
-        Debug.Log("TANK MIN ANGLE " + angle);
+        //Debug.Log("TANK MIN ANGLE " + angle);
 
         float angle2 = ShootAngleSearch(target, gameObject);
-        Debug.Log("TANK MIN ANGLE2 " + angle2);
+        //Debug.Log("TANK MIN ANGLE2 " + angle2);
+
     }
 
     float ShootAngleSearch(GameObject self, GameObject enemy) {
@@ -45,6 +49,8 @@ public float angleSearchStepGrad = 5f;
         float direction = selfTransform.localScale.x/Mathf.Abs(selfTransform.localScale.x);
         Vector2 lineTo = enemyTransform.position ;
         float enemyAngle = Mathf.Atan2(lineTo.y - selfTransform.position.y, (lineTo.x - selfTransform.position.x) * direction) * Mathf.Rad2Deg;
+
+        // search angle
         while(enemyAngle < 90f) {
             float tga = Mathf.Tan(enemyAngle * Mathf.Deg2Rad);
             lineTo.y = direction * (lineTo.x - selfTransform.position.x) * tga + selfTransform.position.y;
@@ -60,10 +66,15 @@ public float angleSearchStepGrad = 5f;
             enemyAngle += angleSearchStepGrad;
         }
 
-
-        Debug.Break();
+        //Debug
+        //Debug.Break();
         return enemyAngle;
-    } 
+    }
+
+    void TurnaroundToEnemy(Transform self, Transform target) {
+        if (target.position.x > self.position.x && self.localScale.x < 0) gunScript.TurnAround(); 
+        if (target.position.x < self.position.x && self.localScale.x > 0) gunScript.TurnAround();
+    }
 
     IEnumerator MoveCoroutine(float time) {
         // move

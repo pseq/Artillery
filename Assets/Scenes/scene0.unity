@@ -221,8 +221,8 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -1.5}
+  m_EdgeRadius: 1.1
   m_Points:
   - {x: -9.1679, y: 2.38129}
   - {x: 8.537545, y: 2.5452232}
@@ -692,6 +692,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1192927139}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: gunScript
+      value: 
+      objectReference: {fileID: 1175805736}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3b3eb1c7066b84c80152cbaf54c415, type: 3}
 --- !u!1 &197277921
@@ -2338,6 +2343,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &1175805736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    type: 3}
+  m_PrefabInstance: {fileID: 193481723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c234d2bde693454c98f7b052d1f3ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1192927139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8679405839864556311, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
@@ -4370,6 +4387,11 @@ PrefabInstance:
       propertyPath: angleSearchStepGrad
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: gunScript
+      value: 
+      objectReference: {fileID: 1602040406}
     - target: {fileID: 8679405839200109114, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalRotation.x
