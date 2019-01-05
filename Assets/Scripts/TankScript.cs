@@ -10,6 +10,19 @@ Rigidbody2D leftWheelRigid, rightWheelRigid;
 public GameObject target;
 public float angleSearchStepGrad = 5f;
 public GunScript gunScript;
+float leftAimPoint;
+float rightAimPoint;
+float lastHitPoint;
+float lastEnemyPosition;
+float gunPower;
+public float maxGunPower = 25;
+bool isFirst = true;
+bool moveDirChanged = false;
+float cantMovinDelta  = 5f;
+float changePositionDistance  = 1f;
+int moveDirection = 1;
+float lastGunPower;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,33 +33,91 @@ public GunScript gunScript;
         leftWheel = leftWheelObj.GetComponent<WheelJoint2D>();
         rightWheelRigid = rightWheelObj.GetComponent<Rigidbody2D>();
         leftWheelRigid = leftWheelObj.GetComponent<Rigidbody2D>();
+// TODO сделать выбор из размеров terrain
+        leftAimPoint = 0;
+        //rightAimPoint = GameObject.Find("Terrain").GetComponent<Mesh>().bounds.center.x;
+        rightAimPoint = 150;
+        lastHitPoint = target.transform.position.x;
+        lastEnemyPosition = lastHitPoint;
+        //gunPower = gunScript.GunPowerToPoint(target.transform.position, 45f);
+        gunPower = 10;
     }
 
     public void Move(float dist) {
-        // формула вычисления времени из расстояния
+        // TODO формула вычисления времени из расстояния
         float time = dist/speed;
-
-        //Debug
-        //Debug.Break();
         StartCoroutine(MoveCoroutine(time));
+    }
+
+    bool ChangePosition() {
+        // TODO формула вычисления времени из расстояния
+        float startPos = transform.position.x;
+        Move(changePositionDistance * moveDirection);
+        isFirst = false;
+        if (Mathf.Abs(startPos - transform.position.x) > 0) return true;
+        else return false;
     }
     
     public void Aim() {
         TurnaroundToEnemy(gameObject.transform, target.transform);
+        // находим углы для попадания по цели для обоих танков, и берем больший
+        float angle = Mathf.Max(ShootAngleSearch(gameObject, target),ShootAngleSearch(target, gameObject));
         
-        float angle = ShootAngleSearch(gameObject, target);
-        //Debug.Log("TANK MIN ANGLE " + angle);
-
-        float angle2 = ShootAngleSearch(target, gameObject);
-        //Debug.Log("TANK MIN ANGLE2 " + angle2);
-
+        // Power Calc to Enemy
+        lastGunPower = gunPower;
+        gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
+        if (gunPower <= maxGunPower) {
+            // завершаем алгоритм
+            AiminOK(angle);
+            return;
+        } 
+        else if (!isFirst) {
+            if (gunPower > lastGunPower) {
+                if (ChangeMovinDirection()) {
+                    AiminOK(angle);
+                    return;
+                } else if (ChangePosition()) Aim(); // рекурсия            
+            } else if (ChangePosition()) Aim();    
+        } else if (ChangePosition()) Aim(); // рекурсия
     }
+
+    bool ChangeMovinDirection() {
+        moveDirection *= -1;
+        if (!ChangePosition() && !moveDirChanged) {
+            moveDirChanged = true;
+            ChangeMovinDirection();
+        }
+        return moveDirChanged;
+    }
+
+    void AiminOK(float angle) {
+        // SET GUN AIM
+        isFirst = true;
+        moveDirChanged = false;
+
+        gunScript.gunAngle = angle + + transform.eulerAngles.z;
+        gunScript.Fire();
+    }
+
+    float ShootDistanceSelect() {
+        float enemyPosition = target.transform.position.x;
+        if (lastHitPoint > enemyPosition) {
+            rightAimPoint = lastHitPoint;
+            leftAimPoint = enemyPosition - lastEnemyPosition + leftAimPoint;
+        }
+        if (lastHitPoint < enemyPosition) {
+            leftAimPoint = lastHitPoint;
+            rightAimPoint = enemyPosition - lastEnemyPosition + rightAimPoint;
+        }
+        lastEnemyPosition = enemyPosition;
+        return Random.Range(leftAimPoint, rightAimPoint);
+    } 
 
     float ShootAngleSearch(GameObject self, GameObject enemy) {
         LayerMask mask = LayerMask.GetMask("Terrain");
         Transform selfTransform = self.transform;
         Transform enemyTransform = enemy.transform;
-        float direction = selfTransform.localScale.x/Mathf.Abs(selfTransform.localScale.x);
+        float direction = Mathf.Sign(selfTransform.localScale.x);
         Vector2 lineTo = enemyTransform.position ;
         float enemyAngle = Mathf.Atan2(lineTo.y - selfTransform.position.y, (lineTo.x - selfTransform.position.x) * direction) * Mathf.Rad2Deg;
 

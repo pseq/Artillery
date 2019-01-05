@@ -605,7 +605,7 @@ PrefabInstance:
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 106
+      value: 172.4
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -1339,6 +1339,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 193481723}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &787258648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    type: 3}
+  m_PrefabInstance: {fileID: 193481723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787258647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5baeeb66a28b0ea44b01f1a924d62bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &803509842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,18 +2373,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8679405840182308975}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1192927142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 8679405840182308975}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192927139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5baeeb66a28b0ea44b01f1a924d62bef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1203800813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,7 +2557,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 81.92915
+  orthographic size: 80.85316
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3469,7 +3469,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1192927142}
+      - m_Target: {fileID: 787258648}
         m_MethodName: Aim
         m_Mode: 1
         m_Arguments:

@@ -22,7 +22,7 @@ public class GunScript : MonoBehaviour {
     public Text angleText;
     public Text powerText;
     float firePower;
-    float gunAngle;
+    public float gunAngle; // SET TO NOT PUBLIC!!!
     float lastScroll;
     Rigidbody2D bulletRigid;
     AudioSource tick;
@@ -144,15 +144,17 @@ public class GunScript : MonoBehaviour {
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
     }
 
-    public void GunPowerToPoint (Vector2 target) {
+    public float GunPowerToPoint (Vector2 target, float realAngle) {
         float destX = target.x - fireSpot.transform.position.x;
         float destY = target.y - fireSpot.transform.position.y;
         float g = Mathf.Abs(Physics2D.gravity.y);
-        float a = Mathf.Deg2Rad * transform.eulerAngles.z;
+        float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
         float cosa = Mathf.Cos(a);
+        // TODO
         // добавить обработку ошибок
         firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+        return firePower;
     }
     
     public void GunPowerChange (Vector2 scroll)
@@ -164,7 +166,7 @@ public class GunScript : MonoBehaviour {
     float GunValuechange (float oldVal, float newVal, float step, Text textField) {
         float delta = Math.Abs(oldVal - newVal);
         if (delta >= step) {
-            newVal = oldVal - step * ((oldVal - newVal)/Math.Abs(oldVal - newVal));
+            newVal = oldVal - step * Math.Sign(oldVal - newVal);
             textField.text = newVal.ToString();
             tick.Play();
             return newVal;
