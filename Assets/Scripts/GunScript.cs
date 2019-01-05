@@ -91,25 +91,10 @@ public class GunScript : MonoBehaviour {
         bullet.transform.SetParent(transform);
         bulletRigid.rotation = transform.eulerAngles.z;
 
-        //test0
-        //GunPowerToPoint(testObject3.transform.position);
-        //Debug.Break();
-        /*
-        float destY = testObject3.transform.position.y - fireSpot.transform.position.y;
-        float g = Mathf.Abs(Physics2D.gravity.y);
-        float a = Mathf.Deg2Rad * transform.eulerAngles.z;
-        float sin2a = Mathf.Sin(a*2);
-        float cosa = Mathf.Cos(a);
         //workin
         //float calcPower = bulletRigid.mass * Mathf.Sqrt(g * (destX - fireSpot.transform.position.x)/Mathf.Sin(2*a));
         //another formula
-        float calcPower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
-        //Debug.Log("GUN  calcPower " + calcPower);
-        //Debug.Log("GUN  firePower " + firePower);
-
-
-        bulletRigid.AddRelativeForce((new Vector2(forwardDirection * calcPower, 0f)) , ForceMode2D.Impulse);
-        */
+        //float calcPower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
 
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
@@ -145,15 +130,27 @@ public class GunScript : MonoBehaviour {
     }
 
     public float GunPowerToPoint (Vector2 target, float realAngle) {
-        float destX = target.x - fireSpot.transform.position.x;
+        //float destX = target.x - fireSpot.transform.position.x;
+        float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
         float destY = target.y - fireSpot.transform.position.y;
+        //float destY = Mathf.Abs(target.y - fireSpot.transform.position.y);
         float g = Mathf.Abs(Physics2D.gravity.y);
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
         float cosa = Mathf.Cos(a);
+    //Debug.DrawLine(fireSpot.transform.position, new Vector2(destX,destY));
+    //Debug.Break();
+
         // TODO
         // добавить обработку ошибок
         firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+        Debug.Log("GUN under sqrt " + (g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa)) + 
+            " destX * sin2a " + destX * sin2a + 
+            " 2 * destY * cosa * cosa " + 2 * destY * cosa * cosa +
+            " sin2a " + sin2a + 
+            " destX " + destX +
+            " target.x " + target.x +
+            " fireSpot.transform.position.x " + fireSpot.transform.position.x); 
         return firePower;
     }
     

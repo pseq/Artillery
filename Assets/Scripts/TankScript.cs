@@ -61,11 +61,14 @@ float lastGunPower;
     public void Aim() {
         TurnaroundToEnemy(gameObject.transform, target.transform);
         // находим углы для попадания по цели для обоих танков, и берем больший
-        float angle = Mathf.Max(ShootAngleSearch(gameObject, target),ShootAngleSearch(target, gameObject));
-        
+        float angle = Mathf.Max(ShootAngleSearch(target, gameObject), ShootAngleSearch(gameObject, target));
+        Debug.Log("TANK CLCLTED ANGLE " + angle + " " + gameObject.name);
+
         // Power Calc to Enemy
         lastGunPower = gunPower;
         gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
+        Debug.Log("TANK CLCLTED GP " + gunPower + " MAX GP " + maxGunPower + " " + gameObject.name);
+
         if (gunPower <= maxGunPower) {
             // завершаем алгоритм
             AiminOK(angle);
@@ -95,7 +98,10 @@ float lastGunPower;
         isFirst = true;
         moveDirChanged = false;
 
-        gunScript.gunAngle = angle + + transform.eulerAngles.z;
+        gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.rotation.z);
+        Debug.Log("TANK gunScript.transform.eulerAngles " + gunScript.transform.eulerAngles + 
+            " angle " + angle + 
+            " transform.rotation.z " + transform.rotation.z);
         gunScript.Fire();
     }
 
@@ -129,7 +135,6 @@ float lastGunPower;
             RaycastHit2D rkHit = Physics2D.Linecast( selfTransform.position, lineTo, mask);
             
 
-            //Debug.Log("TANK RAYCAST COLLISION: " + rkHit.transform);
             Debug.DrawLine(selfTransform.position, lineTo, new Color(1,enemyAngle/10f,enemyAngle/10f,1));
             Debug.DrawLine(enemyTransform.position, rkHit.point, new Color(1,1,0,1));
 

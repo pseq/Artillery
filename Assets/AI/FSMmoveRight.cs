@@ -11,7 +11,7 @@ public class FSMmoveRight : StateMachineBehaviour
 
     
     void OnEnable() {
-        Debug.Log("FSMmoveRight ENABLED");
+        //Debug.Log("FSMmoveRight ENABLED");
 
         tankScript = GameObject.FindGameObjectWithTag("AIControlled").GetComponent<TankScript>();
         
@@ -20,7 +20,7 @@ public class FSMmoveRight : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        tankScript.Move(onDamagedMove);
+        //tankScript.Move(onDamagedMove);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
