@@ -697,6 +697,26 @@ PrefabInstance:
       propertyPath: gunScript
       value: 
       objectReference: {fileID: 1175805736}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: minShootAngle
+      value: -360
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: maxShootAngle
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: maxGunPower
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 928599335}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3b3eb1c7066b84c80152cbaf54c415, type: 3}
 --- !u!1 &197277921
@@ -1607,8 +1627,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928599335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.8, y: 87.9, z: 0}
-  m_LocalScale: {x: 0.39529762, y: 142.04173, z: 5.718727}
+  m_LocalPosition: {x: 37, y: 29.1, z: 0}
+  m_LocalScale: {x: 2.0982893, y: 1.7728229, z: 5.718727}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -3458,17 +3478,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1602040406}
-        m_MethodName: Fire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 787258648}
         m_MethodName: Aim
         m_Mode: 1

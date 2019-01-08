@@ -88,13 +88,12 @@ public class GunScript : MonoBehaviour {
         if (bullet) {
         // fire
         bullet.SetActive(true);
-        bullet.transform.SetParent(transform);
-        bulletRigid.rotation = transform.eulerAngles.z;
+        bullet.transform.SetParent(fireSpot.transform);
+        //bullet.transform.SetParent(transform);
+        //bulletRigid.rotation = transform.eulerAngles.z;
+        bulletRigid.rotation = fireSpot.transform.eulerAngles.z;
 
-        //workin
-        //float calcPower = bulletRigid.mass * Mathf.Sqrt(g * (destX - fireSpot.transform.position.x)/Mathf.Sin(2*a));
-        //another formula
-        //float calcPower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+        Debug.Log("GUN REAL firePower " + firePower);
 
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
@@ -117,7 +116,6 @@ public class GunScript : MonoBehaviour {
         }
     }
 
-
     public void GunAngleChange (Vector2 scroll)
     {
         //Turnaround
@@ -138,12 +136,15 @@ public class GunScript : MonoBehaviour {
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
         float cosa = Mathf.Cos(a);
-    //Debug.DrawLine(fireSpot.transform.position, new Vector2(destX,destY));
+    Debug.DrawLine(Vector2.zero, new Vector2(destX,destY));
+    Debug.DrawLine(fireSpot.transform.position, target, Color.red);
     //Debug.Break();
 
         // TODO
         // добавить обработку ошибок
         firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+        Debug.Log("GUN CLCLTD firePower " + firePower);
+        /*
         Debug.Log("GUN under sqrt " + (g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa)) + 
             " destX * sin2a " + destX * sin2a + 
             " 2 * destY * cosa * cosa " + 2 * destY * cosa * cosa +
@@ -151,6 +152,7 @@ public class GunScript : MonoBehaviour {
             " destX " + destX +
             " target.x " + target.x +
             " fireSpot.transform.position.x " + fireSpot.transform.position.x); 
+            */
         return firePower;
     }
     

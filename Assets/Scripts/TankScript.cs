@@ -22,6 +22,9 @@ float cantMovinDelta  = 5f;
 float changePositionDistance  = 1f;
 int moveDirection = 1;
 float lastGunPower;
+public float minShootAngle = -360;
+public float maxShootAngle = 360;
+public GameObject test;
 
 
     // Start is called before the first frame update
@@ -50,7 +53,8 @@ float lastGunPower;
     }
 
     bool ChangePosition() {
-        // TODO формула вычисления времени из расстояния
+        lastGunPower = gunPower;
+
         float startPos = transform.position.x;
         Move(changePositionDistance * moveDirection);
         isFirst = false;
@@ -62,21 +66,25 @@ float lastGunPower;
         TurnaroundToEnemy(gameObject.transform, target.transform);
         // находим углы для попадания по цели для обоих танков, и берем больший
         float angle = Mathf.Max(ShootAngleSearch(target, gameObject), ShootAngleSearch(gameObject, target));
+        // чтобы мощность выстрела не превышала максимальную, увеличиваем угол до 45
+        //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
         Debug.Log("TANK CLCLTED ANGLE " + angle + " " + gameObject.name);
 
         // Power Calc to Enemy
-        lastGunPower = gunPower;
         gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
         Debug.Log("TANK CLCLTED GP " + gunPower + " MAX GP " + maxGunPower + " " + gameObject.name);
 
         if (gunPower <= maxGunPower) {
             // завершаем алгоритм
+            Debug.Log("TANK gunPower <= maxGunPower AiminOK");
             AiminOK(angle);
             return;
         } 
         else if (!isFirst) {
             if (gunPower > lastGunPower) {
                 if (ChangeMovinDirection()) {
+                    Debug.Log("TANK gunPower > lastGunPower AiminOK");
+
                     AiminOK(angle);
                     return;
                 } else if (ChangePosition()) Aim(); // рекурсия            
@@ -98,7 +106,9 @@ float lastGunPower;
         isFirst = true;
         moveDirChanged = false;
 
-        gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.rotation.z);
+        gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
+        //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.rotation.z * Mathf.Rad2Deg);
+        //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.eulerAngles.z);
         Debug.Log("TANK gunScript.transform.eulerAngles " + gunScript.transform.eulerAngles + 
             " angle " + angle + 
             " transform.rotation.z " + transform.rotation.z);
@@ -116,16 +126,19 @@ float lastGunPower;
             rightAimPoint = enemyPosition - lastEnemyPosition + rightAimPoint;
         }
         lastEnemyPosition = enemyPosition;
-        return Random.Range(leftAimPoint, rightAimPoint);
+        return enemyPosition;
+        //return Random.Range(leftAimPoint, rightAimPoint);
     } 
 
     float ShootAngleSearch(GameObject self, GameObject enemy) {
         LayerMask mask = LayerMask.GetMask("Terrain");
         Transform selfTransform = self.transform;
         Transform enemyTransform = enemy.transform;
-        float direction = Mathf.Sign(selfTransform.localScale.x);
+        float direction = Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
         Vector2 lineTo = enemyTransform.position ;
         float enemyAngle = Mathf.Atan2(lineTo.y - selfTransform.position.y, (lineTo.x - selfTransform.position.x) * direction) * Mathf.Rad2Deg;
+
+        //Debug.Log("TANK TEST AN " + Mathf.Atan2(test.transform.position.y, test.transform.position.x) * Mathf.Rad2Deg);
 
         // search angle
         while(enemyAngle < 90f) {
@@ -135,15 +148,17 @@ float lastGunPower;
             RaycastHit2D rkHit = Physics2D.Linecast( selfTransform.position, lineTo, mask);
             
 
-            Debug.DrawLine(selfTransform.position, lineTo, new Color(1,enemyAngle/10f,enemyAngle/10f,1));
-            Debug.DrawLine(enemyTransform.position, rkHit.point, new Color(1,1,0,1));
+            Debug.DrawLine(selfTransform.position, lineTo, Color.green);
+            //Debug.DrawLine(enemyTransform.position, rkHit.point, new Color(1,1,0,1));
+
+            // ТОДО не искать угол врага, если цикл отработал сразу
 
             if(!rkHit) break;
             enemyAngle += angleSearchStepGrad;
         }
 
         //Debug
-        //Debug.Break();
+        Debug.Break();
         return enemyAngle;
     }
 
