@@ -30,6 +30,7 @@ public class GunScript : MonoBehaviour {
     int[] arsKeys;
     Transform hBar;
     //test
+    public int isRevertAngleWhenTurnar = -1;
     //GameObject testObject;
     //GameObject testObject2;
     //GameObject testObject3;
@@ -175,7 +176,7 @@ public class GunScript : MonoBehaviour {
 
     public void TurnAround() {
         forwardDirection *= -1f;
-        gunAngle *= -1f;
+        gunAngle *= isRevertAngleWhenTurnar;
         hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }

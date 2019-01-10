@@ -24,7 +24,10 @@ int moveDirection = 1;
 float lastGunPower;
 public float minShootAngle = -360;
 public float maxShootAngle = 360;
+
+////// test
 public GameObject test;
+public int floorAngleSign = 1;
 
 
     // Start is called before the first frame update
@@ -63,12 +66,33 @@ public GameObject test;
     }
     
     public void Aim() {
-        TurnaroundToEnemy(gameObject.transform, target.transform);
+
+        Transform selfTransform = gameObject.transform;
+        Transform enemyTransform = target.transform;
+        TurnaroundToEnemy(selfTransform, enemyTransform);
+
+        // угол между танком и противником
+        float floorAngle = floorAngleSign * Mathf.Atan2(enemyTransform.position.y - selfTransform.position.y, 
+                                        enemyTransform.position.x - selfTransform.position.x) * Mathf.Rad2Deg;
+
+        
+
         // находим углы для попадания по цели для обоих танков, и берем больший
-        float angle = Mathf.Max(ShootAngleSearch(target, gameObject), ShootAngleSearch(gameObject, target));
+        // ! float angle = Mathf.Max(ShootAngleSearch(target, gameObject), ShootAngleSearch(gameObject, target));
+        float alpha = ShootAngleSearch(gameObject, target);
+        float beta = ShootAngleSearch(target, gameObject);
+        float angle = Mathf.Max(alpha - floorAngle * Mathf.Sign(alpha), (beta + floorAngle) * Mathf.Sign(beta)) + floorAngle;
+        
+
+
+
         // чтобы мощность выстрела не превышала максимальную, увеличиваем угол до 45
         //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
-        Debug.Log("TANK CLCLTED ANGLE " + angle + " " + gameObject.name);
+
+        Debug.Log("TANK FLOOR " + floorAngle + " " + gameObject.name);
+        Debug.Log("TANK A " + ShootAngleSearch(gameObject, target) + " " + gameObject.name);
+        Debug.Log("TANK B " + ShootAngleSearch(target, gameObject) + " " + gameObject.name);
+        Debug.Log("TANK ANGLE " + angle);
 
         // Power Calc to Enemy
         gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
@@ -109,9 +133,7 @@ public GameObject test;
         gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
         //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.rotation.z * Mathf.Rad2Deg);
         //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.eulerAngles.z);
-        Debug.Log("TANK gunScript.transform.eulerAngles " + gunScript.transform.eulerAngles + 
-            " angle " + angle + 
-            " transform.rotation.z " + transform.rotation.z);
+        Debug.Log("TANK REAL GUN ANGLE " + angle + transform.eulerAngles.z);
         gunScript.Fire();
     }
 
@@ -153,8 +175,8 @@ public GameObject test;
 
             // ТОДО не искать угол врага, если цикл отработал сразу
 
-            if(!rkHit) break;
             enemyAngle += angleSearchStepGrad;
+            if(!rkHit) break;
         }
 
         //Debug

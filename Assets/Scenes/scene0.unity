@@ -672,6 +672,11 @@ PrefabInstance:
       propertyPath: dropDown
       value: 
       objectReference: {fileID: 97344255}
+    - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: isRevertAngleWhenTurnar
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7684682491803305651, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_UpdateMode
@@ -710,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: maxGunPower
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -4453,6 +4458,11 @@ PrefabInstance:
       propertyPath: gunScript
       value: 
       objectReference: {fileID: 1602040406}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: floorAngleSign
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8679405839200109114, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalRotation.x
