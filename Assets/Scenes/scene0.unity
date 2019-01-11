@@ -722,6 +722,11 @@ PrefabInstance:
       propertyPath: test
       value: 
       objectReference: {fileID: 928599335}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: floorAngleSign
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3b3eb1c7066b84c80152cbaf54c415, type: 3}
 --- !u!1 &197277921

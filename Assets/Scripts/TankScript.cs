@@ -28,6 +28,7 @@ public float maxShootAngle = 360;
 ////// test
 public GameObject test;
 public int floorAngleSign = 1;
+public int side = 1;
 
 
     // Start is called before the first frame update
@@ -79,9 +80,10 @@ public int floorAngleSign = 1;
 
         // находим углы для попадания по цели для обоих танков, и берем больший
         // ! float angle = Mathf.Max(ShootAngleSearch(target, gameObject), ShootAngleSearch(gameObject, target));
-        float alpha = ShootAngleSearch(gameObject, target);
-        float beta = ShootAngleSearch(target, gameObject);
-        float angle = Mathf.Max(alpha - floorAngle * Mathf.Sign(alpha), (beta + floorAngle) * Mathf.Sign(beta)) + floorAngle;
+        //float alpha = ShootAngleSearch(gameObject, target);
+        //float beta = ShootAngleSearch(target, gameObject);
+        //float angle = Mathf.Max(alpha - floorAngle * Mathf.Sign(alpha), (beta + floorAngle) * Mathf.Sign(beta)) + floorAngle;
+        float angle = ShootAngleSearch(gameObject, side);
         
 
 
@@ -90,8 +92,8 @@ public int floorAngleSign = 1;
         //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
 
         Debug.Log("TANK FLOOR " + floorAngle + " " + gameObject.name);
-        Debug.Log("TANK A " + ShootAngleSearch(gameObject, target) + " " + gameObject.name);
-        Debug.Log("TANK B " + ShootAngleSearch(target, gameObject) + " " + gameObject.name);
+        //Debug.Log("TANK A " + ShootAngleSearch(gameObject, target) + " " + gameObject.name);
+        //Debug.Log("TANK B " + ShootAngleSearch(target, gameObject) + " " + gameObject.name);
         Debug.Log("TANK ANGLE " + angle);
 
         // Power Calc to Enemy
@@ -152,16 +154,26 @@ public int floorAngleSign = 1;
         //return Random.Range(leftAimPoint, rightAimPoint);
     } 
 
-    float ShootAngleSearch(GameObject self, GameObject enemy) {
+    float ShootAngleSearch(GameObject self, int course) {
         LayerMask mask = LayerMask.GetMask("Terrain");
         Transform selfTransform = self.transform;
-        Transform enemyTransform = enemy.transform;
-        float direction = Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
-        Vector2 lineTo = enemyTransform.position ;
-        float enemyAngle = Mathf.Atan2(lineTo.y - selfTransform.position.y, (lineTo.x - selfTransform.position.x) * direction) * Mathf.Rad2Deg;
+        //Transform enemyTransform = enemy.transform;
+        //float direction = Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
+        //Vector2 lineTo = enemyTransform.position ;
+        //float enemyAngle = Mathf.Atan2(lineTo.y - selfTransform.position.y, (lineTo.x - selfTransform.position.x) * direction) * Mathf.Rad2Deg;
 
         //Debug.Log("TANK TEST AN " + Mathf.Atan2(test.transform.position.y, test.transform.position.x) * Mathf.Rad2Deg);
 
+        float i = 0;
+
+        for (float a = 90 - 180 * course; (90 - 90 * course + a * course) <= 90; a += angleSearchStepGrad * course) {
+            Vector2 direction = Quaternion.Euler(0, 0, a) * Vector2.right;
+            Debug.DrawLine(Vector2.zero, direction, new Color(1,1,i,1));
+            i += .1f;
+        }
+
+
+/*
         // search angle
         while(enemyAngle < 90f) {
             float tga = Mathf.Tan(enemyAngle * Mathf.Deg2Rad);
@@ -178,10 +190,11 @@ public int floorAngleSign = 1;
             enemyAngle += angleSearchStepGrad;
             if(!rkHit) break;
         }
-
+*/
         //Debug
         Debug.Break();
-        return enemyAngle;
+        //return enemyAngle;
+        return 0;
     }
 
     void TurnaroundToEnemy(Transform self, Transform target) {
