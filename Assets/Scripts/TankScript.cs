@@ -121,9 +121,10 @@ public int side = 1;
         moveDirChanged = false;
 
         gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
-        //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.rotation.z * Mathf.Rad2Deg);
-        //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle + transform.eulerAngles.z);
-        //Debug.Log("TANK REAL GUN ANGLE " + angle + transform.eulerAngles.z);
+
+        //TODO сделать корутин вращения пушки
+        //gunScript.GunAngleChange(angle);
+
         gunScript.Fire();
     }
 

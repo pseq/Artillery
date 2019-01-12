@@ -29,8 +29,10 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
+    public float angleChangeTimeDelta = .1f;
+    public float angleChangeDelta = 1f;
     //test
-    public int isRevertAngleWhenTurnar = -1;
+    //public int isRevertAngleWhenTurnar = -1;
     //GameObject testObject;
     //GameObject testObject2;
     //GameObject testObject3;
@@ -128,6 +130,15 @@ public class GunScript : MonoBehaviour {
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
     }
 
+    public void GunAngleChange (float newAngle)
+    {
+        //Turnaround
+        //if (scroll.y < turnaroundScroll && lastScroll > turnaroundScroll) TurnAround();
+        //lastScroll = scroll.y;
+
+        StartCoroutine(AngleChangeCoroutine(newAngle));
+    }
+
     public float GunPowerToPoint (Vector2 target, float realAngle) {
         //float destX = target.x - fireSpot.transform.position.x;
         float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
@@ -176,8 +187,20 @@ public class GunScript : MonoBehaviour {
 
     public void TurnAround() {
         forwardDirection *= -1f;
-        gunAngle *= isRevertAngleWhenTurnar;
+        gunAngle *= -1f;
         hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
+    }
+
+    IEnumerator AngleChangeCoroutine(float newAngle) {
+        Debug.Log("GUN START CORUT");
+        int sign = (int)Mathf.Sign(newAngle - transform.eulerAngles.z);
+        Debug.Log("GUN CORUT sign " + sign);
+        while (Mathf.Abs(newAngle - transform.eulerAngles.z) > angleChangeDelta) {
+            Debug.Log("GUN CORUT Mathf.Abs(newAngle - gunAngle) " + Mathf.Abs(newAngle - transform.eulerAngles.z));
+
+            transform.eulerAngles += new Vector3(0f,0f,angleChangeDelta * sign);
+            yield return new WaitForSeconds(angleChangeTimeDelta);
+        }
     }
 }
