@@ -72,38 +72,21 @@ public int side = 1;
         Transform enemyTransform = target.transform;
         TurnaroundToEnemy(selfTransform, enemyTransform);
 
-        // угол между танком и противником
-        float floorAngle = Mathf.Atan2(enemyTransform.position.y - selfTransform.position.y, 
-                                        enemyTransform.position.x - selfTransform.position.x) * Mathf.Rad2Deg;
-
-        Debug.Log("TANK floorAngle " + floorAngle);
-
-        // находим углы для попадания по цели для обоих танков, и берем больший
-        // ! float angle = Mathf.Max(ShootAngleSearch(target, gameObject), ShootAngleSearch(gameObject, target));
         side = (int)Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
+        // угол между танком и противником
+        float floorAngle = Mathf.Atan2(side * (enemyTransform.position.y - selfTransform.position.y),
+                                       side * (enemyTransform.position.x - selfTransform.position.x)) * Mathf.Rad2Deg * side;
+
         float distance = Vector2.Distance(selfTransform.position, enemyTransform.position);
         float alpha = ShootAngleSearch(gameObject, distance, side) - floorAngle;
-        float beta  = ShootAngleSearch(target, distance, -side) + floorAngle * Mathf.Sign(floorAngle);
-        float angle;
-        if(alpha > beta) angle = alpha + floorAngle;
-                    else angle = beta - floorAngle * Mathf.Sign(floorAngle);
-        Debug.Log("TANK ANGLE " + angle);
-        //Debug.Break();
-        
-
-
+        float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
+        float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
 
         // чтобы мощность выстрела не превышала максимальную, увеличиваем угол до 45
         //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
 
-        //Debug.Log("TANK FLOOR " + floorAngle + " " + gameObject.name);
-        //Debug.Log("TANK A " + ShootAngleSearch(gameObject, target) + " " + gameObject.name);
-        //Debug.Log("TANK B " + ShootAngleSearch(target, gameObject) + " " + gameObject.name);
-        //Debug.Log("TANK ANGLE " + angle);
-
         // Power Calc to Enemy
         gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
-        //Debug.Log("TANK CLCLTED GP " + gunPower + " MAX GP " + maxGunPower + " " + gameObject.name);
 
         if (gunPower <= maxGunPower) {
             // завершаем алгоритм
