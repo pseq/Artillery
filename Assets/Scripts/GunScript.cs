@@ -29,8 +29,8 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
-    public float angleChangeTimeDelta = .1f;
-    public float angleChangeDelta = 1f;
+    public float gunRotSpeed = 30f;
+    public float  angleChandeAccuracy = .1f;
     //test
     //public int isRevertAngleWhenTurnar = -1;
     //GameObject testObject;
@@ -192,6 +192,7 @@ public class GunScript : MonoBehaviour {
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }
 
+/*
     IEnumerator AngleChangeCoroutine(float newAngle) {
         Debug.Log("GUN START CORUT");
         int sign = (int)Mathf.Sign(newAngle - transform.eulerAngles.z);
@@ -202,5 +203,22 @@ public class GunScript : MonoBehaviour {
             transform.eulerAngles += new Vector3(0f,0f,angleChangeDelta * sign);
             yield return new WaitForSeconds(angleChangeTimeDelta);
         }
+    }
+    */
+
+    IEnumerator AngleChangeCoroutine(float newAngle) {
+        Debug.Log("GUN START CORUT Angle" + transform.eulerAngles.z + " newAngle " + newAngle);
+        //int sign = (int)Mathf.Sign(newAngle - transform.eulerAngles.z);
+        //Debug.Log("GUN CORUT " + sign);
+
+        //while (Mathf.Abs(newAngle - transform.eulerAngles.z) > angleChandeAccuracy) {
+        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, transform.eulerAngles.z)) > angleChandeAccuracy) {
+            Debug.Log("GUN CORUT Angle " + transform.eulerAngles.z);
+
+        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, newAngle, gunRotSpeed * Time.deltaTime);
+        transform.eulerAngles = new Vector3(0, 0, angle);
+        yield return new WaitForSeconds(Time.deltaTime);
+        }
+        Fire();
     }
 }

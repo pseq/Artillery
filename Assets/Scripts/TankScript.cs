@@ -120,12 +120,12 @@ public int side = 1;
         isFirst = true;
         moveDirChanged = false;
 
-        gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
+        //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
 
         //TODO сделать корутин вращения пушки
-        //gunScript.GunAngleChange(angle);
+        gunScript.GunAngleChange(angle);
 
-        gunScript.Fire();
+        //gunScript.Fire();
     }
 
     float ShootDistanceSelect() {
