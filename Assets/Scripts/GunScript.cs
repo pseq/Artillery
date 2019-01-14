@@ -140,10 +140,9 @@ public class GunScript : MonoBehaviour {
     }
 
     public float GunPowerToPoint (Vector2 target, float realAngle) {
-        //float destX = target.x - fireSpot.transform.position.x;
+        realAngle = realAngle * forwardDirection;
         float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
         float destY = target.y - fireSpot.transform.position.y;
-        //float destY = Mathf.Abs(target.y - fireSpot.transform.position.y);
         float g = Mathf.Abs(Physics2D.gravity.y);
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
@@ -155,16 +154,6 @@ public class GunScript : MonoBehaviour {
         // TODO
         // добавить обработку ошибок
         firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
-        //Debug.Log("GUN CLCLTD firePower " + firePower);
-        /*
-        Debug.Log("GUN under sqrt " + (g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa)) + 
-            " destX * sin2a " + destX * sin2a + 
-            " 2 * destY * cosa * cosa " + 2 * destY * cosa * cosa +
-            " sin2a " + sin2a + 
-            " destX " + destX +
-            " target.x " + target.x +
-            " fireSpot.transform.position.x " + fireSpot.transform.position.x); 
-            */
         return firePower;
     }
     
@@ -192,31 +181,21 @@ public class GunScript : MonoBehaviour {
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }
 
-/*
     IEnumerator AngleChangeCoroutine(float newAngle) {
-        Debug.Log("GUN START CORUT");
-        int sign = (int)Mathf.Sign(newAngle - transform.eulerAngles.z);
-        Debug.Log("GUN CORUT sign " + sign);
-        while (Mathf.Abs(newAngle - transform.eulerAngles.z) > angleChangeDelta) {
-            Debug.Log("GUN CORUT Mathf.Abs(newAngle - gunAngle) " + Mathf.Abs(newAngle - transform.eulerAngles.z));
-
-            transform.eulerAngles += new Vector3(0f,0f,angleChangeDelta * sign);
-            yield return new WaitForSeconds(angleChangeTimeDelta);
-        }
-    }
-    */
-
-    IEnumerator AngleChangeCoroutine(float newAngle) {
-        Debug.Log("GUN START CORUT Angle" + transform.eulerAngles.z + " newAngle " + newAngle);
-        //int sign = (int)Mathf.Sign(newAngle - transform.eulerAngles.z);
-        //Debug.Log("GUN CORUT " + sign);
-
-        //while (Mathf.Abs(newAngle - transform.eulerAngles.z) > angleChandeAccuracy) {
+        bool isRotated = false;
+        float lastAngle = transform.eulerAngles.z;
         while (Mathf.Abs(Mathf.DeltaAngle(newAngle, transform.eulerAngles.z)) > angleChandeAccuracy) {
-            Debug.Log("GUN CORUT Angle " + transform.eulerAngles.z);
-
         float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, newAngle, gunRotSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, 0, angle);
+        //float delta90 =     Mathf.DeltaAngle(90, transform.eulerAngles.z);
+        //float delta90last = Mathf.DeltaAngle(90, lastAngle.z);
+        if (((transform.eulerAngles.z >= 90 && lastAngle < 90) || (transform.eulerAngles.z <= 90 && lastAngle > 90)) && !isRotated) {
+            TurnAround();
+            isRotated = true;
+            //Debug.Log("GUN ANGLE " + transform.eulerAngles.z + " lastAngle " + lastAngle);
+            //Debug.Break();
+            } 
+        lastAngle = transform.eulerAngles.z;
         yield return new WaitForSeconds(Time.deltaTime);
         }
         Fire();

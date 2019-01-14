@@ -421,6 +421,9 @@ MonoBehaviour:
   powerStep: 0.2
   angleText: {fileID: 0}
   powerText: {fileID: 0}
+  gunAngle: 0
+  gunRotSpeed: 30
+  angleChandeAccuracy: 0.1
 --- !u!82 &8679405839200109111
 AudioSource:
   m_ObjectHideFlags: 0
@@ -734,6 +737,12 @@ MonoBehaviour:
   target: {fileID: 0}
   angleSearchStepGrad: 5
   gunScript: {fileID: 8679405839200109113}
+  maxGunPower: 25
+  minShootAngle: -360
+  maxShootAngle: 360
+  test: {fileID: 0}
+  floorAngleSign: 1
+  side: 1
 --- !u!1 &8679405840248352747
 GameObject:
   m_ObjectHideFlags: 0
