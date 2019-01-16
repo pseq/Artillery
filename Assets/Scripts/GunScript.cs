@@ -183,19 +183,32 @@ public class GunScript : MonoBehaviour {
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
         bool isRotated = false;
-        float lastAngle = transform.eulerAngles.z;
+        float critAngle = transform.parent.eulerAngles.z + maxGunAngle;
+        float delta90lastAngle = Mathf.DeltaAngle(critAngle, transform.eulerAngles.z);
+        Debug.Log("GUN critAngle " + critAngle);
         while (Mathf.Abs(Mathf.DeltaAngle(newAngle, transform.eulerAngles.z)) > angleChandeAccuracy) {
         float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, newAngle, gunRotSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, 0, angle);
-        //float delta90 =     Mathf.DeltaAngle(90, transform.eulerAngles.z);
-        //float delta90last = Mathf.DeltaAngle(90, lastAngle.z);
-        if (((transform.eulerAngles.z >= 90 && lastAngle < 90) || (transform.eulerAngles.z <= 90 && lastAngle > 90)) && !isRotated) {
+
+        if (Mathf.Abs(Mathf.DeltaAngle(transform.parent.eulerAngles.z, transform.eulerAngles.z)) > maxGunAngle && !isRotated) {
             TurnAround();
             isRotated = true;
-            //Debug.Log("GUN ANGLE " + transform.eulerAngles.z + " lastAngle " + lastAngle);
-            //Debug.Break();
+            newAngle -= 180;
+        }
+
+/*
+        float delta90angle = Mathf.DeltaAngle(critAngle, transform.eulerAngles.z);
+        Debug.Log("GUN delta90angle " + delta90angle + " lastAngle " + delta90lastAngle + " newAngle " + newAngle);
+        if (((delta90angle >= critAngle && delta90lastAngle < critAngle) || (delta90angle <= critAngle && delta90lastAngle > critAngle)) && !isRotated) {
+            TurnAround();
+            isRotated = true;
+            //newAngle *= -1;
+            //newAngle -= 180;
+            Debug.Log("GUN delta90angle TurnAround" + delta90angle + " lastAngle " + delta90lastAngle + " newAngle " + newAngle);
+            Debug.Break();
             } 
-        lastAngle = transform.eulerAngles.z;
+        delta90lastAngle = Mathf.DeltaAngle(critAngle, transform.eulerAngles.z);
+*/
         yield return new WaitForSeconds(Time.deltaTime);
         }
         Fire();
