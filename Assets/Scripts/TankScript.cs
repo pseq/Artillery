@@ -24,6 +24,8 @@ int moveDirection = 1;
 float lastGunPower;
 public float minShootAngle = -360;
 public float maxShootAngle = 360;
+public float  angleChandeAccuracy = .1f;
+public float gunRotSpeed = 30f;
 
 ////// test
 public GameObject test;
@@ -81,10 +83,16 @@ public int side = 1;
         float alpha = ShootAngleSearch(gameObject, distance, side) - floorAngle;
         float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
         float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
-
+        
         // чтобы мощность выстрела не превышала максимальную, увеличиваем угол до 45
         //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
+        
+        StartCoroutine(AngleChangeCoroutine(angle));
 
+
+    }
+
+    void ChangePositionLogicModule(float angle) {
         // Power Calc to Enemy
         gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
 
@@ -115,6 +123,27 @@ public int side = 1;
         return moveDirChanged;
     }
 
+    IEnumerator AngleChangeCoroutine(float newAngle) {
+        bool isRotated = false;
+        float critAngle = transform.eulerAngles.z + gunScript.maxGunAngle;
+        float delta90lastAngle = Mathf.DeltaAngle(critAngle, gunScript.transform.eulerAngles.z);
+        Debug.Log("GUN critAngle " + critAngle);
+        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z)) > angleChandeAccuracy) { //TODO вывести трансформ
+        float angle = Mathf.MoveTowardsAngle(gunScript.transform.eulerAngles.z, newAngle, gunRotSpeed * Time.deltaTime);
+        gunScript.transform.eulerAngles = new Vector3(0, 0, angle);
+
+        if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, gunScript.transform.eulerAngles.z)) > gunScript.maxGunAngle && !isRotated) {
+            gunScript.TurnAround();
+            isRotated = true;
+            newAngle -= 180;
+            }
+        
+        yield return new WaitForSeconds(Time.deltaTime);
+        }
+        
+        ChangePositionLogicModule(gunScript.transform.eulerAngles.z);
+    }
+
     void AiminOK(float angle) {
         // SET GUN AIM
         isFirst = true;
@@ -123,9 +152,9 @@ public int side = 1;
         //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
 
         //TODO сделать корутин вращения пушки
-        gunScript.GunAngleChange(angle);
+        //gunScript.GunAngleChange(angle);
 
-        //gunScript.Fire();
+        gunScript.Fire();
     }
 
     float ShootDistanceSelect() {

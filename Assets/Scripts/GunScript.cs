@@ -29,8 +29,6 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
-    public float gunRotSpeed = 30f;
-    public float  angleChandeAccuracy = .1f;
     //test
     //public int isRevertAngleWhenTurnar = -1;
     //GameObject testObject;
@@ -136,7 +134,7 @@ public class GunScript : MonoBehaviour {
         //if (scroll.y < turnaroundScroll && lastScroll > turnaroundScroll) TurnAround();
         //lastScroll = scroll.y;
 
-        StartCoroutine(AngleChangeCoroutine(newAngle));
+        //StartCoroutine(AngleChangeCoroutine(newAngle));
     }
 
     public float GunPowerToPoint (Vector2 target, float realAngle) {
@@ -181,6 +179,7 @@ public class GunScript : MonoBehaviour {
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }
 
+/*
     IEnumerator AngleChangeCoroutine(float newAngle) {
         bool isRotated = false;
         float critAngle = transform.parent.eulerAngles.z + maxGunAngle;
@@ -196,21 +195,9 @@ public class GunScript : MonoBehaviour {
             newAngle -= 180;
         }
 
-/*
-        float delta90angle = Mathf.DeltaAngle(critAngle, transform.eulerAngles.z);
-        Debug.Log("GUN delta90angle " + delta90angle + " lastAngle " + delta90lastAngle + " newAngle " + newAngle);
-        if (((delta90angle >= critAngle && delta90lastAngle < critAngle) || (delta90angle <= critAngle && delta90lastAngle > critAngle)) && !isRotated) {
-            TurnAround();
-            isRotated = true;
-            //newAngle *= -1;
-            //newAngle -= 180;
-            Debug.Log("GUN delta90angle TurnAround" + delta90angle + " lastAngle " + delta90lastAngle + " newAngle " + newAngle);
-            Debug.Break();
-            } 
-        delta90lastAngle = Mathf.DeltaAngle(critAngle, transform.eulerAngles.z);
-*/
         yield return new WaitForSeconds(Time.deltaTime);
         }
         Fire();
     }
+    */
 }
