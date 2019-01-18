@@ -14,7 +14,7 @@ public class GunScript : MonoBehaviour {
     DDScript ddScript;
     public GameObject fireSpot;
     public float firePowerMultipler = 6f;
-    public float maxGunAngle = 90f;
+    public float maxGunAngle = 90;
     public float forwardDirection = 1f;
     public float turnaroundScroll = - 0.1f;
     public float angleStep = 1f;
@@ -137,21 +137,23 @@ public class GunScript : MonoBehaviour {
         //StartCoroutine(AngleChangeCoroutine(newAngle));
     }
 
-    public float GunPowerToPoint (Vector2 target, float realAngle) {
-        realAngle = realAngle * forwardDirection;
+    public float GunPowerToPoint (Vector2 target, float realAngle, int side) {
+        realAngle = realAngle * side;
         float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
         float destY = target.y - fireSpot.transform.position.y;
         float g = Mathf.Abs(Physics2D.gravity.y);
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
         float cosa = Mathf.Cos(a);
-    //Debug.DrawLine(Vector2.zero, new Vector2(destX,destY));
-    //Debug.DrawLine(fireSpot.transform.position, target, Color.red);
+    Debug.DrawLine(Vector2.zero, new Vector2(destX,destY));
+    Debug.DrawLine(fireSpot.transform.position, target, Color.red);
     //Debug.Break();
 
         // TODO
         // добавить обработку ошибок
         firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+        Debug.Log("GUN firePower " + firePower + " realAngle " + realAngle);
+
         return firePower;
     }
     
@@ -179,25 +181,4 @@ public class GunScript : MonoBehaviour {
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
     }
 
-/*
-    IEnumerator AngleChangeCoroutine(float newAngle) {
-        bool isRotated = false;
-        float critAngle = transform.parent.eulerAngles.z + maxGunAngle;
-        float delta90lastAngle = Mathf.DeltaAngle(critAngle, transform.eulerAngles.z);
-        Debug.Log("GUN critAngle " + critAngle);
-        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, transform.eulerAngles.z)) > angleChandeAccuracy) {
-        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, newAngle, gunRotSpeed * Time.deltaTime);
-        transform.eulerAngles = new Vector3(0, 0, angle);
-
-        if (Mathf.Abs(Mathf.DeltaAngle(transform.parent.eulerAngles.z, transform.eulerAngles.z)) > maxGunAngle && !isRotated) {
-            TurnAround();
-            isRotated = true;
-            newAngle -= 180;
-        }
-
-        yield return new WaitForSeconds(Time.deltaTime);
-        }
-        Fire();
-    }
-    */
 }

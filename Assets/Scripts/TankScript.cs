@@ -84,6 +84,8 @@ public int side = 1;
         float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
         float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
         
+    Debug.Break();
+
         // чтобы мощность выстрела не превышала максимальную, увеличиваем угол до 45
         //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
         
@@ -94,7 +96,11 @@ public int side = 1;
 
     void ChangePositionLogicModule(float angle) {
         // Power Calc to Enemy
-        gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle);
+        gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle, side);
+
+        //test
+        AiminOK(angle);
+        return;
 
         if (gunPower <= maxGunPower) {
             // завершаем алгоритм
@@ -135,7 +141,7 @@ public int side = 1;
         if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, gunScript.transform.eulerAngles.z)) > gunScript.maxGunAngle && !isRotated) {
             gunScript.TurnAround();
             isRotated = true;
-            newAngle -= 180;
+            newAngle += 180;
             }
         
         yield return new WaitForSeconds(Time.deltaTime);
@@ -178,9 +184,11 @@ public int side = 1;
         for (float a = 90 - 180 * course; (90 - 90 * course + a * course) <= 90; a += angleSearchStepGrad * course) {
             Vector2 direction = Quaternion.Euler(0, 0, a) * Vector2.right;
             RaycastHit2D rkHit = Physics2D.Raycast(selfTransform.position, direction, distance, mask);
+    Debug.DrawLine(selfTransform.position, direction * 100 + (Vector2)selfTransform.position, Color.blue);
             // возвращаем всегда угол -90 .. 90
             if(!rkHit) return (90 - 90 * course + a * course);
         }
+        Debug.Log("TANK ShootAngleSearch return 0");
         return 0;
     }
 
