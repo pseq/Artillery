@@ -27,6 +27,10 @@ public float maxShootAngle = 360;
 public float  angleChandeAccuracy = .1f;
 public float gunRotSpeed = 30f;
 
+TerrainScript terrainScript;
+Transform selfTransform;
+Transform enemyTransform;
+
 ////// test
 public GameObject test;
 public int floorAngleSign = 1;
@@ -45,6 +49,7 @@ public int side = 1;
 // TODO сделать выбор из размеров terrain
         leftAimPoint = 0;
         //rightAimPoint = GameObject.Find("Terrain").GetComponent<Mesh>().bounds.center.x;
+        terrainScript = GameObject.Find("Terrain").GetComponent<TerrainScript>();
         rightAimPoint = 150;
         lastHitPoint = target.transform.position.x;
         lastEnemyPosition = lastHitPoint;
@@ -53,7 +58,8 @@ public int side = 1;
 
         //Debug.Log("TANK TANK angle " + transform.eulerAngles.z);
         //Debug.Log("TANK GUN angle " + gunScript.transform.eulerAngles.z);
-
+        selfTransform = gameObject.transform;
+        enemyTransform = target.transform;
     }
 
     public void Move(float dist) {
@@ -76,7 +82,7 @@ public int side = 1;
 
         Transform selfTransform = gameObject.transform;
         Transform enemyTransform = target.transform;
-        TurnaroundToEnemy(selfTransform, enemyTransform);
+        //TurnaroundToEnemy(selfTransform, enemyTransform);
 
         side = (int)Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
         // угол между танком и противником
@@ -84,38 +90,42 @@ public int side = 1;
                                        side * (enemyTransform.position.x - selfTransform.position.x)) * Mathf.Rad2Deg * side;
 
         float distance = Vector2.Distance(selfTransform.position, enemyTransform.position);
-        float alpha = ShootAngleSearch(gameObject, distance, side) - floorAngle;
-        float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
+        //float alpha = ShootAngleSearch(gameObject, distance, side) - floorAngle;
+        float alpha = 0;
+        //float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
+        float beta  = 0;
         float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
+
+        ShootAngleSearch();
 
  Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.white);
 
         // Если угол больше 45 - добавить ещё половину
-        float to90angle = Mathf.Abs(Mathf.DeltaAngle(90, angle));
-        Debug.Log("TANK to90angle " + to90angle);
-        if (to90angle < 45) {
-        Debug.Log("TANK to90angle < 45");
+        //float to90angle = Mathf.Abs(Mathf.DeltaAngle(90, angle));
+        //Debug.Log("TANK to90angle " + to90angle);
+        //if (to90angle < 45) {
+        //Debug.Log("TANK to90angle < 45");
 
-            angle += to90angle/2 * side;
-        }
+            //angle += to90angle/2 * side;
+        //}
 
 
 
  Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.green);
         
-    Debug.Break();
+    //Debug.Break();
 
         // чтобы мощность выстрела не превышала максимальную, увеличиваем угол до 45
         //while (gunScript.GunPowerToPoint(target.transform.position, angle) > maxGunPower && angle < 45f) angle += angleSearchStepGrad;
         
-        StartCoroutine(AngleChangeCoroutine(angle));
+        //StartCoroutine(AngleChangeCoroutine(angle));
 
 
     }
 
     void ChangePositionLogicModule(float angle) {
         // Power Calc to Enemy
-        gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle, side);
+        //gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle, side);
 
         //test
         AiminOK(angle);
@@ -154,7 +164,7 @@ public int side = 1;
         bool isRotated = false;
         float critAngle = transform.eulerAngles.z + gunScript.maxGunAngle;
         float delta90lastAngle = Mathf.DeltaAngle(critAngle, gunScript.transform.eulerAngles.z);
-        Debug.Log("GUN critAngle " + critAngle);
+        //Debug.Log("GUN critAngle " + critAngle);
         while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z)) > angleChandeAccuracy) { //TODO вывести трансформ
         float angle = Mathf.MoveTowardsAngle(gunScript.transform.eulerAngles.z, newAngle, gunRotSpeed * Time.deltaTime);
         gunScript.transform.eulerAngles = new Vector3(0, 0, angle);
@@ -199,9 +209,34 @@ public int side = 1;
         //return Random.Range(leftAimPoint, rightAimPoint);
     } 
 
-    float ShootAngleSearch(GameObject self, float distance, int course) {
+    //float ShootAngleSearch(GameObject self, float distance, int course) {
+    void ShootAngleSearch() {
+        Vector2 hiTerrPoint = terrainScript.HighestPointBetween(selfTransform.position, enemyTransform.position);
+        //test.transform.position = hiTerrPoint;
+
+        float angle = selfTransform.eulerAngles.z;
+        while(angle < selfTransform.eulerAngles.z + 180) {
+    //side ???
+            float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
+            float powerTg = gunScript.GunPowerToPoint(enemyTransform.position, angle, side);
+
+    Debug.Log("TANK: powerHi=" + powerHi + " powerTg=" + powerTg + " angle=" + angle);
+
+            if (powerTg < maxGunPower && powerTg > powerHi) {
+                StartCoroutine(AngleChangeCoroutine(angle));
+                break;  
+            }
+        angle += angleSearchStepGrad;
+    Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
+
+        }
+        Debug.Log("TANK: TARGET UNREACHABLE. TIME TO MOVE");
+        Debug.Break();
+
+
+/*
         LayerMask mask = LayerMask.GetMask("Terrain");
-        Transform selfTransform = self.transform;
+        //Transform selfTransform = self.transform;
         for (float a = 90 - 180 * course; (90 - 90 * course + a * course) <= 90; a += angleSearchStepGrad * course) {
             Vector2 direction = Quaternion.Euler(0, 0, a) * Vector2.right;
             RaycastHit2D rkHit = Physics2D.Raycast(selfTransform.position, direction, distance, mask);
@@ -217,6 +252,7 @@ public int side = 1;
         }
         Debug.Log("TANK ShootAngleSearch return 0");
         return 0;
+        */
     }
 
     void TurnaroundToEnemy(Transform self, Transform target) {

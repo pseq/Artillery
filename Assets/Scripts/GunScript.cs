@@ -152,7 +152,7 @@ public class GunScript : MonoBehaviour {
         // TODO
         // добавить обработку ошибок
         firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
-        Debug.Log("GUN firePower " + firePower + " realAngle " + realAngle);
+        //Debug.Log("GUN firePower " + firePower + " realAngle " + realAngle);
 
         return firePower;
     }
