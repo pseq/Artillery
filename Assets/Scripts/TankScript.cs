@@ -50,6 +50,10 @@ public int side = 1;
         lastEnemyPosition = lastHitPoint;
         //gunPower = gunScript.GunPowerToPoint(target.transform.position, 45f);
         gunPower = 10;
+
+        //Debug.Log("TANK TANK angle " + transform.eulerAngles.z);
+        //Debug.Log("TANK GUN angle " + gunScript.transform.eulerAngles.z);
+
     }
 
     public void Move(float dist) {
@@ -83,6 +87,21 @@ public int side = 1;
         float alpha = ShootAngleSearch(gameObject, distance, side) - floorAngle;
         float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
         float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
+
+ Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.white);
+
+        // Если угол больше 45 - добавить ещё половину
+        float to90angle = Mathf.Abs(Mathf.DeltaAngle(90, angle));
+        Debug.Log("TANK to90angle " + to90angle);
+        if (to90angle < 45) {
+        Debug.Log("TANK to90angle < 45");
+
+            angle += to90angle/2 * side;
+        }
+
+
+
+ Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.green);
         
     Debug.Break();
 
@@ -130,6 +149,8 @@ public int side = 1;
     }
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
+ Debug.DrawLine(transform.position, Quaternion.Euler(0, 0, newAngle) * Vector2.right * 80 + transform.position, Color.magenta);
+
         bool isRotated = false;
         float critAngle = transform.eulerAngles.z + gunScript.maxGunAngle;
         float delta90lastAngle = Mathf.DeltaAngle(critAngle, gunScript.transform.eulerAngles.z);
@@ -185,8 +206,14 @@ public int side = 1;
             Vector2 direction = Quaternion.Euler(0, 0, a) * Vector2.right;
             RaycastHit2D rkHit = Physics2D.Raycast(selfTransform.position, direction, distance, mask);
     Debug.DrawLine(selfTransform.position, direction * 100 + (Vector2)selfTransform.position, Color.blue);
+    if(rkHit) Debug.DrawLine(selfTransform.position, rkHit.point, Color.yellow);
             // возвращаем всегда угол -90 .. 90
-            if(!rkHit) return (90 - 90 * course + a * course);
+            //if(!rkHit) return (90 - 90 * course + a * course);
+            if(!rkHit) {
+             Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, (90 - 90 * course + a * course)) * Vector2.right * 120 + selfTransform.position, Color.red);
+             return (90 - 90 * course + a * course);
+
+            }
         }
         Debug.Log("TANK ShootAngleSearch return 0");
         return 0;

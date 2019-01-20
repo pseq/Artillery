@@ -145,8 +145,8 @@ public class GunScript : MonoBehaviour {
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
         float cosa = Mathf.Cos(a);
-    Debug.DrawLine(Vector2.zero, new Vector2(destX,destY));
-    Debug.DrawLine(fireSpot.transform.position, target, Color.red);
+    //Debug.DrawLine(Vector2.zero, new Vector2(destX,destY));
+    //Debug.DrawLine(fireSpot.transform.position, target, Color.red);
     //Debug.Break();
 
         // TODO
