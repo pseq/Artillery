@@ -342,7 +342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8679405839200109115}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -0.776, y: 0.323, z: 0}
+  m_LocalPosition: {x: 0.012, y: -0.021, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8679405839707991989}
@@ -421,6 +421,7 @@ MonoBehaviour:
   powerStep: 0.2
   angleText: {fileID: 0}
   powerText: {fileID: 0}
+  gunAngle: 0
 --- !u!82 &8679405839200109111
 AudioSource:
   m_ObjectHideFlags: 0
@@ -734,6 +735,14 @@ MonoBehaviour:
   target: {fileID: 0}
   angleSearchStepGrad: 5
   gunScript: {fileID: 8679405839200109113}
+  maxGunPower: 25
+  minShootAngle: -360
+  maxShootAngle: 360
+  angleChandeAccuracy: 0.1
+  gunRotSpeed: 30
+  test: {fileID: 0}
+  floorAngleSign: 1
+  side: 1
 --- !u!1 &8679405840248352747
 GameObject:
   m_ObjectHideFlags: 0
