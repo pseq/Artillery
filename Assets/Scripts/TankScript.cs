@@ -159,10 +159,11 @@ public int side = 1;
     }
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
- Debug.DrawLine(transform.position, Quaternion.Euler(0, 0, newAngle) * Vector2.right * 80 + transform.position, Color.magenta);
-
+//isRotated ???
         bool isRotated = false;
         float critAngle = transform.eulerAngles.z + gunScript.maxGunAngle;
+ Debug.DrawLine(transform.position, Quaternion.Euler(0, 0, critAngle) * Vector2.right * 80 + transform.position, Color.white);
+Debug.Break();
         float delta90lastAngle = Mathf.DeltaAngle(critAngle, gunScript.transform.eulerAngles.z);
         //Debug.Log("GUN critAngle " + critAngle);
         while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z)) > angleChandeAccuracy) { //TODO вывести трансформ
@@ -213,9 +214,10 @@ public int side = 1;
     void ShootAngleSearch() {
         Vector2 hiTerrPoint = terrainScript.HighestPointBetween(selfTransform.position, enemyTransform.position);
         //test.transform.position = hiTerrPoint;
-
-        float angle = selfTransform.eulerAngles.z;
-        while(angle < selfTransform.eulerAngles.z + 180) {
+        float angleSide = -(90 * side - 90);
+        float angle = selfTransform.eulerAngles.z + angleSide;
+        //while(angle < selfTransform.eulerAngles.z + 180) {
+        while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchStepGrad) {
     //side ???
             float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
             float powerTg = gunScript.GunPowerToPoint(enemyTransform.position, angle, side);
@@ -224,9 +226,9 @@ public int side = 1;
 
             if (powerTg < maxGunPower && powerTg > powerHi) {
                 StartCoroutine(AngleChangeCoroutine(angle));
-                break;  
+                return;  
             }
-        angle += angleSearchStepGrad;
+        angle += angleSearchStepGrad * side;
     Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
 
         }

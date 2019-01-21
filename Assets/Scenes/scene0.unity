@@ -599,6 +599,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8679405839864556311, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: m_Name
+      value: Tank2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679405839864556311, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: m_TagString
+      value: AIControlled
+      objectReference: {fileID: 0}
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: target
@@ -622,7 +632,7 @@ PrefabInstance:
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: maxGunPower
-      value: 500
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -639,15 +649,10 @@ PrefabInstance:
       propertyPath: angleSearchStepGrad
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8679405839864556311, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
-      propertyPath: m_Name
-      value: Tank2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8679405839864556311, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: m_TagString
-      value: AIControlled
+      propertyPath: gunRotSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -682,12 +687,12 @@ PrefabInstance:
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.7
+      value: 108.6
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 114.7
+      value: 92.8
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -3841,16 +3846,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 787258647}
     - target: {fileID: 8679405839864556311, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 787258647}
     - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: poolObject
@@ -3864,12 +3869,12 @@ PrefabInstance:
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 173.4
+      value: 174.2
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 81.6
+      value: 95.9
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -4315,11 +4320,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -165.09492, y: -83.84293}
-  - {x: -165.76651, y: 77.92997}
-  - {x: 172.86497, y: 78.16267}
-  - {x: 173.36436, y: -84.077896}
-  - {x: -162.93578, y: -84.61565}
+  - {x: -159.01265, y: 563.7489}
+  - {x: -163.3761, y: -80.451775}
+  - {x: 172.734, y: -82.27247}
+  - {x: 172.57182, y: 566.0446}
 --- !u!4 &2073897125
 Transform:
   m_ObjectHideFlags: 0
