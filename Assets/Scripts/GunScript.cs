@@ -128,15 +128,6 @@ public class GunScript : MonoBehaviour {
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
     }
 
-    public void GunAngleChange (float newAngle)
-    {
-        //Turnaround
-        //if (scroll.y < turnaroundScroll && lastScroll > turnaroundScroll) TurnAround();
-        //lastScroll = scroll.y;
-
-        //StartCoroutine(AngleChangeCoroutine(newAngle));
-    }
-
     public float GunPowerToPoint (Vector2 target, float realAngle, int side) {
         realAngle = realAngle * side;
         float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);

@@ -6,9 +6,10 @@ public class TankScript : MonoBehaviour
 {
 public float speed = 1f;
 WheelJoint2D leftWheel, rightWheel;
-Rigidbody2D leftWheelRigid, rightWheelRigid;
+Rigidbody2D leftWheelRigid, rightWheelRigid, tankRigid;
 public GameObject target;
 public float angleSearchStepGrad = 5f;
+public float angleSearchAccuracy = 1f;
 public GunScript gunScript;
 float leftAimPoint;
 float rightAimPoint;
@@ -30,6 +31,9 @@ public float gunRotTime = .5f;
 TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
+public float framesUpsideCheck = 10;
+public Animator animator;
+
 
 ////// test
 public GameObject test;
@@ -45,6 +49,7 @@ public int side = 1;
         leftWheel = leftWheelObj.GetComponent<WheelJoint2D>();
         rightWheelRigid = rightWheelObj.GetComponent<Rigidbody2D>();
         leftWheelRigid = leftWheelObj.GetComponent<Rigidbody2D>();
+        tankRigid = GetComponent<Rigidbody2D>();
 // TODO сделать выбор из размеров terrain
         leftAimPoint = 0;
         //rightAimPoint = GameObject.Find("Terrain").GetComponent<Mesh>().bounds.center.x;
@@ -59,6 +64,27 @@ public int side = 1;
         //Debug.Log("TANK GUN angle " + gunScript.transform.eulerAngles.z);
         selfTransform = gameObject.transform;
         enemyTransform = target.transform;
+    }
+
+    void Update()
+    {
+        if (Time.frameCount % framesUpsideCheck == 0) {
+	    UpsideCheck();
+	    }
+    }
+
+    void UpsideCheck() {
+    // test stop
+    //Debug.Log(gameObject.name + " DeltaAngle=" + Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)));
+
+	if (
+        Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)) > 90 && 
+        Mathf.Abs(tankRigid.angularVelocity) < .1f
+        ) {// upsidedown
+    // TODO testSpeed
+        animator.SetTrigger("isTurnedOver");
+    // TODO DAMAGE
+        }
     }
 
     public void Move(float dist) {
@@ -160,14 +186,19 @@ public int side = 1;
     }
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
-        // 
+        // TODO найти баг определения угла
+
+        // после разворота танка перевернуть все углы на 180
         float angleSide = 90 * gunScript.forwardDirection - 90;
 
+        // пока новый угол пушки и угол, до которого нужно довернуть, не сравняются ...
         while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z - angleSide)) > angleChandeAccuracy) { //TODO вывести трансформ
         // TODO добавить параметров для более натурального разворота пушки
+        // ... плавно доворачиваем пушку
         float angle = Mathf.SmoothDampAngle(gunScript.transform.eulerAngles.z , newAngle - angleSide, ref gunAngleSpeed, gunRotTime);
         gunScript.transform.eulerAngles = new Vector3(0, 0, angle);
 
+        // при пересечении пушкой 90 - разворачиваем танк
         if (Mathf.Abs(Mathf.DeltaAngle(gunScript.transform.eulerAngles.z, transform.eulerAngles.z) ) > gunScript.maxGunAngle) {
             gunScript.TurnAround();
             newAngle += 180;
@@ -212,14 +243,18 @@ Debug.Log("=======================================");
         float angleSide = -(90 * side - 90);
         float angle = selfTransform.eulerAngles.z + angleSide;
         // делаем, пока угол между направлением выстрела, и наклоном танка > 0, учитывая сторону, в которую будем стрелять
-        while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchStepGrad) {
+        //while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchStepGrad) {
+        while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchAccuracy) {
             float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
             float powerTg = gunScript.GunPowerToPoint(enemyTransform.position, angle, side);
+    Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
 
-    //Debug.Log("TANK: powerHi=" + powerHi + " powerTg=" + powerTg + " angle=" + angle);
             // сравниваем мощности, чтобы добить до самой высокой точки, и до цели с макс мощностью
             if (powerTg < maxGunPower && powerTg > powerHi) {
+                Debug.Log("TANK Angle search " + angle + " powerTG " + powerTg);
                 StartCoroutine(AngleChangeCoroutine(angle));
+    Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 110 + selfTransform.position, Color.red);
+    Debug.Break();
                 return;  
             }
         // инкремент или декремент угла выстрела
@@ -229,27 +264,6 @@ Debug.Log("=======================================");
         }
         Debug.Log("TANK: TARGET UNREACHABLE. TIME TO MOVE");
         //Debug.Break();
-
-
-/*
-        LayerMask mask = LayerMask.GetMask("Terrain");
-        //Transform selfTransform = self.transform;
-        for (float a = 90 - 180 * course; (90 - 90 * course + a * course) <= 90; a += angleSearchStepGrad * course) {
-            Vector2 direction = Quaternion.Euler(0, 0, a) * Vector2.right;
-            RaycastHit2D rkHit = Physics2D.Raycast(selfTransform.position, direction, distance, mask);
-    Debug.DrawLine(selfTransform.position, direction * 100 + (Vector2)selfTransform.position, Color.blue);
-    if(rkHit) Debug.DrawLine(selfTransform.position, rkHit.point, Color.yellow);
-            // возвращаем всегда угол -90 .. 90
-            //if(!rkHit) return (90 - 90 * course + a * course);
-            if(!rkHit) {
-             Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, (90 - 90 * course + a * course)) * Vector2.right * 120 + selfTransform.position, Color.red);
-             return (90 - 90 * course + a * course);
-
-            }
-        }
-        Debug.Log("TANK ShootAngleSearch return 0");
-        return 0;
-        */
     }
 
     void TurnaroundToEnemy(Transform self, Transform target) {
