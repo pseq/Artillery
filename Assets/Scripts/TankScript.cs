@@ -6,7 +6,7 @@ public class TankScript : MonoBehaviour
 {
 public float speed = 1f;
 WheelJoint2D leftWheel, rightWheel;
-Rigidbody2D leftWheelRigid, rightWheelRigid, tankRigid;
+Rigidbody2D leftWheelRigid, rightWheelRigid;
 public GameObject target;
 public float angleSearchStepGrad = 5f;
 public float angleSearchAccuracy = 1f;
@@ -31,9 +31,7 @@ public float gunRotTime = .5f;
 TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
-public float framesUpsideCheck = 10;
-public Animator animator;
-public float upsideReturnUp = 10f;
+
 
 
 ////// test
@@ -50,7 +48,6 @@ public int side = 1;
         leftWheel = leftWheelObj.GetComponent<WheelJoint2D>();
         rightWheelRigid = rightWheelObj.GetComponent<Rigidbody2D>();
         leftWheelRigid = leftWheelObj.GetComponent<Rigidbody2D>();
-        tankRigid = GetComponent<Rigidbody2D>();
 // TODO сделать выбор из размеров terrain
         leftAimPoint = 0;
         //rightAimPoint = GameObject.Find("Terrain").GetComponent<Mesh>().bounds.center.x;
@@ -65,38 +62,6 @@ public int side = 1;
         //Debug.Log("TANK GUN angle " + gunScript.transform.eulerAngles.z);
         selfTransform = gameObject.transform;
         enemyTransform = target.transform;
-    }
-
-    void Update()
-    {
-        if (Time.frameCount % framesUpsideCheck == 0) {
-	    UpsideCheck();
-	    }
-    }
-
-    void UpsideCheck() {
-    // test stop
-    //Debug.Log(gameObject.name + " DeltaAngle=" + Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)));
-
-	if (
-        Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)) > 90 && 
-        Mathf.Abs(tankRigid.angularVelocity) < .1f
-        ) {// upsidedown
-        animator.SetTrigger("isTurnedOver");
-    // TODO DAMAGE
-        }
-    }
-
-    public void TurnUp() {
-        transform.position = (Vector2)transform.position + Vector2.up * upsideReturnUp;
-        transform.eulerAngles = Vector2.zero;
-        animator.ResetTrigger("isTurnedOver");
-    }
-
-
-    public void FreezeUnfreeze() {
-        if (tankRigid.constraints != RigidbodyConstraints2D.None) tankRigid.constraints = RigidbodyConstraints2D.None;
-        else tankRigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Move(float dist) {
