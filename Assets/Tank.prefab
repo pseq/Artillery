@@ -612,7 +612,6 @@ GameObject:
   - component: {fileID: 7684682491803305651}
   - component: {fileID: 4619357440355741251}
   - component: {fileID: 1071819610612840266}
-  - component: {fileID: 5720073004262088962}
   m_Layer: 10
   m_Name: Tank
   m_TagString: Untagged
@@ -765,27 +764,10 @@ MonoBehaviour:
   angleChandeAccuracy: 0.1
   gunRotTime: 0.5
   framesUpsideCheck: 10
-  upsideReturnUp: 5
-  upsideReturnDamage: 10
   animator: {fileID: 7684682491803305651}
+  upsideReturnUp: 5
   test: {fileID: 0}
   side: 1
---- !u!114 &5720073004262088962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679405839864556311}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955671ec0a4518245ad73fc06665a475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  framesUpsideCheck: 10
-  upsideReturnUp: 10
-  upsideReturnDamage: 10
-  blinks: 8
 --- !u!1 &8679405840248352747
 GameObject:
   m_ObjectHideFlags: 0

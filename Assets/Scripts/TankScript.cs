@@ -33,6 +33,7 @@ Transform selfTransform;
 Transform enemyTransform;
 public float framesUpsideCheck = 10;
 public Animator animator;
+public float upsideReturnUp = 10f;
 
 
 ////// test
@@ -81,10 +82,21 @@ public int side = 1;
         Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)) > 90 && 
         Mathf.Abs(tankRigid.angularVelocity) < .1f
         ) {// upsidedown
-    // TODO testSpeed
         animator.SetTrigger("isTurnedOver");
     // TODO DAMAGE
         }
+    }
+
+    public void TurnUp() {
+        transform.position = (Vector2)transform.position + Vector2.up * upsideReturnUp;
+        transform.eulerAngles = Vector2.zero;
+        animator.ResetTrigger("isTurnedOver");
+    }
+
+
+    public void FreezeUnfreeze() {
+        if (tankRigid.constraints != RigidbodyConstraints2D.None) tankRigid.constraints = RigidbodyConstraints2D.None;
+        else tankRigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Move(float dist) {
