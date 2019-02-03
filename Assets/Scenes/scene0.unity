@@ -2296,7 +2296,6 @@ GameObject:
   - component: {fileID: 1146730242}
   - component: {fileID: 1146730241}
   - component: {fileID: 1146730240}
-  - component: {fileID: 1146730244}
   - component: {fileID: 1146730245}
   m_Layer: 5
   m_Name: Angle Scroll
@@ -2405,18 +2404,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1146730244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146730238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf3096a7d02458a4c9bc8e4254485de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1146730245
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3328,7 +3315,6 @@ GameObject:
   - component: {fileID: 1521583373}
   - component: {fileID: 1521583372}
   - component: {fileID: 1521583371}
-  - component: {fileID: 1521583374}
   m_Layer: 5
   m_Name: Power Scroll
   m_TagString: Untagged
@@ -3436,18 +3422,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1521583374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521583369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf3096a7d02458a4c9bc8e4254485de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1653705883
 GameObject:
   m_ObjectHideFlags: 0

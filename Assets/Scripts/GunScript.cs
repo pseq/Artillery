@@ -29,19 +29,10 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
-    //test
-    //public int isRevertAngleWhenTurnar = -1;
-    //GameObject testObject;
-    //GameObject testObject2;
-    //GameObject testObject3;
 
     void Awake() {
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
         ddScript = dropDown.gameObject.GetComponent<DDScript>();
-        //test
-        //testObject = GameObject.FindGameObjectWithTag("test");
-        //testObject2 = GameObject.FindGameObjectWithTag("test2");
-        //testObject3 = GameObject.FindGameObjectWithTag("test3");
     }
 
     // Use this for initialization
@@ -49,8 +40,8 @@ public class GunScript : MonoBehaviour {
         tick = gameObject.GetComponent<AudioSource>();
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
+        // TODO изменить
         hBar = transform.parent.GetChild(3);
-        //SelectBullet(0);
     }
 
     public void SelectBullet(int key) { // key from arskey & dd
@@ -90,12 +81,7 @@ public class GunScript : MonoBehaviour {
         // fire
         bullet.SetActive(true);
         bullet.transform.SetParent(fireSpot.transform);
-        //bullet.transform.SetParent(transform);
-        //bulletRigid.rotation = transform.eulerAngles.z;
         bulletRigid.rotation = fireSpot.transform.eulerAngles.z;
-
-        //Debug.Log("GUN REAL firePower " + firePower);
-
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
 
@@ -117,6 +103,35 @@ public class GunScript : MonoBehaviour {
         }
     }
 
+
+
+    public float GunPowerToPoint (Vector2 target, float realAngle, int side) {
+        realAngle = realAngle * side;
+        float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
+        float destY = target.y - fireSpot.transform.position.y;
+        float g = Mathf.Abs(Physics2D.gravity.y);
+        float a = Mathf.Deg2Rad * realAngle;
+        float sin2a = Mathf.Sin(a*2);
+        float cosa = Mathf.Cos(a);
+
+        // TODO
+        // добавить обработку ошибок
+        firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
+
+        return firePower;
+    }
+ 
+    float GunValuechange (float oldVal, float newVal, float step, Text textField) {
+        float delta = Math.Abs(oldVal - newVal);
+        if (delta >= step) {
+            newVal = oldVal - step * Math.Sign(oldVal - newVal);
+            textField.text = newVal.ToString();
+            tick.Play();
+            return newVal;
+        }
+        else return oldVal;
+    }
+
     public void GunAngleChange (Vector2 scroll)
     {
         //Turnaround
@@ -128,41 +143,10 @@ public class GunScript : MonoBehaviour {
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
     }
 
-    public float GunPowerToPoint (Vector2 target, float realAngle, int side) {
-        realAngle = realAngle * side;
-        float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
-        float destY = target.y - fireSpot.transform.position.y;
-        float g = Mathf.Abs(Physics2D.gravity.y);
-        float a = Mathf.Deg2Rad * realAngle;
-        float sin2a = Mathf.Sin(a*2);
-        float cosa = Mathf.Cos(a);
-    //Debug.DrawLine(Vector2.zero, new Vector2(destX,destY));
-    //Debug.DrawLine(fireSpot.transform.position, target, Color.red);
-    //Debug.Break();
-
-        // TODO
-        // добавить обработку ошибок
-        firePower = bulletRigid.mass * Mathf.Sqrt(g*destX*destX / (destX * sin2a - 2 * destY * cosa * cosa));
-        //Debug.Log("GUN firePower " + firePower + " realAngle " + realAngle);
-
-        return firePower;
-    }
-    
     public void GunPowerChange (Vector2 scroll)
     {
         float newFirePower = (1f - scroll.y) * firePowerMultipler;
         firePower = GunValuechange(firePower, newFirePower, powerStep, powerText);
-    }
-
-    float GunValuechange (float oldVal, float newVal, float step, Text textField) {
-        float delta = Math.Abs(oldVal - newVal);
-        if (delta >= step) {
-            newVal = oldVal - step * Math.Sign(oldVal - newVal);
-            textField.text = newVal.ToString();
-            tick.Play();
-            return newVal;
-        }
-        else return oldVal;
     }
 
     public void TurnAround() {

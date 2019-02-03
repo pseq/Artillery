@@ -17,6 +17,7 @@ public class BulletScript : MonoBehaviour {
     Collider2D collider;
     DamageControllerScript damageControllerScript;
     public int damage = 10;
+    Damagable[] damagables;
 
 
     // Use this for initializationz
@@ -25,16 +26,15 @@ public class BulletScript : MonoBehaviour {
         rigid = gameObject.GetComponent<Rigidbody2D>();
         collider = gameObject.GetComponent<Collider2D>();
         damageControllerScript = FindObjectOfType<DamageControllerScript>();
+        damagables = damageControllerScript.GetDamagables();
 
         // создаем трейл
         trailer = Instantiate(trailer_pref);
-        //trailer.SetActive(false);
 
         if (fragNum > 0) {
             fragment_pool = new GameObject[fragNum];
             for(int i = 0; i < fragNum; i++) {
                 GameObject fragment = Instantiate(fragment_pref);
-                //fragment.SetActive(false);
                 fragment_pool[i] = fragment;
             }
         }
@@ -57,14 +57,15 @@ public class BulletScript : MonoBehaviour {
         TrailerOff();
         BackToPool();
     }
+
     void OnEnable() {
         TrailerOn();
         if (rigid) rigid.WakeUp();
     }
 
+    // TODO для осколков не работает!
     void TrailerOn() {
         if (trailer) {
-            //Debug.Log("BULLET FRAG TRAILER "+ gameObject.name);
             trailer.transform.SetParent(transform);
             trailer.transform.localPosition = Vector3.zero;
             trailer.gameObject.SetActive(true);
@@ -93,8 +94,6 @@ public class BulletScript : MonoBehaviour {
     }
 
     void MakeDamage() {
-        // TODO to Start for speed
-        Damagable[] damagables = damageControllerScript.GetDamagables();
         foreach(Damagable dmg in damagables) {
             if (collider.IsTouching(dmg.GetCollider())) dmg.GetHealth().HealthDecrease(damage);
         }

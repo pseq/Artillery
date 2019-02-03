@@ -21,6 +21,7 @@ public class TankAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // периодически проверяем, не перевернулся ли танк
         if (Time.frameCount % framesUpsideCheck == 0) {
 	    UpsideCheck();
 	    }
@@ -33,12 +34,14 @@ public class TankAIScript : MonoBehaviour
             ) animator.SetTrigger("isTurnedOver");
     }
 
+    // вызывается в анимации
     public void TurnUp() {
         transform.position = (Vector2)transform.position + Vector2.up * upsideReturnUp;
         transform.eulerAngles = Vector2.zero;
         animator.ResetTrigger("isTurnedOver");
     }
 
+    // вызывается в анимации
     public void FreezeUnfreeze() {
         if (tankRigid.constraints != RigidbodyConstraints2D.None) tankRigid.constraints = RigidbodyConstraints2D.None;
         else tankRigid.constraints = RigidbodyConstraints2D.FreezeAll;
