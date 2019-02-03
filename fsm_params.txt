@@ -1,0 +1,13 @@
+isDamaged
+o endTurn
+wasShooted
+o halfDeath
+healthCrit
+covered
+healthCritEnemy
+o shootOK
+o noCovers
+o cantMove
+o cantReachShot
+isPlayer
+isTurnedOver
