@@ -1,13 +1,42 @@
-isDamaged
 o endTurn
+	- игрок - кнопка
+	- синхронизация
+	- противник - ??
 wasShooted
+	- последний раз был урон снарядом
+	сброс:
+		- end turn
 o halfDeath
+	- не осталось противников 
 healthCrit
+	- здоровье <= урон самым слабым снарядом
+	- обновление - при каждом изменении здоровья
 covered
+	- достиг укрытия
+	сброс: ???
 healthCritEnemy
+	- здоровье врага <= урон самым слабым снарядом
+	- обновление - при каждом изменении здоровья
 o shootOK
+	- выстрел
+	сброс:
+		- end turn
 o noCovers
+	- не нашлось укрытий
 o cantMove
+	- попытка двигаться неудачна
 o cantReachShot
-isPlayer
-isTurnedOver
+	- прицеливание - неудача
+	
+Скрипты:
+Match Finished
+Coverin
+	Search Cover
+	Go To Cover
+		- учесть топливо
+	Move Away
+	Move Forward
+Aimin n Shot
+Change Position to Shoot
+	Move Away
+	Move Forward
