@@ -28,7 +28,7 @@ public float  angleChandeAccuracy = .1f;
 float gunAngleSpeed = 0f;
 public float gunRotTime = .5f;
 
-TerrainScript terrainScript;
+public TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
 

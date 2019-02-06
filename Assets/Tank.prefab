@@ -558,12 +558,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8679405839864556309}
   - component: {fileID: 8679405839864556310}
+  - component: {fileID: 2834475697318878820}
   - component: {fileID: 8679405839864556308}
   - component: {fileID: 7684682491803305651}
   - component: {fileID: 4619357440355741251}
   - component: {fileID: 1071819610612840266}
   - component: {fileID: 7483054243562180641}
-  - component: {fileID: 2834475697318878820}
+  - component: {fileID: 8505487278064140147}
+  - component: {fileID: 2860212663502126867}
   m_Layer: 10
   m_Name: Tank
   m_TagString: Untagged
@@ -638,6 +640,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2834475697318878820
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679405839864556311}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.036171436, y: -0.0253198}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 1.12}
+    newSize: {x: 3.2, y: 1.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6501937, y: 0.6208329}
+  m_EdgeRadius: 0
 --- !u!50 &8679405839864556308
 Rigidbody2D:
   serializedVersion: 4
@@ -732,32 +760,31 @@ MonoBehaviour:
   animator: {fileID: 7684682491803305651}
   upsideReturnUp: 10
   isPlayer: 0
---- !u!61 &2834475697318878820
-BoxCollider2D:
+--- !u!114 &8505487278064140147
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8679405839864556311}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.036171436, y: -0.0253198}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 1.12}
-    newSize: {x: 3.2, y: 1.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.6501937, y: 0.6208329}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82786b62a81daf34baf6b6176aadb8d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelBase: 2.3
+--- !u!114 &2860212663502126867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679405839864556311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8679405840248352747
 GameObject:
   m_ObjectHideFlags: 0
