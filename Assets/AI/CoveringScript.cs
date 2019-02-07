@@ -25,6 +25,14 @@ public class CoveringScript : MonoBehaviour
 
     Vector2 GetReachableRegion() {
         // TODO make this
+        controlPoint = transform.position; 
+        int i = 0;
+        while(controlPoint.x < right && i < terr.length) {
+	        do {
+		        i++;
+		        } while (i < terr.length && Vector2.Distance(controlPoint, terr[i]) < wheelBase);
+    	        if (GetTerrainAngle(controlPoint, terr[i]) > maxTrackAngle) break;
+	            }
         return(GetFuelRegion());
     }
 
