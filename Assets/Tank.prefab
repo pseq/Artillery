@@ -742,6 +742,7 @@ MonoBehaviour:
   maxGunPower: 25
   angleChandeAccuracy: 0.1
   gunRotTime: 0.5
+  terrainScript: {fileID: 0}
   test: {fileID: 0}
   side: 1
 --- !u!114 &7483054243562180641
@@ -773,6 +774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelBase: 2.3
+  maxTrackAngle: 45
+  tankTop: 2
 --- !u!114 &2860212663502126867
 MonoBehaviour:
   m_ObjectHideFlags: 0

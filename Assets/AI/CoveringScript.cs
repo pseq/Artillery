@@ -9,25 +9,15 @@ public class CoveringScript : MonoBehaviour
     TerrainScript terr;
     Vector3[] terrMap;
     public float maxTrackAngle = 45f;
-    public float tankTop = 10f;
+    public float tankTop = 2f;
     LayerMask mask;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        //terr = GetComponent<TankScript>().terrainScript;
         wheelBase *= transform.localScale.x;
         mask = LayerMask.GetMask("Terrain");
-
-        //test
-        //Reachable(1);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     float GetTerrainAngle(Vector2 a, Vector2 b) {
@@ -58,10 +48,6 @@ public class CoveringScript : MonoBehaviour
         float rigt = Mathf.Clamp(transform.position.x + moveReserve, terrLeft, terrRight);
 
         while(controlPoint < rigt && controlPoint > left) {
-
-    //Debug.Log("COVER GetTerrainAngle = " + GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)));
-    //DrawTestLine(DropDown(controlPoint), DropDown(controlPoint + wheelBase));
-
             // если угол участка слишком большой - это непроходимый участок
             if (GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)) * side > maxTrackAngle) break;
             controlPoint += wheelBase * side;
@@ -74,12 +60,15 @@ public class CoveringScript : MonoBehaviour
         terrMap = terr.GetMap();
         Vector2 enemy = GetComponent<TankScript>().target.transform.position;
         int i = terr.ClosestXindex(transform.position.x);
-        
-        while (!TestCover(enemy, terrMap[i], tankTop) && i > 0 && i < terrMap.Length - 1) {
-            i += side;
-        }
+        // Reachable(side)
+        while (
+            !TestCover(enemy, terrMap[i], tankTop)  
+            && i > 0 
+            && i < terrMap.Length - 1
+            && terrMap[i].x * side < Reachable(side) * side
+            ) i += side;
 
-    DrawTestLine(Vector2.zero, terrMap[i]);
+    //DrawTestLine(Vector2.zero, terrMap[i]);
 
         // если не нашли укрытие - вернуть 0
         if(i == terrMap.Length - 1 || i == 0) return 0;
