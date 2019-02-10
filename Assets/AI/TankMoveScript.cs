@@ -18,6 +18,6 @@ public class TankMoveScript : MonoBehaviour
 
     public float GetTrackReserve() {
         // TODO make this
-        return 10;
+        return 200;
     }
 }

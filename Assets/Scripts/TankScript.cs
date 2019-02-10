@@ -102,7 +102,7 @@ public int side = 1;
         float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
 
 
- Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.white);
+ //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.white);
 
         // Если угол больше 45 - добавить ещё половину
         //float to90angle = Mathf.Abs(Mathf.DeltaAngle(90, angle));
@@ -115,7 +115,7 @@ public int side = 1;
 
 
 
- Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.green);
+ //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 100 + selfTransform.position, Color.green);
         
     //Debug.Break();
 
@@ -183,7 +183,7 @@ public int side = 1;
         
         yield return new WaitForSeconds(Time.deltaTime);
         }
-    Debug.Log("TANK: REal angle=" + gunScript.transform.eulerAngles.z);
+    //Debug.Log("TANK: REal angle=" + gunScript.transform.eulerAngles.z);
         
         ChangePositionLogicModule(gunScript.transform.eulerAngles.z);
     }
@@ -194,7 +194,7 @@ public int side = 1;
         moveDirChanged = false;
         //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
         //gunScript.GunAngleChange(angle);
-Debug.Log("=======================================");
+//Debug.Log("=======================================");
         gunScript.Fire();
     }
 
@@ -224,14 +224,14 @@ Debug.Log("=======================================");
         while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchAccuracy) {
             float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
             float powerTg = gunScript.GunPowerToPoint(enemyTransform.position, angle, side);
-    Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
+    //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
 
             // сравниваем мощности, чтобы добить до самой высокой точки, и до цели с макс мощностью
             if (powerTg < maxGunPower && powerTg > powerHi) {
-                Debug.Log("TANK Angle search " + angle + " powerTG " + powerTg);
+    //Debug.Log("TANK Angle search " + angle + " powerTG " + powerTg);
                 StartCoroutine(AngleChangeCoroutine(angle));
-    Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 110 + selfTransform.position, Color.red);
-    Debug.Break();
+    //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 110 + selfTransform.position, Color.red);
+    //Debug.Break();
                 return;  
             }
         // инкремент или декремент угла выстрела
@@ -239,7 +239,7 @@ Debug.Log("=======================================");
     //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
 
         }
-        Debug.Log("TANK: TARGET UNREACHABLE. TIME TO MOVE");
+//Debug.Log("TANK: TARGET UNREACHABLE. TIME TO MOVE");
         //Debug.Break();
     }
 

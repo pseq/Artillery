@@ -43,6 +43,21 @@ public class TerrainScript : MonoBehaviour {
         RecalculateTerr();
     }
 
+    public Vector3[] GetMap() {
+        return terrMap;
+    }
+
+    public int ClosestXindex(float x) {
+        // ищем индекс элемента карты с ближайшим к данному Х
+        float delta = Mathf.Infinity;
+        int minI = 0;
+        for(int i = 0; i < terrMap.Length; i++) {
+            float newDelta = Mathf.Abs(terrMap[i].x - x);
+            if(newDelta < delta) { delta = newDelta; minI = i; }
+        }
+        return(minI);
+    }
+
     // строим карту поверхности из картинки
     private ArrayList MakeTerrMap ()
     {
