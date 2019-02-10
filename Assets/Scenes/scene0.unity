@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &4046454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    type: 3}
+  m_PrefabInstance: {fileID: 1028922998}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &19559104
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1008,7 @@ MonoBehaviour:
           m_StringArgument: InOutTrigger
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 532420209}
+      - m_Target: {fileID: 4046454}
         m_MethodName: Test
         m_Mode: 3
         m_Arguments:
@@ -1046,18 +1058,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504197295}
   m_CullTransparentMesh: 0
---- !u!114 &532420209 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8505487278064140147, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1028922998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82786b62a81daf34baf6b6176aadb8d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &533384089 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8679405840833597532, guid: 9f3b3eb1c7066b84c80152cbaf54c415,

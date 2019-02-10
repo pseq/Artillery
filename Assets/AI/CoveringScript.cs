@@ -34,10 +34,11 @@ public class CoveringScript : MonoBehaviour
     }
 
     public void Test(int d) {
-        GetCover(d);
+        GetCover((Direction)d);
     }
 
-    float Reachable(int side) {
+    //float Reachable(int side, Direction dir) {
+    float Reachable(Direction dir) {
         float controlPoint = transform.position.x;
 
         // считаем границы
@@ -49,13 +50,15 @@ public class CoveringScript : MonoBehaviour
 
         while(controlPoint < rigt && controlPoint > left) {
             // если угол участка слишком большой - это непроходимый участок
-            if (GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)) * side > maxTrackAngle) break;
-            controlPoint += wheelBase * side;
+            //if (GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)) * side > maxTrackAngle) break;
+            if (GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)) * (int)dir > maxTrackAngle) break;
+            //controlPoint += wheelBase * side;
+            controlPoint += wheelBase * (int)dir;
 	    }
         return(controlPoint);
     }
 
-    public float GetCover(int side) {
+    public float GetCover(Direction dir) {
         terr = GetComponent<TankScript>().terrainScript;
         terrMap = terr.GetMap();
         Vector2 enemy = GetComponent<TankScript>().target.transform.position;
@@ -65,8 +68,9 @@ public class CoveringScript : MonoBehaviour
             !TestCover(enemy, terrMap[i], tankTop)  
             && i > 0 
             && i < terrMap.Length - 1
-            && terrMap[i].x * side < Reachable(side) * side
-            ) i += side;
+            //&& terrMap[i].x * side < Reachable(side) * side
+            && terrMap[i].x * (int)dir < Reachable(dir) * (int)dir
+            ) i += (int)dir;
 
     //DrawTestLine(Vector2.zero, terrMap[i]);
 

@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 1071819610612840266}
   - component: {fileID: 7483054243562180641}
   - component: {fileID: 8505487278064140147}
-  - component: {fileID: 2860212663502126867}
+  - component: {fileID: 3795608239850816961}
   m_Layer: 10
   m_Name: Tank
   m_TagString: Untagged
@@ -734,7 +734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5baeeb66a28b0ea44b01f1a924d62bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
   target: {fileID: 0}
   angleSearchStepGrad: 5
   angleSearchAccuracy: 1
@@ -776,7 +775,7 @@ MonoBehaviour:
   wheelBase: 2.3
   maxTrackAngle: 45
   tankTop: 2
---- !u!114 &2860212663502126867
+--- !u!114 &3795608239850816961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -788,6 +787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changePositionDistance: 10
+  speed: 1
+  leftWheelObj: {fileID: 8679405840248352747}
+  rightWheelObj: {fileID: 8679405840833597504}
 --- !u!1 &8679405840248352747
 GameObject:
   m_ObjectHideFlags: 0
