@@ -6,8 +6,9 @@ public class TankMoveScript : MonoBehaviour
 {
 
     
-    float cantMovinDelta  = 5f;
+    float fuel  = 30f;
     public float changePositionDistance  = 1f;
+    public float positionSharpness = 1f;
     public float speed = 1f;
     WheelJoint2D leftWheel, rightWheel;
     Rigidbody2D leftWheelRigid, rightWheelRigid;
@@ -76,35 +77,36 @@ public class TankMoveScript : MonoBehaviour
         leftWheel.useMotor = false;
     }
     
-IEnumerator MoveCoroutine2(float pos) {
-        // move
-        rightWheelRigid.freezeRotation = false;
-        leftWheelRigid.freezeRotation = false;
-        if (pos > transform.position.x) leftWheel.useMotor = true;
-        else rightWheel.useMotor = true;
-        //wait
-        //Debug.Log("TANK START MOVE " + transform.name);
-		while (!TestReach(pos) && !CantMove() && fuel > 0) {
-			FuelDecrease();
-			yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate
-		}
-        // stop
-        //Debug.Log("TANK STOP MOVE " + transform.name);
-        rightWheelRigid.freezeRotation = true;
-        leftWheelRigid.freezeRotation = true;
-        rightWheel.useMotor = false;
-        leftWheel.useMotor = false;
+    IEnumerator MoveCoroutine2(float pos) {
+            // move
+            rightWheelRigid.freezeRotation = false;
+            leftWheelRigid.freezeRotation = false;
+            if (pos > transform.position.x) leftWheel.useMotor = true;
+            else rightWheel.useMotor = true;
+            //wait
+            //Debug.Log("TANK START MOVE " + transform.name);
+            while (!TestReach(pos) && !CantMove() && fuel > 0) {
+                FuelDecrease();
+                yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate
+            }
+            // stop
+            //Debug.Log("TANK STOP MOVE " + transform.name);
+            rightWheelRigid.freezeRotation = true;
+            leftWheelRigid.freezeRotation = true;
+            rightWheel.useMotor = false;
+            leftWheel.useMotor = false;
     }
 	
-bool TestReach(float pos) {
-		return(Mathf.Abs(pos - transform.position.x) < positionSharpness);
-}
+    bool TestReach(float pos) {
+                return(Mathf.Abs(pos - transform.position.x) < positionSharpness);
+    }
 	
-void FuelDecrease() {
-		
-}
+    void FuelDecrease() {
+            
+    }
 	
-bool CantMove() {
-		
-}
+    bool CantMove() {
+
+        return false;    
+    }
 }
