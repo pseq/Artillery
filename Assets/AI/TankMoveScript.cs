@@ -75,4 +75,22 @@ public class TankMoveScript : MonoBehaviour
         rightWheel.useMotor = false;
         leftWheel.useMotor = false;
     }
+    
+    IEnumerator MoveCoroutine2(float pos) {
+        // move
+        rightWheelRigid.freezeRotation = false;
+        leftWheelRigid.freezeRotation = false;
+        if (pos > transform.position.x) leftWheel.useMotor = true;
+        else rightWheel.useMotor = true;
+        //wait
+        //Debug.Log("TANK START MOVE " + transform.name);
+		while (!TestReach(pos) && !CantMove)
+        yield return new WaitForSeconds(Mathf.Abs(time));
+        // stop
+        //Debug.Log("TANK STOP MOVE " + transform.name);
+        rightWheelRigid.freezeRotation = true;
+        leftWheelRigid.freezeRotation = true;
+        rightWheel.useMotor = false;
+        leftWheel.useMotor = false;
+    }
 }
