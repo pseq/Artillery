@@ -71,15 +71,13 @@ public int side = 1;
         ShootAngleSearch();
 
         // угол между танком и противником
-        float floorAngle = Mathf.Atan2(side * (enemyTransform.position.y - selfTransform.position.y),
-                                       side * (enemyTransform.position.x - selfTransform.position.x)) * Mathf.Rad2Deg * side;
+        //float floorAngle = Mathf.Atan2(side * (enemyTransform.position.y - selfTransform.position.y),
+        //                               side * (enemyTransform.position.x - selfTransform.position.x)) * Mathf.Rad2Deg * side;
 
-        float distance = Vector2.Distance(selfTransform.position, enemyTransform.position);
-        //float alpha = ShootAngleSearch(gameObject, distance, side) - floorAngle;
-        float alpha = 0;
-        //float beta  = ShootAngleSearch(target, distance, -side) + floorAngle;
-        float beta  = 0;
-        float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
+        //float distance = Vector2.Distance(selfTransform.position, enemyTransform.position);
+        //float alpha = 0;
+        //float beta  = 0;
+        //float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
     }
 
     
@@ -154,11 +152,11 @@ public int side = 1;
         yield return new WaitForSeconds(Time.deltaTime);
         }
     //Debug.Log("TANK: REal angle=" + gunScript.transform.eulerAngles.z);
-        
+        gunScript.Fire();
         //ChangePositionLogicModule(gunScript.transform.eulerAngles.z);
     }
 
-    void AiminOK(float angle) {
+/*    void AiminOK(float angle) {
         // SET GUN AIM
         isFirst = true;
         moveDirChanged = false;
@@ -167,7 +165,7 @@ public int side = 1;
 //Debug.Log("=======================================");
         gunScript.Fire();
     }
-
+*/
     float ShootDistanceSelect() {
         float enemyPosition = target.transform.position.x;
         if (lastHitPoint > enemyPosition) {

@@ -6,13 +6,15 @@ public class TankMoveScript : MonoBehaviour
 {
 
     
-    float fuel  = 30f;
+    public float fuel  = 10000f;
     public float changePositionDistance  = 1f;
     public float positionSharpness = 1f;
     public float speed = 1f;
     WheelJoint2D leftWheel, rightWheel;
     Rigidbody2D leftWheelRigid, rightWheelRigid;
     public GameObject leftWheelObj, rightWheelObj;
+    public int cantMoveFrames = 10;
+    public float cantMoveDencity = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,19 +35,19 @@ public class TankMoveScript : MonoBehaviour
 
     public float GetTrackReserve() {
         // TODO make this
-        return 200;
+        return fuel/speed;
     }
 
     public void Move(float dist) {
         // Движение в точку
         // TODO формула вычисления времени из расстояния
         float time = dist/speed;
-        Debug.Log("НЕ ТОТ МУВ");
+        //Debug.Log("НЕ ТОТ МУВ");
         //StartCoroutine(MoveCoroutine(time));
     }
 
     public void Test(int dir) {
-        Debug.Log("MOVE " + (Direction)dir);
+        //Debug.Log("MOVE " + (Direction)dir);
         Move((Direction)dir);
     }
 
@@ -57,40 +59,28 @@ public class TankMoveScript : MonoBehaviour
         float time = changePositionDistance/speed * side;
         StartCoroutine(MoveCoroutine(time));
     }
-
-    IEnumerator MoveCoroutine(float time) {
-        // move
-        rightWheelRigid.freezeRotation = false;
-        leftWheelRigid.freezeRotation = false;
-        if (time > 0) leftWheel.useMotor = true;
-        else rightWheel.useMotor = true;
-        //wait
-        //Debug.Log("TANK START MOVE " + transform.name);
-
-        yield return new WaitForSeconds(Mathf.Abs(time));
-        // stop
-        //Debug.Log("TANK STOP MOVE " + transform.name);
-
-        rightWheelRigid.freezeRotation = true;
-        leftWheelRigid.freezeRotation = true;
-        rightWheel.useMotor = false;
-        leftWheel.useMotor = false;
-    }
     
-    IEnumerator MoveCoroutine2(float pos) {
+    IEnumerator MoveCoroutine(float pos) {
             // move
             rightWheelRigid.freezeRotation = false;
             leftWheelRigid.freezeRotation = false;
             if (pos > transform.position.x) leftWheel.useMotor = true;
             else rightWheel.useMotor = true;
+            float lastPosition = transform.position.x;
+            int i = 0;
             //wait
             //Debug.Log("TANK START MOVE " + transform.name);
-            while (!TestReach(pos) && !CantMove() && fuel > 0) {
+            while (!TestReach(pos) && fuel > 0) {
+                i++;
+                if (i % cantMoveFrames == 0)  {
+                    Debug.Log("MOVE dens=" + Mathf.Abs(lastPosition - transform.position.x));
+                    if (Mathf.Abs(lastPosition - transform.position.x) < cantMoveDencity) break;
+                    lastPosition = transform.position.x;
+                }
                 FuelDecrease();
                 yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate
             }
             // stop
-            //Debug.Log("TANK STOP MOVE " + transform.name);
             rightWheelRigid.freezeRotation = true;
             leftWheelRigid.freezeRotation = true;
             rightWheel.useMotor = false;
@@ -102,11 +92,15 @@ public class TankMoveScript : MonoBehaviour
     }
 	
     void FuelDecrease() {
-            
+         fuel--;
+         if (fuel < 0) fuel = 0;   
     }
-	
-    bool CantMove() {
 
-        return false;    
+    public void StartCor(int l) {
+        StartCoroutine(MoveCoroutine(l));
+    }
+
+    public void Stopcor() {
+        StopCoroutine(MoveCoroutine(0));
     }
 }
