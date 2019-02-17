@@ -382,7 +382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1728923364}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92048058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
   m_Name: 
@@ -1070,12 +1070,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504197295}
   m_CullTransparentMesh: 0
---- !u!50 &533384089 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8679405840833597532, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1028922998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &594067122 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8679405839200109115, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
@@ -1391,46 +1385,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1013228421}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 533384089}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1013228420}
-          m_MethodName: set_useMotor
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 92048059}
-          m_MethodName: StartCor
+          m_MethodName: StartMove
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1000
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -1441,41 +1402,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1013228421}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 533384089}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1013228420}
-          m_MethodName: set_useMotor
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 92048059}
-          m_MethodName: Stopcor
+          m_MethodName: StopMove
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1732,6 +1660,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818722000}
   m_CullTransparentMesh: 0
+--- !u!1 &874144694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8679405840833597504, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    type: 3}
+  m_PrefabInstance: {fileID: 1028922998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &915570905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,8 +1780,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928599335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37, y: 29.1, z: 0}
-  m_LocalScale: {x: 2.0982893, y: 1.7728229, z: 5.718727}
+  m_LocalPosition: {x: 117.8, y: 65.3, z: 0}
+  m_LocalScale: {x: 1.4425739, y: 32.797222, z: 5.718727}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -1922,7 +1856,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b6a6fef20c2f2304fa3de8dcbaa30e23, type: 3}
-  m_Color: {r: 0.99106026, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.76018286, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2085,18 +2019,6 @@ RectTransform:
   m_AnchoredPosition: {x: 322, y: 183.60004}
   m_SizeDelta: {x: 100.4, y: 42.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!235 &1013228420 stripped
-WheelJoint2D:
-  m_CorrespondingSourceObject: {fileID: 8679405840248352744, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1728923364}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1013228421 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8679405840248352743, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1728923364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1028922998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2113,6 +2035,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: AIControlled
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: changePositionDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: leftWheelObj
+      value: 
+      objectReference: {fileID: 1290035565}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: rightWheelObj
+      value: 
+      objectReference: {fileID: 874144694}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 928599337}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: positionSharpness
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -2157,12 +2104,12 @@ PrefabInstance:
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.70001
+      value: 140.7
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 64.9
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -2388,46 +2335,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1948363441}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1013228421}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1948363440}
-          m_MethodName: set_useMotor
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 92048059}
-          m_MethodName: StartCor
+          m_MethodName: StartMove
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: -1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -2438,41 +2352,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1948363441}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1013228421}
-          m_MethodName: set_freezeRotation
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1948363440}
-          m_MethodName: set_useMotor
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 92048059}
-          m_MethodName: Stopcor
+          m_MethodName: StopMove
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3079,6 +2960,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255938196}
   m_CullTransparentMesh: 0
+--- !u!1 &1290035565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8679405840248352747, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    type: 3}
+  m_PrefabInstance: {fileID: 1028922998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1309200496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,6 +3888,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AIControlled
       objectReference: {fileID: 0}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: changePositionDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: leftWheelObj
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: rightWheelObj
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: target
@@ -4478,18 +4385,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937255474}
   m_CullTransparentMesh: 0
---- !u!235 &1948363440 stripped
-WheelJoint2D:
-  m_CorrespondingSourceObject: {fileID: 8679405840833597533, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1728923364}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1948363441 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8679405840833597532, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1728923364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2073897123
 GameObject:
   m_ObjectHideFlags: 0
