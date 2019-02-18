@@ -4,40 +4,30 @@ using UnityEngine;
 
 public class TankMoveScript : MonoBehaviour
 {
-
-    
     public float fuel  = 10000f;
     public float changePositionDistance  = 20f;
     public float positionSharpness = 1f;
     public float speed = 180f;
     public float motorPower = 1000f;
-
     public WheelJoint2D[] wheels;
     JointMotor2D motor;
-    public GameObject leftWheelObj, rightWheelObj;
     public int cantMoveFrames = 10;
     public float cantMoveDencity = .5f;
-    //public bool isMoving = false;
-
-    public Transform test;
-    public float oldtestX;
+    //public Transform test;
+    //public float oldtestX;
 
     // Start is called before the first frame update
     void Start()
     {
-
         wheels = GetComponentsInChildren<WheelJoint2D>();
-        //motor.maxMotorTorque = motorPower;
-        //motor.motorSpeed = 270;
-        //foreach(WheelJoint2D wheel in wheels) wheel.motor = motor;
     }
 
     // Update is called once per frame
     void Update()
     {
         //test
-        if(oldtestX != test.position.x) Move(test.position.x);
-        oldtestX = test.position.x;
+        //if(oldtestX != test.position.x) Move(test.position.x);
+        //oldtestX = test.position.x;
     }
 
     public float GetTrackReserve() {
@@ -50,10 +40,10 @@ public class TankMoveScript : MonoBehaviour
         StartCoroutine(MoveCoroutine(pos));
     }
 
-    public void Test(int dir) {
+    //public void Test(int dir) {
         //Debug.Log("MOVE " + (Direction)dir);
-        Move((Direction)dir);
-    }
+    //    Move((Direction)dir);
+    //}
 
     public void Move(Direction dir) {
         // Движение в направлении
@@ -61,12 +51,9 @@ public class TankMoveScript : MonoBehaviour
         int side = (int)dir;
         float sign = Mathf.Sign(tankPos - GetComponent<TankScript>().target.transform.position.x);
         StartCoroutine(MoveCoroutine(tankPos - changePositionDistance * side * sign));
-        //if (tankPos - enemyPos > 0)     StartCoroutine(MoveCoroutine(tankPos - changePositionDistance * side));
-          //                      else    StartCoroutine(MoveCoroutine(tankPos + changePositionDistance * side));
     }
     
     IEnumerator MoveCoroutine(float pos) {
-        // move
         Direction dir = Direction.Left;
         if (pos > transform.position.x) dir = Direction.Right;
         StartMove(dir);
@@ -76,17 +63,14 @@ public class TankMoveScript : MonoBehaviour
 
         while (!TestReach(pos) && fuel > 0) {
 
-            //cant move test
             i++;
             if (i % cantMoveFrames == 0)  {
-                Debug.Log("MOVE dens=" + Mathf.Abs(lastPosition - transform.position.x));
                 if (Mathf.Abs(lastPosition - transform.position.x) < cantMoveDencity) break;
                 lastPosition = transform.position.x;
             }
             yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate
         }
         // stop
-        Debug.Log("NOW STOP");
         StopMove();
     }
     
@@ -97,9 +81,8 @@ public class TankMoveScript : MonoBehaviour
         }
     }
 	
-    //NOT WORKING
     bool TestReach(float pos) {
-        //Debug.Log(Mathf.Abs(pos - transform.position.x));
+        Debug.Log("MOVE TESTReach d=" + Mathf.Abs(pos - transform.position.x) + " shrp=" + positionSharpness);
         return(Mathf.Abs(pos - transform.position.x) < positionSharpness);
     }
 	
@@ -117,10 +100,7 @@ public class TankMoveScript : MonoBehaviour
 
     public void StartMove(Direction dir) {
         StopMove();
-        //rightWheelRigid.freezeRotation = false;
-        //leftWheelRigid.freezeRotation = false;
         motor.maxMotorTorque = motorPower;
-
         if (dir == Direction.Right) motor.motorSpeed = speed;
             else motor.motorSpeed = -speed;
         Debug.Log("MOVE motor.speed=" + motor.motorSpeed);      
@@ -129,10 +109,6 @@ public class TankMoveScript : MonoBehaviour
     }
 
     public void StopMove() {
-        //rightWheelRigid.freezeRotation = true;
-        //leftWheelRigid.freezeRotation = true;
-        //rightWheel.useMotor = false;
-        //leftWheel.useMotor = false;
         motor.motorSpeed = 0;
         foreach(WheelJoint2D wheel in wheels) wheel.motor = motor;        
         StopCoroutine("FuelDecreaseCoroutine");
