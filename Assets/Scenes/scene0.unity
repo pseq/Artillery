@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &4046454 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1028922998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &19559104
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,18 +363,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1728923364}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &92048059 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-    type: 3}
-  m_PrefabInstance: {fileID: 1728923364}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92048058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &97344255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +996,7 @@ MonoBehaviour:
           m_StringArgument: InOutTrigger
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4046454}
+      - m_Target: {fileID: 0}
         m_MethodName: Test
         m_Mode: 3
         m_Arguments:
@@ -1385,7 +1361,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 92048059}
+        - m_Target: {fileID: 0}
           m_MethodName: StartMove
           m_Mode: 3
           m_Arguments:
@@ -1402,7 +1378,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 92048059}
+        - m_Target: {fileID: 0}
           m_MethodName: StopMove
           m_Mode: 1
           m_Arguments:
@@ -1753,6 +1729,7 @@ GameObject:
   - component: {fileID: 928599338}
   - component: {fileID: 928599339}
   - component: {fileID: 928599340}
+  - component: {fileID: 928599341}
   m_Layer: 0
   m_Name: TestObject
   m_TagString: test
@@ -1866,6 +1843,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &928599341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928599335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuel: 10000
+  changePositionDistance: 20
+  positionSharpness: 1
+  speed: 180
+  motorPower: 1000
+  wheels: []
+  leftWheelObj: {fileID: 0}
+  rightWheelObj: {fileID: 0}
+  cantMoveFrames: 10
+  cantMoveDencity: 0.5
+  test: {fileID: 0}
+  oldtestX: 0
 --- !u!1 &932360740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2336,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 92048059}
+        - m_Target: {fileID: 0}
           m_MethodName: StartMove
           m_Mode: 3
           m_Arguments:
@@ -2352,7 +2353,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 92048059}
+        - m_Target: {fileID: 0}
           m_MethodName: StopMove
           m_Mode: 1
           m_Arguments:

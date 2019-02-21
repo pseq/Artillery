@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class DDScript : MonoBehaviour
 {
     public GameObject poolObject;
-    public GameObject gun;
+    //public GameObject gun;
+    public GameObject tank;
     GunScript gunScript;
     PoolManagerScript poolManager;
     Dropdown dd;
@@ -16,7 +17,8 @@ public class DDScript : MonoBehaviour
     {
         dd = GetComponent<Dropdown>();
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
-        gunScript = gun.gameObject.GetComponent<GunScript>();
+        //gunScript = gun.gameObject.GetComponent<GunScript>();
+        gunScript = tank.GetComponent<TankScript>().GetGun();
     }
 
     public void CreateDDList(int[] bulletsKeys, int[] bulletsNumbers) {

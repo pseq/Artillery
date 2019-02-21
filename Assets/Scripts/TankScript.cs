@@ -30,11 +30,6 @@ public float gunRotTime = .5f;
 public TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
-
-
-
-////// test
-public GameObject test;
 public int side = 1;
 
 
@@ -58,8 +53,10 @@ public int side = 1;
         enemyTransform = target.transform;
     }
 
+    public GunScript GetGun() {
+        return gunScript;
+    }
 
-    
     public void Aim() {
 
         Transform selfTransform = gameObject.transform;
