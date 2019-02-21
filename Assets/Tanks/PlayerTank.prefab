@@ -23,6 +23,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: angleText
+      value: 
+      objectReference: {fileID: 1253118398953225451, guid: eb54dbc14105abe4e85b9f25e6adccd8,
+        type: 3}
+    - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: powerText
+      value: 
+      objectReference: {fileID: 9060199810417960015, guid: 81185fa70fbcfb545929fea2e75e5b5e,
+        type: 3}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_LocalPosition.x

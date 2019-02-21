@@ -57,6 +57,17 @@ public int side = 1;
         return gunScript;
     }
 
+    public void UserAngleChange(Vector2 scroll) {
+        gunScript.GunAngleChange(scroll);
+    }
+    public void UserPowerChange(Vector2 scroll) {
+        gunScript.GunPowerChange(scroll);
+    }
+
+    public void UserFire() {
+        gunScript.Fire();
+    }
+    
     public void Aim() {
 
         Transform selfTransform = gameObject.transform;
