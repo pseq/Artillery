@@ -8,10 +8,14 @@ public class PoolManagerScript : MonoBehaviour {
 	public GameObject[] bulletsCatalog;
 	public Sprite[] bulletIconsCatalog;
 
-	// Use this for initialization
-	void Start () {
+	void Awake() {
 		pool = new Dictionary<int, GameObject>();
 		PoolFillingStart();
+	}
+
+	// Use this for initialization
+	void Start () {
+
 	}
 
 	public Sprite GetBulletIcon(int key) {
@@ -31,7 +35,7 @@ public class PoolManagerScript : MonoBehaviour {
 					pool.Add(arsKey, newBullet);
 				} 
 			}
-			gunScript.SelectBullet(0);
+			//gunScript.SelectBullet(0);
 		}
 	}
 

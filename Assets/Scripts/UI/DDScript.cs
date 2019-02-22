@@ -12,19 +12,27 @@ public class DDScript : MonoBehaviour
     PoolManagerScript poolManager;
     Dropdown dd;
 
+    void Awake() {
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        dd = GetComponent<Dropdown>();
-        poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
         //gunScript = gun.gameObject.GetComponent<GunScript>();
         gunScript = tank.GetComponent<TankScript>().GetGun();
+        gunScript.SelectBullet(0);
+        dd = GetComponent<Dropdown>();
+
     }
 
     public void CreateDDList(int[] bulletsKeys, int[] bulletsNumbers) {
+        poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
+        
+        dd = GetComponent<Dropdown>();
         dd.ClearOptions();
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
         for(int i = 0; i < bulletsKeys.Length; i ++) {
+
             Dropdown.OptionData newOption = new Dropdown.OptionData(bulletsNumbers[i].ToString(), poolManager.GetBulletIcon(bulletsKeys[i]));
             options.Add(newOption);
         }

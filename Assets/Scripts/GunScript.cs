@@ -32,7 +32,6 @@ public class GunScript : MonoBehaviour {
 
     void Awake() {
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
-        ddScript = dropDown.gameObject.GetComponent<DDScript>();
     }
 
     // Use this for initialization
@@ -40,6 +39,7 @@ public class GunScript : MonoBehaviour {
         tick = gameObject.GetComponent<AudioSource>();
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
+//ddScript = dropDown.gameObject.GetComponent<DDScript>();
         // TODO изменить
         hBar = transform.parent.GetChild(3);
     }
@@ -70,6 +70,8 @@ public class GunScript : MonoBehaviour {
         arsenal.Keys.CopyTo(arsKeys,0);
         arsenal.Values.CopyTo(arsValues,0);
         // создаем список снарядов в меню
+        ddScript = dropDown.gameObject.GetComponent<DDScript>();
+
         ddScript.CreateDDList(arsKeys, arsValues);
 
         return arsKeys;

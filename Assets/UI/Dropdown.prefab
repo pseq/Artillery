@@ -162,7 +162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6228275509118282792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -175,7 +175,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300008, guid: 3a52896f0c63db64c8903c6651ce410c, type: 3}
+  m_Sprite: {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -336,7 +336,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 500
 --- !u!1 &6228275509346087813
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +942,11 @@ MonoBehaviour:
   m_ItemImage: {fileID: 6228275510460030828}
   m_Value: 0
   m_Options:
-    m_Options: []
+    m_Options:
+    - m_Text: 500
+      m_Image: {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+    - m_Text: 100
+      m_Image: {fileID: 21300008, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
