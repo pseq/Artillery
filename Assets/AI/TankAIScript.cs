@@ -23,7 +23,7 @@ public class TankAIScript : MonoBehaviour
     {
         // периодически проверяем, не перевернулся ли танк
         if (Time.frameCount % framesUpsideCheck == 0) {
-	    UpsideCheck();
+	    //UpsideCheck();
 	    }
     }
 
@@ -32,6 +32,11 @@ public class TankAIScript : MonoBehaviour
             Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)) > 90 && 
             Mathf.Abs(tankRigid.angularVelocity) < .1f
             ) animator.SetTrigger("isTurnedOver");
+    }
+
+    public void UpsideDown() {
+Debug.Log("UpsideDown");
+        animator.SetTrigger("isTurnedOver");
     }
 
     // вызывается в анимации
