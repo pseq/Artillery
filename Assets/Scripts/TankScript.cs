@@ -34,7 +34,7 @@ Transform enemyTransform;
 
 
 ////// test
-public GameObject test;
+//public GameObject test;
 public int side = 1;
 
 
