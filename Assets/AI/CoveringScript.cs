@@ -8,7 +8,7 @@ public class CoveringScript : MonoBehaviour
     public float wheelBase;
     TerrainScript terr;
     Vector3[] terrMap;
-    public float maxTrackAngle = 45f;
+    public float maxTrackAngle = 50f;
     public float tankTop = 2f;
     LayerMask mask;
 

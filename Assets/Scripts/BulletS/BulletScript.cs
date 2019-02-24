@@ -95,7 +95,11 @@ public class BulletScript : MonoBehaviour {
 
     void MakeDamage() {
         foreach(Damagable dmg in damagables) {
-            if (collider.IsTouching(dmg.GetCollider())) dmg.GetHealth().HealthDecrease(damage);
+            if (collider.IsTouching(dmg.GetCollider())) {
+                HealthControllerScript healthScript = dmg.GetHealth();
+                healthScript.HealthDecrease(damage);
+                healthScript.Shooted();
+            }
         }
     }
 }

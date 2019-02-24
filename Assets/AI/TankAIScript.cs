@@ -18,27 +18,26 @@ public class TankAIScript : MonoBehaviour
         if (isPlayer) animator.SetTrigger("isPlayer");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // периодически проверяем, не перевернулся ли танк
-        if (Time.frameCount % framesUpsideCheck == 0) {
-	    //UpsideCheck();
-	    }
-    }
-
-    void UpsideCheck() {
-        if (
-            Mathf.Abs(Mathf.DeltaAngle(0, transform.eulerAngles.z)) > 90 && 
-            Mathf.Abs(tankRigid.angularVelocity) < .1f
-            ) animator.SetTrigger("isTurnedOver");
-    }
-
     public void UpsideDown() {
-Debug.Log("UpsideDown");
         animator.SetTrigger("isTurnedOver");
     }
+    
+    public void CantMove() {
+        animator.SetTrigger("cantMove");
+    }
 
+    public void CantShoot() {
+        animator.SetTrigger("cantReachShot");
+    }
+    public void Shooted() {
+        animator.SetBool("wasShooted", true);
+    }
+
+    public void EndTurn() {
+        animator.SetBool("wasShooted", false);
+        animator.SetTrigger("endTurn");
+    }
+    
     // вызывается в анимации
     public void TurnUp() {
         transform.position = (Vector2)transform.position + Vector2.up * upsideReturnUp;

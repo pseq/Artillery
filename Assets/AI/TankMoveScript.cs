@@ -64,8 +64,12 @@ public class TankMoveScript : MonoBehaviour
         while (!TestReach(pos) && fuel > 0) {
 
             i++;
+            // проверяем периодически изменение позиции, и если не едет - прерываем цикл, и устанавливаем триггер
             if (i % cantMoveFrames == 0)  {
-                if (Mathf.Abs(lastPosition - transform.position.x) < cantMoveDencity) break;
+                if (Mathf.Abs(lastPosition - transform.position.x) < cantMoveDencity) {
+                    GetComponent<TankAIScript>().CantMove();
+                    break;
+                }
                 lastPosition = transform.position.x;
             }
             yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate

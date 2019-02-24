@@ -666,14 +666,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f97cb023d970224c81687a831345cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testText0: {fileID: 0}
-  testText1: {fileID: 0}
   framesRollingoverCheck: 10
-  framesUpsideCheck: 100
+  framesUpsideCheck: 10
   critAngle: 20
   restAngle: 1
   rollbackImpulse: 20
-  oldAngle: 328.82257
 --- !u!1 &8679405840248352747
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +758,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8679405840248352747}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 13a9fcd93a210ac4bab93bd5f8a338d0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -904,7 +901,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8679405840833597504}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 13a9fcd93a210ac4bab93bd5f8a338d0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

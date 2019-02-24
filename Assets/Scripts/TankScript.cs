@@ -207,14 +207,7 @@ public int side = 1;
     //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
 
         }
-//Debug.Log("TANK: TARGET UNREACHABLE. TIME TO MOVE");
-        //Debug.Break();
+        // говорим ИИ, что достать противника не получится
+        GetComponent<TankAIScript>().CantShoot();
     }
-
-/*
-    void TurnaroundToEnemy(Transform self, Transform target) {
-        if (target.position.x > self.position.x && self.localScale.x < 0) gunScript.TurnAround(); 
-        if (target.position.x < self.position.x && self.localScale.x > 0) gunScript.TurnAround();
-    }
-    */
 }

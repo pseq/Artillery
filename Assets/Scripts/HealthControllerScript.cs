@@ -23,9 +23,10 @@ public class HealthControllerScript : MonoBehaviour
             Death();
             return;
         }
-        
-        //to del
-        animator.SetTrigger("isDamaged");
+    }
+
+    public void Shooted() {
+        if(GetComponent<TankAIScript>()) GetComponent<TankAIScript>().Shooted();
     }
 
     void Death() {
