@@ -9,6 +9,8 @@ public class TankAIScript : MonoBehaviour
     public float upsideReturnUp = 10f;
     public bool isPlayer = false;
     Rigidbody2D tankRigid;
+    CommonTankScripts common;
+    TankMoveScript moveScript;
 
 
     // Start is called before the first frame update
@@ -16,6 +18,8 @@ public class TankAIScript : MonoBehaviour
     {
         tankRigid = GetComponent<Rigidbody2D>();
         if (isPlayer) animator.SetTrigger("isPlayer");
+        common = GetComponent<CommonTankScripts>();
+        moveScript = GetComponent<TankMoveScript>();
     }
 
     public void UpsideDown() {
@@ -36,6 +40,17 @@ public class TankAIScript : MonoBehaviour
     public void EndTurn() {
         animator.SetBool("wasShooted", false);
         animator.SetTrigger("endTurn");
+    }
+
+    public void GoToCover() {
+        float coverPos = GetComponent<CoveringScript>().GetCover(common.DirAwayEnemy());
+        if(coverPos != 0) moveScript.Move(coverPos);
+        else {
+            coverPos = GetComponent<CoveringScript>().GetCover(common.DirToEnemy());
+            if(coverPos != 0) moveScript.Move(coverPos);
+            else animator.SetTrigger("noCovers");
+        }
+
     }
     
     // вызывается в анимации
