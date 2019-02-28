@@ -42,6 +42,14 @@ public class TankAIScript : MonoBehaviour
         animator.SetTrigger("endTurn");
     }
 
+    public void ShootOK() {
+        animator.SetTrigger("shootOK");
+    }
+
+    public void CritHealth(bool crit) {
+        animator.SetBool("healthCrit", crit);
+    }
+
     public void GoToCover() {
         float coverPos = GetComponent<CoveringScript>().GetCover(common.DirAwayEnemy());
         if(coverPos != 0) moveScript.Move(coverPos);

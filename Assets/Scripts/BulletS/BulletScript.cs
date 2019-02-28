@@ -16,7 +16,7 @@ public class BulletScript : MonoBehaviour {
     GameObject[] fragment_pool;
     Collider2D collider;
     DamageControllerScript damageControllerScript;
-    public int damage = 10;
+    public int damage;
     Damagable[] damagables;
 
 

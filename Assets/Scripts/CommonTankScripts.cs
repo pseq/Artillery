@@ -13,6 +13,10 @@ public class CommonTankScripts : MonoBehaviour
         
     }
 
+    public ImWeak(bool weakness) {
+        GetComponent<TankAIScript>().EnemyIsWeak(weakness);
+    }
+
 // TODO заменить везде
     public Direction DirToEnemy() {
         if (transform.position.x > enemy.transform.position.x) return Direction.Left;

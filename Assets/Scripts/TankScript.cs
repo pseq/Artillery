@@ -30,6 +30,7 @@ public float gunRotTime = .5f;
 public TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
+TankAIScript aIScript;
 
 
 
@@ -44,18 +45,17 @@ public int side = 1;
 
 // TODO сделать выбор из размеров terrain
         leftAimPoint = 0;
-        //rightAimPoint = GameObject.Find("Terrain").GetComponent<Mesh>().bounds.center.x;
         terrainScript = GameObject.Find("Terrain").GetComponent<TerrainScript>();
         rightAimPoint = 150;
         lastHitPoint = target.transform.position.x;
         lastEnemyPosition = lastHitPoint;
-        //gunPower = gunScript.GunPowerToPoint(target.transform.position, 45f);
         gunPower = 10;
 
         //Debug.Log("TANK TANK angle " + transform.eulerAngles.z);
         //Debug.Log("TANK GUN angle " + gunScript.transform.eulerAngles.z);
         selfTransform = gameObject.transform;
         enemyTransform = target.transform;
+        aIScript = GetComponent<TankAIScript>();
     }
 
 
@@ -64,71 +64,10 @@ public int side = 1;
 
         Transform selfTransform = gameObject.transform;
         Transform enemyTransform = target.transform;
-        //TurnaroundToEnemy(selfTransform, enemyTransform);
-
         side = (int)Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
-
         ShootAngleSearch();
-
-        // угол между танком и противником
-        //float floorAngle = Mathf.Atan2(side * (enemyTransform.position.y - selfTransform.position.y),
-        //                               side * (enemyTransform.position.x - selfTransform.position.x)) * Mathf.Rad2Deg * side;
-
-        //float distance = Vector2.Distance(selfTransform.position, enemyTransform.position);
-        //float alpha = 0;
-        //float beta  = 0;
-        //float angle = (Mathf.Max(alpha, beta) + floorAngle) * side;
     }
 
-    
-/*
-    bool ChangePosition() {
-        lastGunPower = gunPower;
-
-        float startPos = transform.position.x;
-        Move(changePositionDistance * moveDirection);
-        isFirst = false;
-        if (Mathf.Abs(startPos - transform.position.x) > 0) return true;
-        else return false;
-    }
-*/
-
-    /*
-    void ChangePositionLogicModule(float angle) {
-        // Power Calc to Enemy
-        //gunPower =  gunScript.GunPowerToPoint(target.transform.position, angle, side);
-
-        //test
-        AiminOK(angle);
-        return;
-
-        if (gunPower <= maxGunPower) {
-            // завершаем алгоритм
-            //Debug.Log("TANK gunPower <= maxGunPower AiminOK");
-            AiminOK(angle);
-            return;
-        } 
-        else if (!isFirst) {
-            if (gunPower > lastGunPower) {
-                if (ChangeMovinDirection()) {
-                    //Debug.Log("TANK gunPower > lastGunPower AiminOK");
-
-                    AiminOK(angle);
-                    return;
-                } else if (ChangePosition()) Aim(); // рекурсия            
-            } else if (ChangePosition()) Aim();    
-        } else if (ChangePosition()) Aim(); // рекурсия
-    }
-
-    bool ChangeMovinDirection() {
-        moveDirection *= -1;
-        if (!ChangePosition() && !moveDirChanged) {
-            moveDirChanged = true;
-            ChangeMovinDirection();
-        }
-        return moveDirChanged;
-    }
-    */
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
         // TODO найти баг определения угла
@@ -152,20 +91,14 @@ public int side = 1;
         yield return new WaitForSeconds(Time.deltaTime);
         }
     //Debug.Log("TANK: REal angle=" + gunScript.transform.eulerAngles.z);
-        gunScript.Fire();
-        //ChangePositionLogicModule(gunScript.transform.eulerAngles.z);
+        Fire();
     }
 
-/*    void AiminOK(float angle) {
-        // SET GUN AIM
-        isFirst = true;
-        moveDirChanged = false;
-        //gunScript.transform.eulerAngles = new Vector3(0f,0f,angle);
-        //gunScript.GunAngleChange(angle);
-//Debug.Log("=======================================");
+    void Fire() {
+        aIScript.ShootOK();
         gunScript.Fire();
     }
-*/
+
     float ShootDistanceSelect() {
         float enemyPosition = target.transform.position.x;
         if (lastHitPoint > enemyPosition) {
@@ -188,7 +121,6 @@ public int side = 1;
         float angleSide = -(90 * side - 90);
         float angle = selfTransform.eulerAngles.z + angleSide;
         // делаем, пока угол между направлением выстрела, и наклоном танка > 0, учитывая сторону, в которую будем стрелять
-        //while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchStepGrad) {
         while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchAccuracy) {
             float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
             float powerTg = gunScript.GunPowerToPoint(enemyTransform.position, angle, side);
@@ -208,6 +140,6 @@ public int side = 1;
 
         }
         // говорим ИИ, что достать противника не получится
-        GetComponent<TankAIScript>().CantShoot();
+        aIScript.CantShoot();
     }
 }
