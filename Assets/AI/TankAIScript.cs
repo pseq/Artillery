@@ -30,6 +30,10 @@ public class TankAIScript : MonoBehaviour
         animator.SetTrigger("cantMove");
     }
 
+    public void Moving(bool moving) {
+        animator.SetBool("moving", moving);
+    }
+
     public void CantShoot() {
         animator.SetTrigger("cantReachShot");
     }
@@ -48,6 +52,10 @@ public class TankAIScript : MonoBehaviour
 
     public void CritHealth(bool crit) {
         animator.SetBool("healthCrit", crit);
+    }
+
+    public void EnemyIsWeak(bool weakness) {
+        animator.SetBool("healthCritEnemy", weakness);
     }
 
     public void GoToCover() {

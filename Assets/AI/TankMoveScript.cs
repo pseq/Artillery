@@ -104,6 +104,7 @@ public class TankMoveScript : MonoBehaviour
 
     public void StartMove(Direction dir) {
         StopMove();
+        GetComponent<TankAIScript>().Moving(true);  
         motor.maxMotorTorque = motorPower;
         if (dir == Direction.Right) motor.motorSpeed = speed;
             else motor.motorSpeed = -speed;
@@ -113,6 +114,7 @@ public class TankMoveScript : MonoBehaviour
     }
 
     public void StopMove() {
+        GetComponent<TankAIScript>().Moving(false);
         motor.motorSpeed = 0;
         foreach(WheelJoint2D wheel in wheels) wheel.motor = motor;        
         StopCoroutine("FuelDecreaseCoroutine");

@@ -13,8 +13,8 @@ public class CommonTankScripts : MonoBehaviour
         
     }
 
-    public ImWeak(bool weakness) {
-        GetComponent<TankAIScript>().EnemyIsWeak(weakness);
+    public void ImWeak(bool weakness) {
+        enemy.GetComponent<TankAIScript>().EnemyIsWeak(weakness);
     }
 
 // TODO заменить везде

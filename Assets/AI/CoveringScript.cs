@@ -83,6 +83,10 @@ public class CoveringScript : MonoBehaviour
         return(Physics2D.Linecast(position + Vector2.up * top, enemy, mask));
     }
 
+    public bool TestCover() {
+        return TestCover(GetComponent<TankScript>().target.transform.position, GetComponent<TankScript>().transform.position, tankTop);
+    }
+
     public void DrawTestLine(Vector2 p1, Vector2 p2) {
         Debug.DrawLine(p1, p2, Color.blue);
         Debug.Break();

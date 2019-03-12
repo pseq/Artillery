@@ -37,8 +37,10 @@ public class HealthControllerScript : MonoBehaviour
     void DecreaseHealthIndicator(int decrHealth) {
         if (health >= 0) {
         //Debug.Log(gameObject.name + " HEALTH=" + health);
-        // если здоровье меньше минимального выстрела - ставим флажок ИИ
-        GetComponent<TankAIScript>().CritHealth(health <= weakestBullet.GetComponent<BulletScript>().damage);
+        // если здоровье меньше минимального выстрела - ставим флажки ИИ себе и противнику
+        bool weakness = health <= weakestBullet.GetComponent<BulletScript>().damage;
+        GetComponent<TankAIScript>().CritHealth(weakness);
+        GetComponent<CommonTankScripts>().ImWeak(weakness);
         float scaleDecrease = startIndicatorScale * decrHealth / startHealth;
         healthIndicator.transform.localScale -= new Vector3(scaleDecrease, 0, 0);
         }
