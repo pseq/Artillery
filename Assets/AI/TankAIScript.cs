@@ -44,9 +44,11 @@ public class TankAIScript : MonoBehaviour
     public void EndTurn() {
         animator.SetBool("wasShooted", false);
         animator.SetTrigger("endTurn");
+
     }
 
     public void ShootOK() {
+        Debug.Log(gameObject.name + " shootOK");
         animator.SetTrigger("shootOK");
     }
 

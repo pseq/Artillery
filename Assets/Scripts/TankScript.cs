@@ -95,7 +95,7 @@ public int side = 1;
     }
 
     void Fire() {
-        aIScript.ShootOK();
+        //aIScript.ShootOK();
         gunScript.Fire();
     }
 
