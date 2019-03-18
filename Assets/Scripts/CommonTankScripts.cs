@@ -5,12 +5,12 @@ using UnityEngine;
 public class CommonTankScripts : MonoBehaviour
 {
 
-    public GameObject enemy;
+    GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemy = GetComponent<TankScript>().target;
     }
 
     public void ImWeak(bool weakness) {
