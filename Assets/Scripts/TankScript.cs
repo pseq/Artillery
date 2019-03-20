@@ -31,6 +31,8 @@ public TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
 TankAIScript aIScript;
+public bool myTurn;
+TankScript[] tanks;
 
 
 
@@ -56,6 +58,21 @@ public int side = 1;
         selfTransform = gameObject.transform;
         enemyTransform = target.transform;
         aIScript = GetComponent<TankAIScript>();
+    }
+
+    public void setTurn() {
+        myTurn = true;
+        tanks = FindObjectsOfType<TankScript>();
+        foreach (TankScript tank in tanks)
+            if (tank != this) tank.unsetTurn();
+    }
+
+    public void unsetTurn() {
+        myTurn = false;
+    }
+
+    public bool getTurn() {
+        return myTurn;
     }
 
 

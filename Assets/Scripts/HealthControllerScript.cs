@@ -16,6 +16,7 @@ public class HealthControllerScript : MonoBehaviour
         health = startHealth;
         startIndicatorScale = healthIndicator.transform.localScale.x;
     }
+    
     public void HealthDecrease(int decrease) {
         health -= decrease;
         DecreaseHealthIndicator(decrease);

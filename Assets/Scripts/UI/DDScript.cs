@@ -12,7 +12,8 @@ public class DDScript : MonoBehaviour
     Dropdown dd;
 
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    void Awake()
     {
         dd = GetComponent<Dropdown>();
         poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
