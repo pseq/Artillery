@@ -14,6 +14,7 @@ public class CommonTankScripts : MonoBehaviour
     }
 
     public void ImWeak(bool weakness) {
+        // сообщаем противнику о маленьком остатке здоровья
         enemy.GetComponent<TankAIScript>().EnemyIsWeak(weakness);
     }
 
@@ -26,5 +27,10 @@ public class CommonTankScripts : MonoBehaviour
     public Direction DirAwayEnemy() {
         if (transform.position.x > enemy.transform.position.x) return Direction.Right;
         else return Direction.Left; 
+    }
+
+    public void EnemyFSMTurn() {
+        // запускаем ход противника
+        enemy.GetComponent<TankAIScript>().MyTurn();
     }
 }

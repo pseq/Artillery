@@ -17,26 +17,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AIControlled
       objectReference: {fileID: 0}
-    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: maxGunPower
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: gunRotSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: test
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3795608239850816961, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: changePositionDistance
@@ -61,6 +41,31 @@ PrefabInstance:
         type: 3}
       propertyPath: positionSharpness
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: maxGunPower
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: gunRotSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071819610612840266, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505487278064140147, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: tankTop
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
@@ -117,21 +122,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8505487278064140147, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    - target: {fileID: 7118129232166272408, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
-      propertyPath: tankTop
-      value: 2
+      propertyPath: enemy
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7684682491803305651, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7118129232166272408, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+    - target: {fileID: 7684682491803305651, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
-      propertyPath: enemy
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 4fea4ab464c23184984f51825208995e, type: 2}
     - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: poolObject
@@ -157,15 +162,15 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8679405839707991990, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
-        type: 3}
-      propertyPath: m_Name
-      value: FireSpot
-      objectReference: {fileID: 0}
     - target: {fileID: 8679405839200109115, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: m_Name
       value: Gun_enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679405839707991990, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: m_Name
+      value: FireSpot
       objectReference: {fileID: 0}
     - target: {fileID: 5720073004262088962, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}

@@ -17,7 +17,7 @@ public class AIBulletTurnEnder : MonoBehaviour
     }
 
     void OnDisable() {
-        Debug.Log(gameObject.name + "BULLET disabled");
+        //Debug.Log(gameObject.name + "BULLET disabled");
         if (tankAIScript) tankAIScript.ShootOK();
     }
 }

@@ -30,7 +30,7 @@ public class TerrainScript : MonoBehaviour {
         // карта высот меша поверхности
         terrMap = (Vector3[]) MakeTerrMap().ToArray(typeof(Vector3));
 
-        Debug.Log("TERRAIN MAP SLICES=" + terrMap.Length);
+        //Debug.Log("TERRAIN MAP SLICES=" + terrMap.Length);
 
         // поиск самой высокой точки меша
         maxY = terrMap[0].y; 
