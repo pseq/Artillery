@@ -76,6 +76,7 @@ public class TankMoveScript : MonoBehaviour
         }
         // stop
         StopMove();
+
     }
     
     IEnumerator FuelDecreaseCoroutine() {
@@ -117,6 +118,8 @@ public class TankMoveScript : MonoBehaviour
         GetComponent<TankAIScript>().Moving(false);
         motor.motorSpeed = 0;
         foreach(WheelJoint2D wheel in wheels) wheel.motor = motor;        
-        StopCoroutine("FuelDecreaseCoroutine");
+        StopCoroutine("FuelDecreaseCoroutine");        
+        // если сдвинулись - то считаем, что ушли от выстрела
+        GetComponent<Animator>().SetBool("wasShooted", false);
     }
 }

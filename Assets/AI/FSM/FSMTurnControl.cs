@@ -9,6 +9,7 @@ public class FSMTurnControl : StateMachineBehaviour
     {
         //если ход противника - установить у него в FSM флажок myTurn
         animator.GetComponent<CommonTankScripts>().EnemyFSMTurn();
+        animator.SetBool("wasShooted", false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -38,12 +38,12 @@ public class TankAIScript : MonoBehaviour
         animator.SetTrigger("cantReachShot");
     }
     public void Shooted() {
+        //animator.SetBool("wasShooted", false); //reset on move and end turn
         animator.SetBool("wasShooted", true);
     }
 
     public void EndTurn() {
-        animator.SetBool("wasShooted", false);
-        Debug.Log("AIscr END TURN " + name);
+        //Debug.Log("AIscr END TURN " + name);
         animator.SetTrigger("endTurn");
     }
 
@@ -53,7 +53,7 @@ public class TankAIScript : MonoBehaviour
     }
 
     public void ShootOK() {
-        Debug.Log(gameObject.name + " shootOK");
+        //Debug.Log(gameObject.name + " shootOK");
         animator.SetTrigger("shootOK");
     }
 
