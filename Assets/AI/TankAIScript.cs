@@ -75,7 +75,15 @@ public class TankAIScript : MonoBehaviour
         }
 
     }
-    
+
+    public void MoveAwayEnemy() {
+        moveScript.Move(common.DirAwayEnemy());
+    }
+
+    public void MoveToEnemy() {
+        moveScript.Move(common.DirToEnemy());
+    }
+
     // вызывается в анимации
     public void TurnUp() {
         transform.position = (Vector2)transform.position + Vector2.up * upsideReturnUp;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankMoveScript : MonoBehaviour
 {
-    public float fuel  = 10000f;
+    public float fuel;
     public float changePositionDistance  = 20f;
     public float positionSharpness = 1f;
     public float speed = 180f;
@@ -13,6 +13,9 @@ public class TankMoveScript : MonoBehaviour
     JointMotor2D motor;
     public int cantMoveFrames = 10;
     public float cantMoveDencity = .5f;
+
+    // todo заменить на формулу
+    public float distPerFuel = 10f;
     //public Transform test;
     //public float oldtestX;
 
@@ -31,19 +34,13 @@ public class TankMoveScript : MonoBehaviour
     }
 
     public float GetTrackReserve() {
-        // TODO make this
-        return fuel;
+        return fuel/distPerFuel;
     }
 
     public void Move(float pos) {
         // Движение в точку
         StartCoroutine(MoveCoroutine(pos));
     }
-
-    //public void Test(int dir) {
-        //Debug.Log("MOVE " + (Direction)dir);
-    //    Move((Direction)dir);
-    //}
 
     public void Move(Direction dir) {
         // Движение в направлении
@@ -82,6 +79,7 @@ public class TankMoveScript : MonoBehaviour
     IEnumerator FuelDecreaseCoroutine() {
         while (true) {
             FuelDecrease();
+            //yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate
             yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f); или physicsUpdate
         }
     }

@@ -45,14 +45,13 @@ public class CoveringScript : MonoBehaviour
         float moveReserve = GetComponent<TankMoveScript>().GetTrackReserve();
         float terrLeft = terrMap[0].x;
         float terrRight = terrMap[terrMap.Length - 1].x;
+        // досягаемость по топливу
         float left = Mathf.Clamp(transform.position.x - moveReserve, terrLeft, terrRight);
         float rigt = Mathf.Clamp(transform.position.x + moveReserve, terrLeft, terrRight);
 
         while(controlPoint < rigt && controlPoint > left) {
             // если угол участка слишком большой - это непроходимый участок
-            //if (GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)) * side > maxTrackAngle) break;
             if (GetTerrainAngle(DropDown(controlPoint), DropDown(controlPoint + wheelBase)) * (int)dir > maxTrackAngle) break;
-            //controlPoint += wheelBase * side;
             controlPoint += wheelBase * (int)dir;
 	    }
         return(controlPoint);
@@ -73,7 +72,7 @@ public class CoveringScript : MonoBehaviour
             ) i += (int)dir;
 
     //DrawTestLine(Vector2.zero, terrMap[i]);
-
+GetComponent<CommonTankScripts>().testObject.transform.position = terrMap[i];
         // если не нашли укрытие - вернуть 0
         if(i == terrMap.Length - 1 || i == 0) return 0;
         else return(terrMap[i].x);

@@ -6,6 +6,7 @@ public class CommonTankScripts : MonoBehaviour
 {
 
     GameObject enemy;
+    public GameObject testObject;
 
     // Start is called before the first frame update
     void Start()
