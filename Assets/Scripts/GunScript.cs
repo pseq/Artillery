@@ -13,7 +13,7 @@ public class GunScript : MonoBehaviour {
     PoolManagerScript poolManager;
     DDScript ddScript;
     public GameObject fireSpot;
-    public float firePowerMultipler = 6f;
+    public float firePowerMultipler;
     public float maxGunAngle = 90;
     public float forwardDirection = 1f;
     public float turnaroundScroll = - 0.1f;
@@ -25,7 +25,9 @@ public class GunScript : MonoBehaviour {
     public float gunAngle; // SET TO NOT PUBLIC!!!
     float lastScroll;
     Rigidbody2D bulletRigid;
-    AudioSource tick;
+    AudioSource audioSource;
+    public AudioClip tickSound;
+    public AudioClip shootSound;
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
@@ -37,7 +39,7 @@ public class GunScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        tick = gameObject.GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         gunAngle = transform.eulerAngles.z  + transform.parent.eulerAngles.z;
         firePower = firePowerMultipler * 0.5f;
         // TODO изменить
@@ -79,11 +81,15 @@ public class GunScript : MonoBehaviour {
     {
         if (bullet) {
         // fire
+        audioSource.PlayOneShot(shootSound);
         bullet.SetActive(true);
         bullet.transform.SetParent(fireSpot.transform);
         bulletRigid.rotation = fireSpot.transform.eulerAngles.z;
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
         bullet.transform.position = fireSpot.transform.position;
+        bullet.GetComponent<BulletScript>().TrailerOn();
+        // даем ИИ знать, что выстрел совершен
+        transform.parent.GetComponent<TankAIScript>().ShootStarted();
 
         // del from arsenal
         arsenal[currentBulletKey] --;
@@ -126,7 +132,7 @@ public class GunScript : MonoBehaviour {
         if (delta >= step) {
             newVal = oldVal - step * Math.Sign(oldVal - newVal);
             textField.text = newVal.ToString();
-            tick.Play();
+            audioSource.PlayOneShot(tickSound);
             return newVal;
         }
         else return oldVal;

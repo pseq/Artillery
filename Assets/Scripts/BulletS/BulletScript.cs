@@ -5,9 +5,10 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour {
 
 	public float explDiam;
-    public GameObject terrain;
+    GameObject terrain;
     public GameObject trailer_pref;
-    public GameObject trailer;
+    public GameObject[] trailers;
+    GameObject trailer;
     Rigidbody2D rigid;
     public GameObject fragment_pref;
     //public GameObject fragment;
@@ -28,8 +29,10 @@ public class BulletScript : MonoBehaviour {
         damageControllerScript = FindObjectOfType<DamageControllerScript>();
         damagables = damageControllerScript.GetDamagables();
 
-        // создаем трейл
-        trailer = Instantiate(trailer_pref);
+        //trailers;
+        // создаем массив трейлов. Нужно чтобы трейлы разных выстрелов могли существовать одновременно
+        for(int i = 0; i < trailers.Length; i++)
+            trailers[i] = Instantiate(trailer_pref);
 
         if (fragNum > 0) {
             fragment_pool = new GameObject[fragNum];
@@ -48,7 +51,7 @@ public class BulletScript : MonoBehaviour {
         // при столкновении снаряда с повехностью делаем дырку и удаляем снаряд
         if (collision.gameObject.name == "Terrain")
         {
-            //collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
+            collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
             //Destroy(gameObject);
         }
 
@@ -59,21 +62,31 @@ public class BulletScript : MonoBehaviour {
     }
 
     void OnEnable() {
-        TrailerOn();
         if (rigid) rigid.WakeUp();
     }
 
-    // TODO для осколков не работает!
-    void TrailerOn() {
+    public void TrailerOn() {
+        // чтобы у снаряда был только один трейлер
+        TrailerOff();
+        //выбираем первый неактивный трейл из массива
+        for(int i = 0; i < trailers.Length; i++)
+            //if (!trailers[i].activeSelf) trailer = trailers[i];
+            if (!trailers[i].activeSelf) trailer = trailers[i];
+
         if (trailer) {
+  //      Debug.Log(this.name + " Trailer ON" );
             trailer.transform.SetParent(transform);
             trailer.transform.localPosition = Vector3.zero;
+            
             trailer.gameObject.SetActive(true);
+            Debug.Log(this.name + " TRAILER STATUS SELF:" + trailer.gameObject.activeSelf + " TRAILER STATUS HIE:" + trailer.gameObject.activeInHierarchy);
         }
     }
 
     public void TrailerOff() {
         if (trailer) {
+//        Debug.Log(this.name + " Trailer OFF" );
+
             trailer.transform.SetParent(null);
         }    
     }
@@ -88,6 +101,8 @@ public class BulletScript : MonoBehaviour {
             GameObject fragment = fragment_pool[i];
             fragment.transform.position = transform.position;
             fragment.SetActive(true);
+            fragment.GetComponent<BulletScript>().TrailerOn();
+
             float angle = 2f * Mathf.PI * (float) i / (float) fragNum;
             fragment.GetComponent<Rigidbody2D>().AddForce(new Vector2(explForce*Mathf.Cos(angle), explForce*Mathf.Sin(angle)), ForceMode2D.Impulse);
         }

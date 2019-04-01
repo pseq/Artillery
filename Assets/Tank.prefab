@@ -270,7 +270,7 @@ MonoBehaviour:
   poolObject: {fileID: 0}
   dropDown: {fileID: 0}
   fireSpot: {fileID: 8679405839707991990}
-  firePowerMultipler: 10
+  firePowerMultipler: 25
   maxGunAngle: 90
   forwardDirection: 1
   turnaroundScroll: -0.1
@@ -279,6 +279,8 @@ MonoBehaviour:
   angleText: {fileID: 0}
   powerText: {fileID: 0}
   gunAngle: 0
+  tickSound: {fileID: 8300000, guid: b92810d90c5b6994aaa899ff07bac32a, type: 3}
+  shootSound: {fileID: 8300000, guid: c1da3e28040733a4181d399c0593afe5, type: 3}
 --- !u!82 &8679405839200109111
 AudioSource:
   m_ObjectHideFlags: 0
@@ -289,7 +291,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b92810d90c5b6994aaa899ff07bac32a, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -573,7 +575,7 @@ MonoBehaviour:
   angleSearchAccuracy: 1
   gunScript: {fileID: 8679405839200109113}
   maxGunPower: 25
-  angleChandeAccuracy: 0.1
+  angleChandeAccuracy: 1
   gunRotTime: 0.5
   terrainScript: {fileID: 0}
   myTurn: 0
@@ -607,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelBase: 2.3
-  maxTrackAngle: 45
+  maxTrackAngle: 50
   tankTop: 2
 --- !u!114 &3795608239850816961
 MonoBehaviour:
@@ -621,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 500
+  fuel: 10000
   changePositionDistance: 10
   positionSharpness: 2
   speed: 180

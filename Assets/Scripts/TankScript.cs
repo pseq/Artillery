@@ -22,7 +22,7 @@ bool isFirst = true;
 bool moveDirChanged = false;
 int moveDirection = 1;
 float lastGunPower;
-public float  angleChandeAccuracy = .1f;
+public float  angleChandeAccuracy;
 
 float gunAngleSpeed = 0f;
 public float gunRotTime = .5f;

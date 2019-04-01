@@ -94,7 +94,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
@@ -131,11 +131,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee4769949b0bc04397e9f050e45d5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explDiam: 10
-  terrain: {fileID: 0}
+  explDiam: 6
   trailer_pref: {fileID: 160172600886731209, guid: f7984751fb4c93344bc8bef1229ea9ad,
     type: 3}
-  trailer: {fileID: 0}
+  trailers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fragment_pref: {fileID: 0}
   fragNum: 0
   explForce: 0

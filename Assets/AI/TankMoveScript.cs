@@ -6,7 +6,7 @@ public class TankMoveScript : MonoBehaviour
 {
     public float fuel;
     public float changePositionDistance  = 20f;
-    public float positionSharpness = 1f;
+    public float positionSharpness = .5f;
     public float speed = 180f;
     public float motorPower = 1000f;
     public WheelJoint2D[] wheels;
@@ -85,7 +85,7 @@ public class TankMoveScript : MonoBehaviour
     }
 	
     bool TestReach(float pos) {
-        Debug.Log("MOVE TESTReach d=" + Mathf.Abs(pos - transform.position.x) + " shrp=" + positionSharpness);
+        //Debug.Log("MOVE TESTReach d=" + Mathf.Abs(pos - transform.position.x) + " shrp=" + positionSharpness);
         return(Mathf.Abs(pos - transform.position.x) < positionSharpness);
     }
 	
@@ -107,7 +107,7 @@ public class TankMoveScript : MonoBehaviour
         motor.maxMotorTorque = motorPower;
         if (dir == Direction.Right) motor.motorSpeed = speed;
             else motor.motorSpeed = -speed;
-        Debug.Log("MOVE motor.speed=" + motor.motorSpeed);      
+//        Debug.Log("MOVE motor.speed=" + motor.motorSpeed);      
         foreach(WheelJoint2D wheel in wheels) wheel.motor = motor;  
         StartCoroutine("FuelDecreaseCoroutine");
     }

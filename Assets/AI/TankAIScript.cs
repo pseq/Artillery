@@ -48,13 +48,18 @@ public class TankAIScript : MonoBehaviour
     }
 
     public void MyTurn() {
-        Debug.Log("AIscr MY TURN " + name);
+//        Debug.Log("AIscr MY TURN " + name);
         animator.SetTrigger("myTurn");
     }
 
-    public void ShootOK() {
+    public void ShootStarted() {
         //Debug.Log(gameObject.name + " shootOK");
-        animator.SetTrigger("shootOK");
+        animator.SetBool("shootStarted", true);
+    }
+
+    public void ShootEnded() {
+        //Debug.Log(gameObject.name + " shootOK");
+        animator.SetBool("shootEnded", true);
     }
 
     public void CritHealth(bool crit) {

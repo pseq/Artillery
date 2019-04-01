@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrailerScript : MonoBehaviour
 {
     TrailRenderer trail;
+    public int framesTrailLengthCheck;
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,11 @@ public class TrailerScript : MonoBehaviour
     void Update()
     {
         // деактивируем трейл при нулевой длине
-        if (trail.positionCount == 0) gameObject.SetActive(false);
+        //Debug.Log("trailer count " + trail.positionCount);
+        if (Time.frameCount % framesTrailLengthCheck == 0)
+            if (trail.positionCount == 0) {
+                trail.Clear();
+                gameObject.SetActive(false);
+            }
     }
 }

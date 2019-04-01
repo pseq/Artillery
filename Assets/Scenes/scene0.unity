@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96086203b78108441a8b7c7fb98d7b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holeSliceCount: 3
+  holeSliceCount: 10
   maxY: 0
   minY: 0
   terrain_texture_scale: 5
@@ -3828,11 +3828,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4161970179852162382, guid: ca6e19baefe1f374cb34cce749be0860,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 586738169}
     - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: poolObject
@@ -3853,6 +3848,11 @@ PrefabInstance:
       propertyPath: powerText
       value: 
       objectReference: {fileID: 977250904}
+    - target: {fileID: 4161970179852162382, guid: ca6e19baefe1f374cb34cce749be0860,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 586738169}
     - target: {fileID: 5723765279874910481, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: m_LocalPosition.x
