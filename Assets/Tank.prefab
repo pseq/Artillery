@@ -270,7 +270,7 @@ MonoBehaviour:
   poolObject: {fileID: 0}
   dropDown: {fileID: 0}
   fireSpot: {fileID: 8679405839707991990}
-  firePowerMultipler: 25
+  firePowerMultipler: 10
   maxGunAngle: 90
   forwardDirection: 1
   turnaroundScroll: -0.1
@@ -574,7 +574,7 @@ MonoBehaviour:
   angleSearchStepGrad: 5
   angleSearchAccuracy: 1
   gunScript: {fileID: 8679405839200109113}
-  maxGunPower: 25
+  maxGunPower: 10
   angleChandeAccuracy: 1
   gunRotTime: 0.5
   terrainScript: {fileID: 0}
@@ -596,6 +596,7 @@ MonoBehaviour:
   animator: {fileID: 7684682491803305651}
   upsideReturnUp: 10
   isPlayer: 0
+  playerUI: {fileID: 0}
 --- !u!114 &8505487278064140147
 MonoBehaviour:
   m_ObjectHideFlags: 0

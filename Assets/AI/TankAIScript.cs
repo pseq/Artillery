@@ -11,6 +11,8 @@ public class TankAIScript : MonoBehaviour
     Rigidbody2D tankRigid;
     CommonTankScripts common;
     TankMoveScript moveScript;
+    
+    public Animator playerUI; 
 
 
     // Start is called before the first frame update
@@ -45,11 +47,13 @@ public class TankAIScript : MonoBehaviour
     public void EndTurn() {
         //Debug.Log("AIscr END TURN " + name);
         animator.SetTrigger("endTurn");
+        if (playerUI) playerUI.SetTrigger("switch");
     }
 
     public void MyTurn() {
 //        Debug.Log("AIscr MY TURN " + name);
         animator.SetTrigger("myTurn");
+        if (playerUI) playerUI.SetTrigger("switch");
         GetComponent<TankMoveScript>().FuelReset();
     }
 
