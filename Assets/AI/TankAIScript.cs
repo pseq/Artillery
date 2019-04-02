@@ -50,6 +50,7 @@ public class TankAIScript : MonoBehaviour
     public void MyTurn() {
 //        Debug.Log("AIscr MY TURN " + name);
         animator.SetTrigger("myTurn");
+        GetComponent<TankMoveScript>().FuelReset();
     }
 
     public void ShootStarted() {

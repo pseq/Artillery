@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class TankMoveScript : MonoBehaviour
 {
+    public float fuelStart;
+    float fuelIndiK;
+    //TODO make private
     public float fuel;
+    public GameObject fuelIndicator;
+    Vector3 startFuelIndicatorScale;
     public float changePositionDistance  = 20f;
     public float positionSharpness = .5f;
     public float speed = 180f;
@@ -23,14 +28,9 @@ public class TankMoveScript : MonoBehaviour
     void Start()
     {
         wheels = GetComponentsInChildren<WheelJoint2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //test
-        //if(oldtestX != test.position.x) Move(test.position.x);
-        //oldtestX = test.position.x;
+        fuel = fuelStart;
+        if (fuelIndicator) startFuelIndicatorScale = fuelIndicator.transform.localScale;
+        fuelIndiK = startFuelIndicatorScale.x/fuel;
     }
 
     public float GetTrackReserve() {
@@ -91,6 +91,7 @@ public class TankMoveScript : MonoBehaviour
 	
     void FuelDecrease() {
          fuel--;
+         FuelIndicatorRefresh();
          if (fuel < 0) {
              fuel = 0;
              StopMove();
@@ -119,5 +120,15 @@ public class TankMoveScript : MonoBehaviour
         StopCoroutine("FuelDecreaseCoroutine");        
         // если сдвинулись - то считаем, что ушли от выстрела
         GetComponent<Animator>().SetBool("wasShooted", false);
+    }
+
+    void FuelIndicatorRefresh() {
+        if (fuelIndicator && fuel >= 0)
+            fuelIndicator.transform.localScale = new Vector3(fuelIndiK * fuel, startFuelIndicatorScale.y, startFuelIndicatorScale.z);
+    }
+
+    public void FuelReset() {
+        fuel = fuelStart;
+        FuelIndicatorRefresh();
     }
 }

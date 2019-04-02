@@ -115,7 +115,7 @@ public class GunScript : MonoBehaviour {
         realAngle = realAngle * side;
         float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
         float destY = target.y - fireSpot.transform.position.y;
-        float g = Mathf.Abs(Physics2D.gravity.y);
+        float g = Mathf.Abs(Physics2D.gravity.y) * bulletRigid.gravityScale;
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
         float cosa = Mathf.Cos(a);
