@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8522338f70f87d54996e786dc52e5c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelStart: 200
+  fuelStart: 1000
   fuel: 0
   fuelIndicator: {fileID: 0}
   changePositionDistance: 10
