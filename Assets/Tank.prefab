@@ -243,12 +243,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.88, y: 0.34}
+  m_Size: {x: 1.87, y: 0.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -269,7 +269,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   poolObject: {fileID: 0}
   dropDown: {fileID: 0}
-  fireSpot: {fileID: 8679405839707991990}
+  fireSpot: {fileID: 8679405839707991989}
   firePowerMultipler: 10
   maxGunAngle: 90
   forwardDirection: 1
@@ -281,6 +281,7 @@ MonoBehaviour:
   gunAngle: 0
   tickSound: {fileID: 8300000, guid: b92810d90c5b6994aaa899ff07bac32a, type: 3}
   shootSound: {fileID: 8300000, guid: c1da3e28040733a4181d399c0593afe5, type: 3}
+  aimUICanvas: {fileID: 0}
 --- !u!82 &8679405839200109111
 AudioSource:
   m_ObjectHideFlags: 0
@@ -489,12 +490,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.2, y: 1.12}
+  m_Size: {x: 1.87, y: 0.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -650,10 +651,10 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.03, y: 0, z: 0.03, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 1.12}
-    newSize: {x: 3.2, y: 1.12}
+    oldSize: {x: 3.16, y: 1.09}
+    newSize: {x: 1.87, y: 0.41}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

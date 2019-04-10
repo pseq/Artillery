@@ -8,11 +8,12 @@ public class GunScript : MonoBehaviour {
 
     public GameObject bullet;
     int currentBulletKey;
-    public GameObject poolObject;
+    //public GameObject poolObject;
     public GameObject dropDown;
-    PoolManagerScript poolManager;
+    public PoolManagerScript poolManager;
     DDScript ddScript;
-    public GameObject fireSpot;
+    //public GameObject fireSpot;
+    public Transform fireSpot;
     public float firePowerMultipler;
     public float maxGunAngle = 90;
     public float forwardDirection = 1f;
@@ -31,9 +32,14 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
+    public AimUIScript aimUICanvas;
+    public Transform aimSectorCurrent;
+    public Transform aimSectorLast;
+    public float aimSectorMax;
+    Quaternion lastSectorRot;
 
     void Awake() {
-        poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
+        //poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
         ddScript = dropDown.gameObject.GetComponent<DDScript>();
     }
 
@@ -44,6 +50,12 @@ public class GunScript : MonoBehaviour {
         firePower = firePowerMultipler * 0.5f;
         // TODO изменить
         hBar = transform.parent.GetChild(3);
+
+        if (aimSectorCurrent) {
+            aimSectorCurrent.GetChild(0).localScale = Vector3.one * aimSectorMax * firePower;
+        //aimSectorCurrent.localScale = Vector3.one * aimSectorMax * firePower;
+            aimSectorLast.GetChild(0).localScale = Vector3.zero;
+        }
     }
 
     public void SelectBullet(int key) { // key from arskey & dd
@@ -83,10 +95,10 @@ public class GunScript : MonoBehaviour {
         // fire
         audioSource.PlayOneShot(shootSound);
         bullet.SetActive(true);
-        bullet.transform.SetParent(fireSpot.transform);
-        bulletRigid.rotation = fireSpot.transform.eulerAngles.z;
+        bullet.transform.SetParent(fireSpot);
+        bulletRigid.rotation = fireSpot.eulerAngles.z;
         bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
-        bullet.transform.position = fireSpot.transform.position;
+        bullet.transform.position = fireSpot.position;
         bullet.GetComponent<BulletScript>().TrailerOn();
         // даем ИИ знать, что выстрел совершен
         transform.parent.GetComponent<TankAIScript>().ShootStarted();
@@ -107,14 +119,19 @@ public class GunScript : MonoBehaviour {
         // del from DD
         ddScript.SetCurrentBulletCount(arsenal[currentBulletKey]);
         }
+
+        if (aimSectorLast) {
+            lastSectorRot = aimSectorCurrent.rotation;
+            aimSectorLast.rotation = lastSectorRot;
+            aimSectorLast.GetChild(0).localScale = aimSectorCurrent.GetChild(0).localScale;
+            aimSectorLast.localScale = aimSectorCurrent.localScale;
+            }
     }
-
-
 
     public float GunPowerToPoint (Vector2 target, float realAngle, int side) {
         realAngle = realAngle * side;
-        float destX = Mathf.Abs(target.x - fireSpot.transform.position.x);
-        float destY = target.y - fireSpot.transform.position.y;
+        float destX = Mathf.Abs(target.x - fireSpot.position.x);
+        float destY = target.y - fireSpot.position.y;
         float g = Mathf.Abs(Physics2D.gravity.y) * bulletRigid.gravityScale;
         float a = Mathf.Deg2Rad * realAngle;
         float sin2a = Mathf.Sin(a*2);
@@ -147,12 +164,24 @@ public class GunScript : MonoBehaviour {
         float newGunAngle = (1f - scroll.y) * maxGunAngle * forwardDirection;
         gunAngle = GunValuechange(gunAngle, newGunAngle, angleStep, angleText);
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
+
+        AimSectorUpdate();
     }
 
     public void GunPowerChange (Vector2 scroll)
     {
         float newFirePower = (1f - scroll.y) * firePowerMultipler;
         firePower = GunValuechange(firePower, newFirePower, powerStep, powerText);
+
+        AimSectorUpdate();
+    }
+
+    public void AimSectorUpdate() {
+        if (aimSectorCurrent) {
+            aimSectorCurrent.position = transform.position;
+            aimSectorCurrent.rotation = transform.rotation;
+            aimSectorCurrent.GetChild(0).localScale = Vector3.one * aimSectorMax * firePower;
+        }
     }
 
     public void TurnAround() {
@@ -160,6 +189,11 @@ public class GunScript : MonoBehaviour {
         gunAngle *= -1f;
         hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
+        // сбрасываем вращение прицельной сетки
+        if (aimUICanvas) {
+            aimUICanvas.Reset();
+            aimSectorLast.rotation = lastSectorRot;
+            aimSectorLast.localScale = Vector3.Scale(aimSectorLast.localScale, new Vector3(-1f,1f,1f));
+        }
     }
-
 }

@@ -31,7 +31,7 @@ public TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
 TankAIScript aIScript;
-public bool myTurn;
+//public bool myTurn;
 TankScript[] tanks;
 
 
@@ -60,6 +60,7 @@ public int side = 1;
         aIScript = GetComponent<TankAIScript>();
     }
 
+/*
     public void setTurn() {
         myTurn = true;
         tanks = FindObjectsOfType<TankScript>();
@@ -74,7 +75,7 @@ public int side = 1;
     public bool getTurn() {
         return myTurn;
     }
-
+*/
 
     
     public void Aim() {
@@ -84,7 +85,6 @@ public int side = 1;
         side = (int)Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
         ShootAngleSearch();
     }
-
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
         // TODO найти баг определения угла

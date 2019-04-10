@@ -780,6 +780,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &250946206 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 352822605602120329, guid: ca6e19baefe1f374cb34cce749be0860,
+    type: 3}
+  m_PrefabInstance: {fileID: 1849990641}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43d58f4f58315049892a3704f254160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &327488270
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,8 +990,8 @@ MonoBehaviour:
           m_StringArgument: InOutTrigger
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1390788559}
-        m_MethodName: PositionUpdate
+      - m_Target: {fileID: 250946206}
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -987,17 +999,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1879511489}
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: turn
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1473,6 +1474,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1252171541223307538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &803509843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1252171541223307538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803509842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daad32b93bb865a49a0ae1f4ed7fc855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &818722000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,18 +2979,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1390788559 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1274434627874064431, guid: ca6e19baefe1f374cb34cce749be0860,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849990641}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f152910d3721a1c49a53e9edcc68a0d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1484260761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,6 +3880,11 @@ PrefabInstance:
       propertyPath: powerText
       value: 
       objectReference: {fileID: 977250904}
+    - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
+        type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 803509843}
     - target: {fileID: 4161970179852162382, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: target
@@ -4191,6 +4197,11 @@ PrefabInstance:
       propertyPath: dropDown
       value: 
       objectReference: {fileID: 97344255}
+    - target: {fileID: 7157139603948451448, guid: 9c019a0bd63455248b63ad07bc9d29ac,
+        type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 803509843}
     - target: {fileID: 8784440389845862873, guid: 9c019a0bd63455248b63ad07bc9d29ac,
         type: 3}
       propertyPath: testObject
@@ -4203,12 +4214,6 @@ PrefabInstance:
       objectReference: {fileID: 1938431330}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c019a0bd63455248b63ad07bc9d29ac, type: 3}
---- !u!95 &1879511489 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6763801064889408050, guid: ca6e19baefe1f374cb34cce749be0860,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849990641}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1937255474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,6 +4976,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be9757b5f0f15924e93d3ab6281b88ee, type: 3}
 --- !u!1001 &8870517883084360454

@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: f4bab0691f7130247a3b5f1bca7adfdd
+guid: 348ae5b0a317faa4eb5449e68cc91e21
 TextureImporter:
   fileIDToRecycleName:
-    21300000: rect4485_0
-    21300002: rect4485_1
-    21300004: rect4485_2
-    21300006: rect4485_3
-    21300008: rect4485_4
+    21300000: g4950_0
+    21300002: g4950_1
+    21300004: g4950_2
+    21300006: g4950_3
+    21300008: g4950_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -41,7 +41,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -111,101 +111,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rect4485_0
+      name: g4950_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 118
+        width: 187
+        height: 41
+      alignment: 9
+      pivot: {x: 0.017835284, y: 0.5}
+      border: {x: 2, y: 3, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4257fe4eaa0d5b45a092e5a7a533a72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: g4950_1
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 127
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b42a54d4a35e009468a4b70c48e65fb1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: g4950_2
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 127
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819e121dda80db34291683ecb867e19e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: g4950_3
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 127
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93692160fb6ba04c8b0132147ea6454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: g4950_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 188
-        height: 34
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c023dfcb381d324fa837174cd51158d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rect4485_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 320
-        height: 112
+        y: 3
+        width: 316
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 3, y: 0, z: 3, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8baa2a2169e9c64baae08524176ce6b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rect4485_2
-      rect:
-        serializedVersion: 2
-        x: 188
-        y: 128
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd7435ccf0e24424c83626fb0c5f138d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rect4485_3
-      rect:
-        serializedVersion: 2
-        x: 229
-        y: 128
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebc24fbac4e21eb41b8b022e303690fa
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rect4485_4
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 128
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b869f1784d4147f438122e5472a08386
+      spriteID: 9d556c18b1e5deb439a2dac90ba62686
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9ef034b08ca8e9845b8e1db1d2e5e804
+    spriteID: a3e7a1aa0a75c7e448c2ed0f860c5d9a
     vertices: []
     indices: 
     edges: []
