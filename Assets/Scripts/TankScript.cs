@@ -80,9 +80,9 @@ public int side = 1;
     
     public void Aim() {
 
-        Transform selfTransform = gameObject.transform;
+        //Transform selfTransform = gameObject.transform;
         Transform enemyTransform = target.transform;
-        side = (int)Mathf.Sign(enemyTransform.position.x - selfTransform.position.x);
+        side = (int)Mathf.Sign(enemyTransform.position.x - transform.position.x);
         ShootAngleSearch();
     }
 

@@ -780,18 +780,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &250946206 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 352822605602120329, guid: ca6e19baefe1f374cb34cce749be0860,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849990641}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c43d58f4f58315049892a3704f254160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &327488270
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,15 +978,15 @@ MonoBehaviour:
           m_StringArgument: InOutTrigger
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 250946206}
-        m_MethodName: Reset
-        m_Mode: 1
+      - m_Target: {fileID: 6041502525698607328}
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: InOutTrigger
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1565,6 +1553,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818722000}
   m_CullTransparentMesh: 0
+--- !u!95 &885828663 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 773521042019101446, guid: ca6e19baefe1f374cb34cce749be0860,
+    type: 3}
+  m_PrefabInstance: {fileID: 1849990641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &915570905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2584,7 @@ GameObject:
   - component: {fileID: 1303678168}
   - component: {fileID: 1303678167}
   - component: {fileID: 1303678166}
+  - component: {fileID: 1303678171}
   m_Layer: 5
   m_Name: PlayerUICanvas
   m_TagString: Untagged
@@ -2631,7 +2626,7 @@ Animator:
   m_GameObject: {fileID: 1303678164}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3c8c8b508ae411942ac96ad9a667c4d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ec13affb1b933542baf41788ac221e9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2712,6 +2707,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1303678171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303678164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a95a7aad625a441aafb4e7e55b9bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1309200496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,7 +2897,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331330281}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2904,7 +2911,7 @@ Animator:
   m_GameObject: {fileID: 1331330281}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c3d8147606a2b6a41b1e4a9d0dfd8dbd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ec13affb1b933542baf41788ac221e9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3067,6 +3074,7 @@ GameObject:
   - component: {fileID: 1501183982}
   - component: {fileID: 1501183984}
   - component: {fileID: 1501183985}
+  - component: {fileID: 1501183986}
   m_Layer: 5
   m_Name: MoveBtnPanel
   m_TagString: Untagged
@@ -3147,7 +3155,7 @@ Animator:
   m_GameObject: {fileID: 1501183980}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 04233a44e491f50489a681ec7fec8892, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ec13affb1b933542baf41788ac221e9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3168,6 +3176,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1501183986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501183980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a95a7aad625a441aafb4e7e55b9bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1521583369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3835,16 +3855,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank_player
       objectReference: {fileID: 0}
-    - target: {fileID: 5723765279874910483, guid: ca6e19baefe1f374cb34cce749be0860,
-        type: 3}
-      propertyPath: m_TagString
-      value: AIControlled
-      objectReference: {fileID: 0}
-    - target: {fileID: 5723765279874910483, guid: ca6e19baefe1f374cb34cce749be0860,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 266031268815300549, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: fuelIndicator
@@ -3852,24 +3862,24 @@ PrefabInstance:
       objectReference: {fileID: 702075113}
     - target: {fileID: 5819971927824642597, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
-      propertyPath: isPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5819971927824642597, guid: ca6e19baefe1f374cb34cce749be0860,
-        type: 3}
       propertyPath: playerUI
       value: 
       objectReference: {fileID: 1303678166}
-    - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
+    - target: {fileID: 5819971927824642597, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
-      propertyPath: poolObject
+      propertyPath: tankUI
       value: 
-      objectReference: {fileID: 803509842}
+      objectReference: {fileID: 885828663}
     - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: dropDown
       value: 
       objectReference: {fileID: 97344255}
+    - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
+        type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 803509843}
     - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: angleText
@@ -3880,11 +3890,6 @@ PrefabInstance:
       propertyPath: powerText
       value: 
       objectReference: {fileID: 977250904}
-    - target: {fileID: 5723765279205498941, guid: ca6e19baefe1f374cb34cce749be0860,
-        type: 3}
-      propertyPath: poolManager
-      value: 
-      objectReference: {fileID: 803509843}
     - target: {fileID: 4161970179852162382, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
       propertyPath: target
@@ -3945,10 +3950,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3059314746487561726, guid: ca6e19baefe1f374cb34cce749be0860,
+    - target: {fileID: 4921589782232032468, guid: ca6e19baefe1f374cb34cce749be0860,
         type: 3}
-      propertyPath: m_Animation
-      value: 
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646165651042212651, guid: ca6e19baefe1f374cb34cce749be0860,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca6e19baefe1f374cb34cce749be0860, type: 3}
@@ -4921,6 +4931,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: PoolManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
+    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
+        type: 3}
+      propertyPath: bulletIconsCatalog.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
+        type: 3}
     - target: {fileID: 1252171540671459142, guid: be9757b5f0f15924e93d3ab6281b88ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4976,56 +5034,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[5]
-      value: 
-      objectReference: {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[6]
-      value: 
-      objectReference: {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
-    - target: {fileID: 1252171540671459137, guid: be9757b5f0f15924e93d3ab6281b88ee,
-        type: 3}
-      propertyPath: bulletIconsCatalog.Array.data[7]
-      value: 
-      objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be9757b5f0f15924e93d3ab6281b88ee, type: 3}
+--- !u!95 &6041502525698607328 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6041502525698607328, guid: ca6e19baefe1f374cb34cce749be0860,
+    type: 3}
+  m_PrefabInstance: {fileID: 1849990641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8870517883084360454
 PrefabInstance:
   m_ObjectHideFlags: 0

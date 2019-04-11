@@ -7,19 +7,20 @@ public class TankAIScript : MonoBehaviour
     public float framesUpsideCheck = 10;
     public Animator animator;
     public float upsideReturnUp = 10f;
-    public bool isPlayer = false;
+    //public bool isPlayer = false;
     Rigidbody2D tankRigid;
     CommonTankScripts common;
     TankMoveScript moveScript;
     
     public Animator playerUI; 
+    public Animator tankUI;
 
 
     // Start is called before the first frame update
     void Start()
     {
         tankRigid = GetComponent<Rigidbody2D>();
-        if (isPlayer) animator.SetTrigger("isPlayer");
+        //if (isPlayer) animator.SetTrigger("isPlayer");
         common = GetComponent<CommonTankScripts>();
         moveScript = GetComponent<TankMoveScript>();
     }
@@ -47,13 +48,15 @@ public class TankAIScript : MonoBehaviour
     public void EndTurn() {
         //Debug.Log("AIscr END TURN " + name);
         animator.SetTrigger("endTurn");
-        if (playerUI) playerUI.SetTrigger("switch");
+        if (playerUI) playerUI.SetTrigger("InOutTrigger");
+        if (tankUI) tankUI.SetTrigger("InOutTrigger");
     }
 
     public void MyTurn() {
 //        Debug.Log("AIscr MY TURN " + name);
         animator.SetTrigger("myTurn");
-        if (playerUI) playerUI.SetTrigger("switch");
+        if (tankUI) tankUI.SetTrigger("InOutTrigger");
+        if (playerUI) playerUI.SetTrigger("InOutTrigger");
         GetComponent<TankMoveScript>().FuelReset();
     }
 

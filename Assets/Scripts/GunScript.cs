@@ -32,7 +32,7 @@ public class GunScript : MonoBehaviour {
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
-    public AimUIScript aimUICanvas;
+    public AimUIScript aimUI;
     public Transform aimSectorCurrent;
     public Transform aimSectorLast;
     public float aimSectorMax;
@@ -190,8 +190,8 @@ public class GunScript : MonoBehaviour {
         hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
         // сбрасываем вращение прицельной сетки
-        if (aimUICanvas) {
-            aimUICanvas.Reset();
+        if (aimUI) {
+            aimUI.Reset();
             aimSectorLast.rotation = lastSectorRot;
             aimSectorLast.localScale = Vector3.Scale(aimSectorLast.localScale, new Vector3(-1f,1f,1f));
         }
