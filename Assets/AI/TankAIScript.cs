@@ -13,7 +13,8 @@ public class TankAIScript : MonoBehaviour
     TankMoveScript moveScript;
     
     public Animator playerUI; 
-    public Animator tankUI;
+    public Animator tankUIanim;
+    public AimUIScript tankUIScript;
 
 
     // Start is called before the first frame update
@@ -48,16 +49,22 @@ public class TankAIScript : MonoBehaviour
     public void EndTurn() {
         //Debug.Log("AIscr END TURN " + name);
         animator.SetTrigger("endTurn");
-        if (playerUI) playerUI.SetTrigger("InOutTrigger");
-        if (tankUI) tankUI.SetTrigger("InOutTrigger");
+        UISwitch();
     }
 
     public void MyTurn() {
 //        Debug.Log("AIscr MY TURN " + name);
         animator.SetTrigger("myTurn");
-        if (tankUI) tankUI.SetTrigger("InOutTrigger");
-        if (playerUI) playerUI.SetTrigger("InOutTrigger");
+        UISwitch();
         GetComponent<TankMoveScript>().FuelReset();
+    }
+
+    void UISwitch() {
+        if (playerUI) {
+            playerUI.SetTrigger("InOutTrigger");
+            tankUIanim.SetTrigger("InOutTrigger");
+            tankUIScript.Reset();
+        }
     }
 
     public void ShootStarted() {

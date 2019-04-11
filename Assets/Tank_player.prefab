@@ -598,6 +598,16 @@ PrefabInstance:
       propertyPath: tankUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7483054243562180641, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: tankUIanim
+      value: 
+      objectReference: {fileID: 773521042019101446}
+    - target: {fileID: 7483054243562180641, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+        type: 3}
+      propertyPath: tankUIScript
+      value: 
+      objectReference: {fileID: 6634327688208184702}
     - target: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
         type: 3}
       propertyPath: aimUICanvas
