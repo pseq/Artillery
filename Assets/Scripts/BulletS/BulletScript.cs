@@ -79,7 +79,7 @@ public class BulletScript : MonoBehaviour {
             trailer.transform.localPosition = Vector3.zero;
             
             trailer.gameObject.SetActive(true);
-            Debug.Log(this.name + " TRAILER STATUS SELF:" + trailer.gameObject.activeSelf + " TRAILER STATUS HIE:" + trailer.gameObject.activeInHierarchy);
+            //Debug.Log(this.name + " TRAILER STATUS SELF:" + trailer.gameObject.activeSelf + " TRAILER STATUS HIE:" + trailer.gameObject.activeInHierarchy);
         }
     }
 

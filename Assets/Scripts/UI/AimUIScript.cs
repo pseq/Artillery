@@ -10,6 +10,5 @@ public class AimUIScript : MonoBehaviour
 //        transform.localRotation = tank.rotation;
         transform.rotation = Quaternion.identity;
         gun.AimSectorUpdate();
-        Debug.Log(this.name + " AIM RESET");
     }
 }
