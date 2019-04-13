@@ -37,17 +37,22 @@ PrefabInstance:
     - target: {fileID: 114744434160953652, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
       propertyPath: fragNum
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114744434160953652, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
       propertyPath: explForce
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114744434160953652, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
       propertyPath: damage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114744434160953652, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: explDiam
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 58880623497760982, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
@@ -153,6 +158,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 425907763204317132, guid: 12abc191f5621ed4ab778f9b677c657f,
         type: 3}
+    - target: {fileID: 4567797275002084408, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07e5435bc1076974c8befd59ecf9b6b5, type: 3}
 --- !u!1 &323039743560262350 stripped

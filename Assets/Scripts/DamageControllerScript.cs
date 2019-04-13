@@ -18,6 +18,9 @@ public class DamageControllerScript : MonoBehaviour
         }
         damagables = new Damagable[tmp.Count];
         tmp.CopyTo(damagables);
+
+        Debug.Log("DamageControllerScript damagables: " + damagables.Length);
+
     }
 
     public Damagable[] GetDamagables() {

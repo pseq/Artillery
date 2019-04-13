@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour {
 
 	public float explDiam;
-    GameObject terrain;
+    //GameObject terrain;
     public GameObject trailer_pref;
     public GameObject[] trailers;
     GameObject trailer;
@@ -15,19 +15,10 @@ public class BulletScript : MonoBehaviour {
     public int fragNum;
     public float explForce;
     GameObject[] fragment_pool;
-    Collider2D collider;
-    DamageControllerScript damageControllerScript;
-    public int damage;
-    Damagable[] damagables;
+    public DamagerBulletScript damager;
 
-
-    // Use this for initializationz
     void Start () {
-        terrain = GameObject.Find("Terrain");
         rigid = gameObject.GetComponent<Rigidbody2D>();
-        collider = gameObject.GetComponent<Collider2D>();
-        damageControllerScript = FindObjectOfType<DamageControllerScript>();
-        damagables = damageControllerScript.GetDamagables();
 
         //trailers;
         // создаем массив трейлов. Нужно чтобы трейлы разных выстрелов могли существовать одновременно
@@ -49,13 +40,12 @@ public class BulletScript : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // при столкновении снаряда с повехностью делаем дырку и удаляем снаряд
-        if (collision.gameObject.name == "Terrain")
-        {
-            collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
-            //Destroy(gameObject);
-        }
+        if (collision.gameObject.name == "Terrain") collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
 
-        MakeDamage();
+        //Debug.Log(collision.collider.gameObject.name);
+        //Debug.Break();
+
+        damager.MakeDamage();
         SetFragmentOnAndSpeed();
         TrailerOff();
         BackToPool();
@@ -74,21 +64,14 @@ public class BulletScript : MonoBehaviour {
             if (!trailers[i].activeSelf) trailer = trailers[i];
 
         if (trailer) {
-  //      Debug.Log(this.name + " Trailer ON" );
             trailer.transform.SetParent(transform);
             trailer.transform.localPosition = Vector3.zero;
-            
             trailer.gameObject.SetActive(true);
-            //Debug.Log(this.name + " TRAILER STATUS SELF:" + trailer.gameObject.activeSelf + " TRAILER STATUS HIE:" + trailer.gameObject.activeInHierarchy);
         }
     }
 
     public void TrailerOff() {
-        if (trailer) {
-//        Debug.Log(this.name + " Trailer OFF" );
-
-            trailer.transform.SetParent(null);
-        }    
+        if (trailer) trailer.transform.SetParent(null);   
     }
 
     void BackToPool() {
@@ -108,13 +91,7 @@ public class BulletScript : MonoBehaviour {
         }
     }
 
-    void MakeDamage() {
-        foreach(Damagable dmg in damagables) {
-            if (collider.IsTouching(dmg.GetCollider())) {
-                HealthControllerScript healthScript = dmg.GetHealth();
-                healthScript.HealthDecrease(damage);
-                healthScript.Shooted();
-            }
-        }
+    public int GetDamage() {
+        return damager.damage;
     }
 }
