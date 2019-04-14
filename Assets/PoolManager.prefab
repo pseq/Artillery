@@ -45,21 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletsCatalog:
   - {fileID: 2084386980349822563, guid: b54ac921296c1d14ba1be83e252728d0, type: 3}
-  - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
+  - {fileID: 2766497228171075487, guid: fa64bd1bfab72a8458f641fb53caefb4, type: 3}
   - {fileID: 323039743560262350, guid: 12abc191f5621ed4ab778f9b677c657f, type: 3}
-  - {fileID: 2084386980349822563, guid: b54ac921296c1d14ba1be83e252728d0, type: 3}
   - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
-  - {fileID: 323039743560262350, guid: 12abc191f5621ed4ab778f9b677c657f, type: 3}
-  - {fileID: 2084386980349822563, guid: b54ac921296c1d14ba1be83e252728d0, type: 3}
-  - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
-  - {fileID: 160172600886731209, guid: f7984751fb4c93344bc8bef1229ea9ad, type: 3}
   bulletIconsCatalog:
-  - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300008, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300008, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300006, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 21300004, guid: f4bab0691f7130247a3b5f1bca7adfdd, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
+  - {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
+  - {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
+  - {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}

@@ -73,11 +73,13 @@ public class GunScript : MonoBehaviour {
         arsenal = new Dictionary<int,int>();
         //arsenal.Add(0,5); // bullet_fug
         arsenal.Add(0,500); // bullet_sub
+        arsenal.Add(1,100); // bullet_sub
+        arsenal.Add(2,150); // bullet_sub
+        arsenal.Add(3,300); // bullet_sub
         //arsenal.Add(7,500); // bullet_frag
         //arsenal.Add(0,4); // bullet_frag
         //arsenal.Add(6,300); // bullet_frag
         //arsenal.Add(2,200); // bullet_frag
-        arsenal.Add(5,100); // bullet_frag
 
         // получение ключей арсенала
         arsKeys = new int[arsenal.Count];
@@ -94,10 +96,9 @@ public class GunScript : MonoBehaviour {
     {
         if (bullet) {
         // fire
-        bullet.SetActive(true);
         bullet.transform.SetParent(fireSpot);
-        //bullet.transform.position = fireSpot.position;
-        bullet.GetComponent<BulletScript>().Shoot(firePower, forwardDirection);
+        fireSpot.GetComponent<FirespotScript>().SetShootParams(new Vector2(firePower, (float)forwardDirection));
+        bullet.SetActive(true);
         // даем ИИ знать, что выстрел совершен
         transform.parent.GetComponent<TankAIScript>().ShootStarted();
 

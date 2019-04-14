@@ -54,6 +54,11 @@ PrefabInstance:
       propertyPath: explDiam
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114744434160953652, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: fragmentBoom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 58880623497760982, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
       propertyPath: m_IsTrigger

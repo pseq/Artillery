@@ -23,7 +23,6 @@ public class DamagerBulletScript : MonoBehaviour
     }
 
     public void MakeDamage() {
-        Debug.Log("MakeDamage damagables: " + damagables.Length);
         // дырка в земле
         terrain.TerrainHole(gameObject, explDiam);
 

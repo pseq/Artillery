@@ -13,15 +13,17 @@ public class BulletScript : MonoBehaviour {
     //public GameObject fragment;
     public int fragNum;
     public float explForce;
-    GameObject[] fragment_pool;
+
+    public bool fragmentBoom;
+    public GameObject[] fragment_pool;
     public DamagerBulletScript damager;
-    AudioSource audioSource;
-    public AudioClip shootSound;
+    //AudioSource audioSource;
+    //public AudioClip shootSound;
 
 
     void Start () {
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-        audioSource = gameObject.GetComponent<AudioSource>();
+        rigid = GetComponent<Rigidbody2D>();
+        //audioSource = GetComponent<AudioSource>();
 
         //trailers;
         // создаем массив трейлов. Нужно чтобы трейлы разных выстрелов могли существовать одновременно
@@ -48,21 +50,13 @@ public class BulletScript : MonoBehaviour {
         //Debug.Break();
 
         damager.MakeDamage();
-        SetFragmentOnAndSpeed();
+        if (fragmentBoom) SetFragmentOnAndSpeed();
         TrailerOff();
         BackToPool();
     }
 
     void OnEnable() {
         if (rigid) rigid.WakeUp();
-    }
-
-    public void Shoot(float firePower, Direction forwardDirection) {
-        audioSource.PlayOneShot(shootSound);
-        TrailerOn();
-        transform.position = transform.parent.position;
-        rigid.rotation = transform.parent.eulerAngles.z;
-        rigid.AddRelativeForce((new Vector2((float) forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
     }
 
     public void TrailerOn() {
@@ -84,7 +78,7 @@ public class BulletScript : MonoBehaviour {
         if (trailer) trailer.transform.SetParent(null);   
     }
 
-    void BackToPool() {
+    public void BackToPool() {
         rigid.Sleep();
         gameObject.SetActive(false);
     }

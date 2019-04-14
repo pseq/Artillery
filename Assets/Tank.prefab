@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
-  poolObject: {fileID: 0}
   dropDown: {fileID: 0}
+  poolManager: {fileID: 0}
   fireSpot: {fileID: 8679405839707991989}
   firePowerMultipler: 10
   maxGunAngle: 90
@@ -280,8 +280,10 @@ MonoBehaviour:
   powerText: {fileID: 0}
   gunAngle: 0
   tickSound: {fileID: 8300000, guid: b92810d90c5b6994aaa899ff07bac32a, type: 3}
-  shootSound: {fileID: 8300000, guid: c1da3e28040733a4181d399c0593afe5, type: 3}
-  aimUICanvas: {fileID: 0}
+  aimUI: {fileID: 0}
+  aimSectorCurrent: {fileID: 0}
+  aimSectorLast: {fileID: 0}
+  aimSectorMax: 0
 --- !u!82 &8679405839200109111
 AudioSource:
   m_ObjectHideFlags: 0
@@ -387,8 +389,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679405839707991989}
+  - component: {fileID: 7297310085741195341}
   m_Layer: 10
-  m_Name: FireSpot (1)
+  m_Name: FireSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,6 +411,18 @@ Transform:
   m_Father: {fileID: 8679405839200109114}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7297310085741195341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679405839707991990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cacdb4319d38904c92006444aed71e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8679405839864556311
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +594,6 @@ MonoBehaviour:
   angleChandeAccuracy: 1
   gunRotTime: 0.5
   terrainScript: {fileID: 0}
-  myTurn: 0
   side: 1
 --- !u!114 &7483054243562180641
 MonoBehaviour:
@@ -596,8 +610,9 @@ MonoBehaviour:
   framesUpsideCheck: 10
   animator: {fileID: 7684682491803305651}
   upsideReturnUp: 10
-  isPlayer: 0
   playerUI: {fileID: 0}
+  tankUIanim: {fileID: 0}
+  tankUIScript: {fileID: 0}
 --- !u!114 &8505487278064140147
 MonoBehaviour:
   m_ObjectHideFlags: 0
