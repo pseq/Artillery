@@ -511,6 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 5723765279205498941}
+  canvasGrChild: {fileID: 6884641611442826493}
 --- !u!1001 &3971497099836219908
 PrefabInstance:
   m_ObjectHideFlags: 0

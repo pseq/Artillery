@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
 
-	public float explDiam;
     //GameObject terrain;
     public GameObject trailer_pref;
     public GameObject[] trailers;
@@ -16,9 +15,13 @@ public class BulletScript : MonoBehaviour {
     public float explForce;
     GameObject[] fragment_pool;
     public DamagerBulletScript damager;
+    AudioSource audioSource;
+    public AudioClip shootSound;
+
 
     void Start () {
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         //trailers;
         // создаем массив трейлов. Нужно чтобы трейлы разных выстрелов могли существовать одновременно
@@ -32,7 +35,6 @@ public class BulletScript : MonoBehaviour {
                 fragment_pool[i] = fragment;
             }
         }
-
         // деактивируем снаряд при добавлении в пул
         BackToPool();
     }
@@ -40,7 +42,7 @@ public class BulletScript : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // при столкновении снаряда с повехностью делаем дырку и удаляем снаряд
-        if (collision.gameObject.name == "Terrain") collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
+        //if (collision.gameObject.name == "Terrain") collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
 
         //Debug.Log(collision.collider.gameObject.name);
         //Debug.Break();
@@ -53,6 +55,14 @@ public class BulletScript : MonoBehaviour {
 
     void OnEnable() {
         if (rigid) rigid.WakeUp();
+    }
+
+    public void Shoot(float firePower, Direction forwardDirection) {
+        audioSource.PlayOneShot(shootSound);
+        TrailerOn();
+        transform.position = transform.parent.position;
+        rigid.rotation = transform.parent.eulerAngles.z;
+        rigid.AddRelativeForce((new Vector2((float) forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
     }
 
     public void TrailerOn() {

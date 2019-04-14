@@ -90,7 +90,7 @@ public int side = 1;
         // TODO найти баг определения угла
 
         // после разворота танка перевернуть все углы на 180
-        float angleSide = 90 * gunScript.forwardDirection - 90;
+        float angleSide = 90 * (float)gunScript.forwardDirection - 90;
 
         // пока новый угол пушки и угол, до которого нужно довернуть, не сравняются ...
         while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z - angleSide)) > angleChandeAccuracy) { //TODO вывести трансформ

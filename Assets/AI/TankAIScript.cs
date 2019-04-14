@@ -63,7 +63,6 @@ public class TankAIScript : MonoBehaviour
         if (playerUI) {
             playerUI.SetTrigger("InOutTrigger");
             tankUIanim.SetTrigger("InOutTrigger");
-            tankUIScript.Reset();
         }
     }
 

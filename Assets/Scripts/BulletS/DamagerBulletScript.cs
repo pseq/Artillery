@@ -9,6 +9,8 @@ public class DamagerBulletScript : MonoBehaviour
     public int damage;
     Collider2D collider;
     DamageControllerScript damageControllerScript;
+    TerrainScript terrain;
+	public float explDiam;
 
 
     // Start is called before the first frame update
@@ -17,10 +19,15 @@ public class DamagerBulletScript : MonoBehaviour
         collider = GetComponent<Collider2D>();        
         damageControllerScript = FindObjectOfType<DamageControllerScript>();
         damagables = damageControllerScript.GetDamagables();
+        terrain = FindObjectOfType<TerrainScript>();
     }
 
     public void MakeDamage() {
         Debug.Log("MakeDamage damagables: " + damagables.Length);
+        // дырка в земле
+        terrain.TerrainHole(gameObject, explDiam);
+
+        // урон объектам
         foreach(Damagable dmg in damagables) {
             if (collider.IsTouching(dmg.GetCollider())) {
                 HealthControllerScript healthScript = dmg.GetHealth();

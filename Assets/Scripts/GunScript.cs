@@ -16,7 +16,8 @@ public class GunScript : MonoBehaviour {
     public Transform fireSpot;
     public float firePowerMultipler;
     public float maxGunAngle = 90;
-    public float forwardDirection = 1f;
+    //public float forwardDirection = 1f;
+    public Direction forwardDirection = Direction.Right;
     public float turnaroundScroll = - 0.1f;
     public float angleStep = 1f;
     public float powerStep = 0.1f;
@@ -28,7 +29,7 @@ public class GunScript : MonoBehaviour {
     Rigidbody2D bulletRigid;
     AudioSource audioSource;
     public AudioClip tickSound;
-    public AudioClip shootSound;
+    //public AudioClip shootSound;
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
@@ -93,13 +94,10 @@ public class GunScript : MonoBehaviour {
     {
         if (bullet) {
         // fire
-        audioSource.PlayOneShot(shootSound);
         bullet.SetActive(true);
         bullet.transform.SetParent(fireSpot);
-        bulletRigid.rotation = fireSpot.eulerAngles.z;
-        bulletRigid.AddRelativeForce((new Vector2(forwardDirection, 0f)) * firePower, ForceMode2D.Impulse);
-        bullet.transform.position = fireSpot.position;
-        bullet.GetComponent<BulletScript>().TrailerOn();
+        //bullet.transform.position = fireSpot.position;
+        bullet.GetComponent<BulletScript>().Shoot(firePower, forwardDirection);
         // даем ИИ знать, что выстрел совершен
         transform.parent.GetComponent<TankAIScript>().ShootStarted();
 
@@ -120,6 +118,7 @@ public class GunScript : MonoBehaviour {
         ddScript.SetCurrentBulletCount(arsenal[currentBulletKey]);
         }
 
+        // рисуем указатель последнего выстрела
         if (aimSectorLast) {
             lastSectorRot = aimSectorCurrent.rotation;
             aimSectorLast.rotation = lastSectorRot;
@@ -161,7 +160,7 @@ public class GunScript : MonoBehaviour {
         if (scroll.y < turnaroundScroll && lastScroll > turnaroundScroll) TurnAround();
         lastScroll = scroll.y;
 
-        float newGunAngle = (1f - scroll.y) * maxGunAngle * forwardDirection;
+        float newGunAngle = (1f - scroll.y) * maxGunAngle * (float)forwardDirection;
         gunAngle = GunValuechange(gunAngle, newGunAngle, angleStep, angleText);
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
 
@@ -185,7 +184,7 @@ public class GunScript : MonoBehaviour {
     }
 
     public void TurnAround() {
-        forwardDirection *= -1f;
+        forwardDirection = (Direction) (-1f * (float)forwardDirection);
         gunAngle *= -1f;
         hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
         transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));

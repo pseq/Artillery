@@ -98,22 +98,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21,
         type: 3}
+    - target: {fileID: 4567797275002084408, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567797275002084408, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: explDiam
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153716165567419291, guid: 07e5435bc1076974c8befd59ecf9b6b5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 4145385121115059839, guid: 07e5435bc1076974c8befd59ecf9b6b5,
         type: 3}
       propertyPath: bulletScript
       value: 
       objectReference: {fileID: 293231149241308218, guid: e9e2c330176493f428524baf049129d5,
         type: 3}
-    - target: {fileID: 9153716165567419291, guid: 07e5435bc1076974c8befd59ecf9b6b5,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567797275002084408, guid: 07e5435bc1076974c8befd59ecf9b6b5,
-        type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07e5435bc1076974c8befd59ecf9b6b5, type: 3}
 --- !u!1 &397247061293689144 stripped
