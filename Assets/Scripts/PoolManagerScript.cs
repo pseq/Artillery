@@ -31,6 +31,7 @@ public class PoolManagerScript : MonoBehaviour {
 					pool.Add(arsKey, newBullet);
 				} 
 			}
+			// выбираем стартовый тип снаряда
 			gunScript.SelectBullet(0);
 		}
 	}

@@ -14,6 +14,7 @@ public class TankAIScript : MonoBehaviour
     
     public Animator playerUI; 
     public Animator tankUIanim;
+    public Animator modePanel;
     public AimUIScript tankUIScript;
 
 
@@ -46,16 +47,18 @@ public class TankAIScript : MonoBehaviour
         animator.SetBool("wasShooted", true);
     }
 
+    // only player
     public void EndTurn() {
-        //Debug.Log("AIscr END TURN " + name);
         animator.SetTrigger("endTurn");
         UISwitch();
     }
 
     public void MyTurn() {
-//        Debug.Log("AIscr MY TURN " + name);
         animator.SetTrigger("myTurn");
         UISwitch();
+        Debug.Log("MyTurn " + name);
+        // mode panel on
+        if (!playerUI) modePanel.SetTrigger("InTrigger");
         GetComponent<TankMoveScript>().FuelReset();
     }
 

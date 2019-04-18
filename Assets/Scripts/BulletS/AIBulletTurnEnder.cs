@@ -15,5 +15,5 @@ public class AIBulletTurnEnder : MonoBehaviour
         if (transform.parent.parent)
             if (transform.parent.parent.parent.GetComponent<TankAIScript>())
                 transform.parent.parent.parent.GetComponent<TankAIScript>().ShootEnded();
-    }
+    }   
 }
