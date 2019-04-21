@@ -24,7 +24,7 @@ public class ShootKatusha : MonoBehaviour
             shootParams = transform.parent.GetComponent<FirespotScript>().GetShootParams();
             if (shootParams != Vector2.zero) {
                 // стреляем по очереди каждым фрагментом
-                StartCoroutine(ShootDelay(GetComponent<BulletScript>().fragment_pool));
+                StartCoroutine(ShootDelay(GetComponent<BulletScript>().GetFragmentPool()));
             }
         }
     }

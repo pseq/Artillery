@@ -146,6 +146,7 @@ MonoBehaviour:
   fragNum: 0
   explForce: 0
   fragmentBoom: 0
+  fragment_pool: []
   damager: {fileID: 4567797275002084408}
 --- !u!114 &2708100155325751065
 MonoBehaviour:
@@ -159,7 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c85ce13a0acc243a2f063bc548efc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSound: {fileID: 8300000, guid: c1da3e28040733a4181d399c0593afe5, type: 3}
 --- !u!82 &2518785915522028844
 AudioSource:
   m_ObjectHideFlags: 0

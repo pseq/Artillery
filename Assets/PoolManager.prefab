@@ -48,8 +48,10 @@ MonoBehaviour:
   - {fileID: 2766497228171075487, guid: fa64bd1bfab72a8458f641fb53caefb4, type: 3}
   - {fileID: 323039743560262350, guid: 12abc191f5621ed4ab778f9b677c657f, type: 3}
   - {fileID: 397247061293689144, guid: e9e2c330176493f428524baf049129d5, type: 3}
+  - {fileID: 522900298856913267, guid: 037aa3e87d6aa1349bf2786271d665c0, type: 3}
   bulletIconsCatalog:
   - {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
   - {fileID: 21300004, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
   - {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
   - {fileID: 21300002, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}
+  - {fileID: 21300006, guid: 348ae5b0a317faa4eb5449e68cc91e21, type: 3}

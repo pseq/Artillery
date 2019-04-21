@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
 
-    //GameObject terrain;
     public GameObject trailer_pref;
     public GameObject[] trailers;
     GameObject trailer;
     Rigidbody2D rigid;
     public GameObject fragment_pref;
-    //public GameObject fragment;
     public int fragNum;
-    public float explForce;
 
-    public bool fragmentBoom;
-    public GameObject[] fragment_pool;
+    public GameObject[] fragmentPool;
     public DamagerBulletScript damager;
-    //AudioSource audioSource;
-    //public AudioClip shootSound;
 
 
     void Start () {
@@ -31,10 +25,10 @@ public class BulletScript : MonoBehaviour {
             trailers[i] = Instantiate(trailer_pref);
 
         if (fragNum > 0) {
-            fragment_pool = new GameObject[fragNum];
+            fragmentPool = new GameObject[fragNum];
             for(int i = 0; i < fragNum; i++) {
                 GameObject fragment = Instantiate(fragment_pref);
-                fragment_pool[i] = fragment;
+                fragmentPool[i] = fragment;
             }
         }
         // деактивируем снаряд при добавлении в пул
@@ -43,14 +37,7 @@ public class BulletScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // при столкновении снаряда с повехностью делаем дырку и удаляем снаряд
-        //if (collision.gameObject.name == "Terrain") collision.gameObject.GetComponent<TerrainScript>().TerrainHole(gameObject, explDiam);
-
-        //Debug.Log(collision.collider.gameObject.name);
-        //Debug.Break();
-
-        damager.MakeDamage();
-        if (fragmentBoom) SetFragmentOnAndSpeed();
+        if (damager) damager.MakeDamage();
         TrailerOff();
         BackToPool();
     }
@@ -64,7 +51,6 @@ public class BulletScript : MonoBehaviour {
         TrailerOff();
         //выбираем первый неактивный трейл из массива
         for(int i = 0; i < trailers.Length; i++)
-            //if (!trailers[i].activeSelf) trailer = trailers[i];
             if (!trailers[i].activeSelf) trailer = trailers[i];
 
         if (trailer) {
@@ -83,19 +69,12 @@ public class BulletScript : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
-    void SetFragmentOnAndSpeed() {
-        for(int i = 0; i < fragNum; i ++) {
-            GameObject fragment = fragment_pool[i];
-            fragment.transform.position = transform.position;
-            fragment.SetActive(true);
-            fragment.GetComponent<BulletScript>().TrailerOn();
-
-            float angle = 2f * Mathf.PI * (float) i / (float) fragNum;
-            fragment.GetComponent<Rigidbody2D>().AddForce(new Vector2(explForce*Mathf.Cos(angle), explForce*Mathf.Sin(angle)), ForceMode2D.Impulse);
-        }
+    public int GetDamage() {
+        if (damager) return damager.damage;
+        else return 0;
     }
 
-    public int GetDamage() {
-        return damager.damage;
+    public GameObject[] GetFragmentPool() {
+        return fragmentPool;
     }
 }

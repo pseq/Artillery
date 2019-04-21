@@ -76,6 +76,7 @@ public class GunScript : MonoBehaviour {
         arsenal.Add(1,100); // bullet_sub
         arsenal.Add(2,150); // bullet_sub
         arsenal.Add(3,300); // bullet_sub
+        arsenal.Add(4,30); // bullet_sub
         //arsenal.Add(7,500); // bullet_frag
         //arsenal.Add(0,4); // bullet_frag
         //arsenal.Add(6,300); // bullet_frag
