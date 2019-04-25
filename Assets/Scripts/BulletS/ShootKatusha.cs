@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootKatusha : MonoBehaviour
 {
     //GameObject[] fragment_pool;
-    Vector2 shootParams;
+    float shootPower;
     public float shootDispersion;
     public float shootDelay;
 
@@ -21,8 +21,8 @@ public class ShootKatusha : MonoBehaviour
         // выстрел
         if (transform.parent) {
         // параметры берём из firespot
-            shootParams = transform.parent.GetComponent<FirespotScript>().GetShootParams();
-            if (shootParams != Vector2.zero) {
+            shootPower = transform.parent.GetComponent<FirespotScript>().GetShootPower();
+            if (shootPower != 0) {
                 // стреляем по очереди каждым фрагментом
                 StartCoroutine(ShootDelay(GetComponent<BulletScript>().GetFragmentPool()));
             }
@@ -43,7 +43,7 @@ public class ShootKatusha : MonoBehaviour
         fragment.GetComponent<BulletScript>().TrailerOn();
         fragment.transform.position = transform.parent.position;
         fragment.GetComponent<Rigidbody2D>().rotation = transform.parent.eulerAngles.z + Random.Range(-shootDispersion, shootDispersion);
-        fragment.GetComponent<Rigidbody2D>().AddRelativeForce((new Vector2(shootParams.y, 0f)) * shootParams.x, ForceMode2D.Impulse);
+        fragment.GetComponent<Rigidbody2D>().AddRelativeForce((new Vector2(shootPower, 0f)), ForceMode2D.Impulse);
     }
 
 }

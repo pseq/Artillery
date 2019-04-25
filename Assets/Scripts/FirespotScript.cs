@@ -5,13 +5,13 @@ using UnityEngine;
 public class FirespotScript : MonoBehaviour
 {
 
-    Vector2 shootParams;
+    float shootPower;
 
-    public void SetShootParams(Vector2 sPrms) {
-        shootParams = sPrms;
+    public void SetShootPower(float power) {
+        shootPower = power;
     }
 
-    public Vector2 GetShootParams() {
-        return shootParams;
+    public float GetShootPower() {
+        return shootPower;
     }
 }

@@ -8,7 +8,7 @@ public class ShootBulletScript : MonoBehaviour
  //   public AudioClip shootSound;
     Rigidbody2D rigid;
     BulletScript bScript;
-    Vector2 shootParams;
+    float shootPower;
 
 
     // Start is called before the first frame update
@@ -24,13 +24,12 @@ public class ShootBulletScript : MonoBehaviour
         // выстрел
         if (transform.parent) {
             // параметры берём из firespot
-            shootParams = transform.parent.GetComponent<FirespotScript>().GetShootParams();
-            if (shootParams != Vector2.zero) {
-                //audioSource.PlayOneShot(shootSound);
+            shootPower = transform.parent.GetComponent<FirespotScript>().GetShootPower();
+            if (shootPower != 0) {
                 bScript.TrailerOn();
                 transform.position = transform.parent.position;
                 rigid.rotation = transform.parent.eulerAngles.z;
-                rigid.AddRelativeForce((new Vector2(shootParams.y, 0f)) * shootParams.x, ForceMode2D.Impulse);
+                rigid.AddRelativeForce((new Vector2(shootPower, 0f)), ForceMode2D.Impulse);
             }
         }
     }

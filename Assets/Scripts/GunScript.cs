@@ -98,7 +98,7 @@ public class GunScript : MonoBehaviour {
         if (bullet) {
         // fire
         bullet.transform.SetParent(fireSpot);
-        fireSpot.GetComponent<FirespotScript>().SetShootParams(new Vector2(firePower, (float)forwardDirection));
+        fireSpot.GetComponent<FirespotScript>().SetShootPower(firePower);
         bullet.SetActive(true);
         // даем ИИ знать, что выстрел совершен
         transform.parent.GetComponent<TankAIScript>().ShootStarted();
@@ -162,9 +162,11 @@ public class GunScript : MonoBehaviour {
         if (scroll.y < turnaroundScroll && lastScroll > turnaroundScroll) TurnAround();
         lastScroll = scroll.y;
 
-        float newGunAngle = (1f - scroll.y) * maxGunAngle * (float)forwardDirection;
+        //float newGunAngle = (1f - scroll.y) * maxGunAngle * (float)forwardDirection;
+        float newGunAngle = (1f - scroll.y * (float)forwardDirection) * maxGunAngle;
         gunAngle = GunValuechange(gunAngle, newGunAngle, angleStep, angleText);
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
+        //transform.eulerAngles = new Vector3(0f,0f,gunAngle * (float)forwardDirection + transform.parent.eulerAngles.z);
 
         AimSectorUpdate();
     }
@@ -184,7 +186,7 @@ public class GunScript : MonoBehaviour {
             aimSectorCurrent.GetChild(0).localScale = Vector3.one * aimSectorMax * firePower;
         }
     }
-
+/*
     public void TurnAround() {
         forwardDirection = (Direction) (-1f * (float)forwardDirection);
         gunAngle *= -1f;
@@ -196,5 +198,14 @@ public class GunScript : MonoBehaviour {
             aimSectorLast.rotation = lastSectorRot;
             aimSectorLast.localScale = Vector3.Scale(aimSectorLast.localScale, new Vector3(-1f,1f,1f));
         }
+    }
+*/
+    public void TurnAround() {
+        forwardDirection = (Direction) (-1f * (float)forwardDirection);
+
+        // переворачиваем спрайт пушки по вертикали
+        GetComponent<SpriteRenderer>().flipY ^= true;
+        // ... а спрайт танка - по горизонтали
+        transform.parent.GetComponent<SpriteRenderer>().flipX ^= true;
     }
 }

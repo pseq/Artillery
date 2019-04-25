@@ -81,24 +81,25 @@ public int side = 1;
     }
 
     IEnumerator AngleChangeCoroutine(float newAngle) {
-        // TODO найти баг определения угла
-
-        // после разворота танка перевернуть все углы на 180
-        float angleSide = 90 * (float)gunScript.forwardDirection - 90;
-
         int i = 0;
+        float last = gunScript.maxGunAngle;
         // пока новый угол пушки и угол, до которого нужно довернуть, не сравняются ...
-        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z - angleSide)) > angleChandeAccuracy && i < gunAngleCylesLimit) { //TODO вывести трансформ
+        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z)) > angleChandeAccuracy && i < gunAngleCylesLimit) { //TODO вывести трансформ
         // ... плавно доворачиваем пушку
         i++;
-        float angle = Mathf.SmoothDampAngle(gunScript.transform.eulerAngles.z , newAngle - angleSide, ref gunAngleSpeed, gunRotTime);
+        float angle = Mathf.SmoothDampAngle(gunScript.transform.eulerAngles.z , newAngle, ref gunAngleSpeed, gunRotTime);
         gunScript.transform.eulerAngles = new Vector3(0, 0, angle);
 
         // при пересечении пушкой 90 - разворачиваем танк
-        if (Mathf.Abs(Mathf.DeltaAngle(gunScript.transform.eulerAngles.z, transform.eulerAngles.z) ) > gunScript.maxGunAngle) {
+        if ((Mathf.Abs(Mathf.DeltaAngle(gunScript.transform.eulerAngles.z, transform.eulerAngles.z) ) > gunScript.maxGunAngle &&
+            last < gunScript.maxGunAngle) ||
+            (Mathf.Abs(Mathf.DeltaAngle(gunScript.transform.eulerAngles.z, transform.eulerAngles.z) ) < gunScript.maxGunAngle &&
+            last > gunScript.maxGunAngle)
+            ) {
             gunScript.TurnAround();
-            newAngle += 180;
             }
+
+        last = Mathf.Abs(Mathf.DeltaAngle(gunScript.transform.eulerAngles.z, transform.eulerAngles.z));
         
         yield return new WaitForSeconds(Time.deltaTime);
         }
