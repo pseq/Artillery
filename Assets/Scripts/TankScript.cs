@@ -18,22 +18,16 @@ float lastHitPoint;
 float lastEnemyPosition;
 float gunPower;
 public float maxGunPower = 25;
-bool isFirst = true;
-bool moveDirChanged = false;
-int moveDirection = 1;
-float lastGunPower;
 public float  angleChandeAccuracy;
 
 float gunAngleSpeed = 0f;
+int gunAngleCylesLimit = 200;
 public float gunRotTime = .5f;
 
 public TerrainScript terrainScript;
 Transform selfTransform;
 Transform enemyTransform;
 TankAIScript aIScript;
-//public bool myTurn;
-TankScript[] tanks;
-
 
 
 ////// test
@@ -92,10 +86,11 @@ public int side = 1;
         // после разворота танка перевернуть все углы на 180
         float angleSide = 90 * (float)gunScript.forwardDirection - 90;
 
+        int i = 0;
         // пока новый угол пушки и угол, до которого нужно довернуть, не сравняются ...
-        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z - angleSide)) > angleChandeAccuracy) { //TODO вывести трансформ
-        // TODO добавить параметров для более натурального разворота пушки
+        while (Mathf.Abs(Mathf.DeltaAngle(newAngle, gunScript.transform.eulerAngles.z - angleSide)) > angleChandeAccuracy && i < gunAngleCylesLimit) { //TODO вывести трансформ
         // ... плавно доворачиваем пушку
+        i++;
         float angle = Mathf.SmoothDampAngle(gunScript.transform.eulerAngles.z , newAngle - angleSide, ref gunAngleSpeed, gunRotTime);
         gunScript.transform.eulerAngles = new Vector3(0, 0, angle);
 
@@ -107,7 +102,6 @@ public int side = 1;
         
         yield return new WaitForSeconds(Time.deltaTime);
         }
-    //Debug.Log("TANK: REal angle=" + gunScript.transform.eulerAngles.z);
         Fire();
     }
 
