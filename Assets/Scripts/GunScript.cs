@@ -38,6 +38,8 @@ public class GunScript : MonoBehaviour {
     public Transform aimSectorLast;
     public float aimSectorMax;
     Quaternion lastSectorRot;
+    public GameObject leftArrow;
+    public GameObject rightArrow;
 
     void Awake() {
         //poolManager = poolObject.gameObject.GetComponent<PoolManagerScript>();
@@ -207,5 +209,8 @@ public class GunScript : MonoBehaviour {
         GetComponent<SpriteRenderer>().flipY ^= true;
         // ... а спрайт танка - по горизонтали
         transform.parent.GetComponent<SpriteRenderer>().flipX ^= true;
+        // и включаем стрелку обозначения направления
+        if (leftArrow && forwardDirection == Direction.Left) leftArrow.SetActive(true);
+            else if (rightArrow) rightArrow.SetActive(true);
     }
 }

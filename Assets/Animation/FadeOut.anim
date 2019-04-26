@@ -23,12 +23,12 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: -4.6620255
+        outSlope: -4.6620255
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.06795143
       - serializedVersion: 3
         time: 0.5
         value: 0
@@ -88,12 +88,12 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: -4.6620255
+        outSlope: -4.6620255
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.06795143
       - serializedVersion: 3
         time: 0.5
         value: 0
@@ -113,4 +113,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: SetInactive
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
