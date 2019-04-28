@@ -8,15 +8,12 @@ public class GunScript : MonoBehaviour {
 
     public GameObject bullet;
     int currentBulletKey;
-    //public GameObject poolObject;
     public GameObject dropDown;
     public PoolManagerScript poolManager;
     DDScript ddScript;
-    //public GameObject fireSpot;
     public Transform fireSpot;
     public float firePowerMultipler;
     public float maxGunAngle = 90;
-    //public float forwardDirection = 1f;
     public Direction forwardDirection = Direction.Right;
     public float turnaroundScroll = - 0.1f;
     public float angleStep = 1f;
@@ -29,11 +26,12 @@ public class GunScript : MonoBehaviour {
     Rigidbody2D bulletRigid;
     AudioSource audioSource;
     public AudioClip tickSound;
-    //public AudioClip shootSound;
     Dictionary<int,int> arsenal;
     int[] arsKeys;
     Transform hBar;
-    public AimUIScript aimUI;
+
+    //TANK UI
+    //public AimUIScript aimUI;
     public Transform aimSectorCurrent;
     public Transform aimSectorLast;
     public float aimSectorMax;

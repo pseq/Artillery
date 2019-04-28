@@ -31,7 +31,8 @@ TankAIScript aIScript;
 
 
 ////// test
-//public GameObject test;
+public GameObject test1;
+public GameObject test2;
 public int side = 1;
 
 
@@ -111,31 +112,41 @@ public int side = 1;
         gunScript.Fire();
     }
 
+    public void SetLastHitPoint(float x) {
+        lastHitPoint = x;
+    }
+
     float ShootDistanceSelect() {
         float enemyPosition = target.transform.position.x;
-        if (lastHitPoint > enemyPosition) {
+        if (lastHitPoint > enemyTransform.position.x) {
             rightAimPoint = lastHitPoint;
-            leftAimPoint = enemyPosition - lastEnemyPosition + leftAimPoint;
+            leftAimPoint = enemyTransform.position.x - lastEnemyPosition + leftAimPoint;
         }
-        if (lastHitPoint < enemyPosition) {
+        if (lastHitPoint < enemyTransform.position.x) {
             leftAimPoint = lastHitPoint;
-            rightAimPoint = enemyPosition - lastEnemyPosition + rightAimPoint;
+            rightAimPoint = enemyTransform.position.x - lastEnemyPosition + rightAimPoint;
         }
-        lastEnemyPosition = enemyPosition;
-        return enemyPosition;
-        //return Random.Range(leftAimPoint, rightAimPoint);
+        lastEnemyPosition = enemyTransform.position.x;
+
+
+        test1.transform.position = new Vector2(leftAimPoint, 50);
+        test2.transform.position = new Vector2(rightAimPoint, 50);
+        //return enemyTransform.position;
+        return Random.Range(leftAimPoint, rightAimPoint);
     } 
 
     void ShootAngleSearch() {
+        // выбираем точку прицеливания по алгоритму промаха
+        Vector2 aimPoint = new Vector2(ShootDistanceSelect(), enemyTransform.position.y);
         // высочайшая точка поверхности между танками
-        Vector2 hiTerrPoint = terrainScript.HighestPointBetween(selfTransform.position, enemyTransform.position);
+        Vector2 hiTerrPoint = terrainScript.HighestPointBetween(selfTransform.position, aimPoint);
         // если side - вправо - 0, если влево +180
         float angleSide = -(90 * side - 90);
         float angle = selfTransform.eulerAngles.z + angleSide;
         // делаем, пока угол между направлением выстрела, и наклоном танка > 0, учитывая сторону, в которую будем стрелять
         while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchAccuracy) {
             float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
-            float powerTg = gunScript.GunPowerToPoint(enemyTransform.position, angle, side);
+            float powerTg = gunScript.GunPowerToPoint(aimPoint, angle, side);
     //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
 
             // сравниваем мощности, чтобы добить до самой высокой точки, и до цели с макс мощностью

@@ -13,7 +13,6 @@ public class DamagerBulletScript : MonoBehaviour
 	public float explDiam;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<Collider2D>();        

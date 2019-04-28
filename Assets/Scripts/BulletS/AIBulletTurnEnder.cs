@@ -7,13 +7,14 @@ public class AIBulletTurnEnder : MonoBehaviour
     //todo set private
     //public TankAIScript tankAIScript;
 
-    void OnDisable() {
-//        Debug.Log("bullet OnDisable");
-            
+void OnDisable() {
 //get tank
     if (transform.parent)
         if (transform.parent.parent)
-            if (transform.parent.parent.parent.GetComponent<TankAIScript>())
-                transform.parent.parent.parent.GetComponent<TankAIScript>().ShootEnded();
+            if (transform.parent.parent.parent.GetComponent<TankAIScript>()) {
+                Transform tank = transform.parent.parent.parent;
+                tank.GetComponent<TankScript>().SetLastHitPoint(transform.position.x);
+                tank.GetComponent<TankAIScript>().ShootEnded();
+            }
     }   
 }
