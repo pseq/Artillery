@@ -117,15 +117,27 @@ public int side = 1;
     }
 
     float ShootDistanceSelect() {
+
+Debug.Log("lastHitPoint:" + Mathf.Round(lastHitPoint) + " enemyTransform.position.x:" + Mathf.Round(enemyTransform.position.x));
+
+
         float enemyPosition = target.transform.position.x;
-        if (lastHitPoint > enemyTransform.position.x) {
+        if (Mathf.Round(lastHitPoint) > Mathf.Round(enemyTransform.position.x)) {
+        //if (RoundedHitBigestEnemy()) {
+            Debug.Log("RoundedHitBigestEnemy");
             rightAimPoint = lastHitPoint;
             leftAimPoint = enemyTransform.position.x - lastEnemyPosition + leftAimPoint;
         }
-        if (lastHitPoint < enemyTransform.position.x) {
+        if (Mathf.Round(lastHitPoint) < Mathf.Round(enemyTransform.position.x)) {
+        //if (!RoundedHitBigestEnemy()) {
+            Debug.Log("RoundedHitSmalestEnemy");
             leftAimPoint = lastHitPoint;
             rightAimPoint = enemyTransform.position.x - lastEnemyPosition + rightAimPoint;
         }
+
+        //if (Mathf.Approximately(lastHitPoint,enemyTransform.position.x)) Debug.Log("ON BEGIN");
+
+
         lastEnemyPosition = enemyTransform.position.x;
 
 
@@ -133,7 +145,11 @@ public int side = 1;
         test2.transform.position = new Vector2(rightAimPoint, 50);
         //return enemyTransform.position;
         return Random.Range(leftAimPoint, rightAimPoint);
-    } 
+    }
+
+    bool RoundedHitBigestEnemy() {
+        return (Mathf.Round(lastHitPoint) > Mathf.Round(enemyTransform.position.x));
+    }
 
     void ShootAngleSearch() {
         // выбираем точку прицеливания по алгоритму промаха

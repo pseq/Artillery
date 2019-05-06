@@ -56,7 +56,7 @@ public class TankAIScript : MonoBehaviour
     public void MyTurn() {
         animator.SetTrigger("myTurn");
         UISwitch();
-        Debug.Log("MyTurn " + name);
+//        Debug.Log("MyTurn " + name);
         // mode panel on
         if (!playerUI) modePanel.SetTrigger("InTrigger");
         GetComponent<TankMoveScript>().FuelReset();
