@@ -810,8 +810,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43d58f4f58315049892a3704f254160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 5723765279205498941}
+  gun: {fileID: 5723765279205498943}
   canvasGrChild: {fileID: 6884641611442826493}
+  framesAimUICheck: 3
 --- !u!1001 &3971497099836219908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -981,18 +982,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3b3eb1c7066b84c80152cbaf54c415, type: 3}
---- !u!114 &5723765279205498941 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8679405839200109113, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
+--- !u!1 &5723765279205498943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8679405839200109115, guid: 9f3b3eb1c7066b84c80152cbaf54c415,
     type: 3}
   m_PrefabInstance: {fileID: 3971497099836219908}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c234d2bde693454c98f7b052d1f3ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5723765279874910481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8679405839864556309, guid: 9f3b3eb1c7066b84c80152cbaf54c415,

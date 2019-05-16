@@ -166,7 +166,6 @@ public class GunScript : MonoBehaviour {
         float newGunAngle = (1f - scroll.y * (float)forwardDirection) * maxGunAngle;
         gunAngle = GunValuechange(gunAngle, newGunAngle, angleStep, angleText);
         transform.eulerAngles = new Vector3(0f,0f,gunAngle + transform.parent.eulerAngles.z);
-        //transform.eulerAngles = new Vector3(0f,0f,gunAngle * (float)forwardDirection + transform.parent.eulerAngles.z);
 
         AimSectorUpdate();
     }
@@ -181,25 +180,12 @@ public class GunScript : MonoBehaviour {
 
     public void AimSectorUpdate() {
         if (aimSectorCurrent) {
-            aimSectorCurrent.position = transform.position;
+            //aimSectorCurrent.position = transform.position;
             aimSectorCurrent.rotation = transform.rotation;
             aimSectorCurrent.GetChild(0).localScale = Vector3.one * aimSectorMax * firePower;
         }
     }
-/*
-    public void TurnAround() {
-        forwardDirection = (Direction) (-1f * (float)forwardDirection);
-        gunAngle *= -1f;
-        hBar.localScale = Vector3.Scale(hBar.localScale, new Vector3(-1f,1f,1f));
-        transform.parent.localScale = Vector3.Scale(transform.parent.localScale, new Vector3(-1f,1f,1f));
-        // сбрасываем вращение прицельной сетки
-        if (aimUI) {
-            aimUI.Reset();
-            aimSectorLast.rotation = lastSectorRot;
-            aimSectorLast.localScale = Vector3.Scale(aimSectorLast.localScale, new Vector3(-1f,1f,1f));
-        }
-    }
-*/
+
     public void TurnAround() {
         forwardDirection = (Direction) (-1f * (float)forwardDirection);
 

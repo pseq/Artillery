@@ -8,7 +8,6 @@ public class PoolManagerScript : MonoBehaviour {
 	public GameObject[] bulletsCatalog;
 	public Sprite[] bulletIconsCatalog;
 
-	// Use this for initialization
 	void Start () {
 		pool = new Dictionary<int, GameObject>();
 		PoolFillingStart();

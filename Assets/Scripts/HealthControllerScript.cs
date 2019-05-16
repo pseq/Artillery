@@ -32,7 +32,7 @@ public class HealthControllerScript : MonoBehaviour
     }
 
     void Death() {
-//        Debug.Log(gameObject.name + " IS DEAD");
+//        Debug.Log(gameObject.name + " IS DEAD")
     }
 
     void DecreaseHealthIndicator(int decrHealth) {

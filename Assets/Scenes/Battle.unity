@@ -899,9 +899,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 373993027}
-  - component: {fileID: 373993026}
-  - component: {fileID: 373993025}
-  - component: {fileID: 373993024}
   - component: {fileID: 373993023}
   m_Layer: 0
   m_Name: TestObject2
@@ -958,51 +955,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &373993024
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373993022}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &373993025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373993022}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b597e171eaed9e46baeeef99e498f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHealth: 100
-  health: 100
-  animator: {fileID: 0}
-  healthIndicator: {fileID: 0}
-  weakestBullet: {fileID: 0}
---- !u!114 &373993026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373993022}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f00be24852f4c24499168f200eefb7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &373993027
 Transform:
   m_ObjectHideFlags: 0
@@ -1918,9 +1870,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928599337}
-  - component: {fileID: 928599336}
-  - component: {fileID: 928599338}
-  - component: {fileID: 928599339}
   - component: {fileID: 928599340}
   m_Layer: 0
   m_Name: TestObject
@@ -1929,18 +1878,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &928599336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928599335}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f00be24852f4c24499168f200eefb7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &928599337
 Transform:
   m_ObjectHideFlags: 0
@@ -1955,39 +1892,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &928599338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928599335}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b597e171eaed9e46baeeef99e498f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHealth: 100
-  health: 100
-  animator: {fileID: 0}
-  healthIndicator: {fileID: 0}
-  weakestBullet: {fileID: 0}
---- !u!58 &928599339
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928599335}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!212 &928599340
 SpriteRenderer:
   m_ObjectHideFlags: 0
