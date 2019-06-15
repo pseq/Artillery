@@ -6,9 +6,13 @@ public class PoolManagerScript : MonoBehaviour {
 
 	public Dictionary<int,GameObject> pool;
 	public GameObject[] bulletsCatalog;
+    // для учёта окончания выстрела
+    public int activeBulletsCounter  = 0;
+    GameObject firingTank;
+
 	public Sprite[] bulletIconsCatalog;
 
-	void Start () {
+    void Start () {
 		pool = new Dictionary<int, GameObject>();
 		PoolFillingStart();
 	}
@@ -27,7 +31,8 @@ public class PoolManagerScript : MonoBehaviour {
 			foreach(int arsKey in arsenalKeys) {
 				if (!pool.ContainsKey(arsKey)) {
 					GameObject newBullet = Instantiate(bulletsCatalog[arsKey]);
-					pool.Add(arsKey, newBullet);
+                    //newBullet.GetComponent<BulletScript>().SetPoolManager(this);
+                    pool.Add(arsKey, newBullet);
 				} 
 			}
 			// выбираем стартовый тип снаряда
@@ -38,4 +43,27 @@ public class PoolManagerScript : MonoBehaviour {
 	public GameObject GetFromPool(int key) {
 		return pool[key];
 	}
+
+    public void IncreaseActiveBullets()
+    {
+        // ведём учет активных снарядов для отслеживания конца залпа
+        activeBulletsCounter++;
+    }
+
+    public void DecreaseActiveBullets()
+    {
+        // ведём учет активных снарядов для отслеживания конца залпа
+        activeBulletsCounter--;
+        // когда активных снарядов не остаётся - залп завершён
+        if (activeBulletsCounter < 1)
+        {
+            firingTank.GetComponent<TankAIScript>().ShootEnded();
+            firingTank.GetComponent<TankScript>().SetLastHitPoint(transform.position.x);
+        }
+    }
+
+    public void SetFiringTank(GameObject tank)
+    {
+        firingTank = tank;
+    }
 }

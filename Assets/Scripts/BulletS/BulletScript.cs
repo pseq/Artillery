@@ -11,9 +11,11 @@ public class BulletScript : MonoBehaviour {
     public GameObject fragment_pref;
     public int fragNum;
 
+    bool first = true;
+
     public GameObject[] fragmentPool;
     public DamagerBulletScript damager;
-
+    PoolManagerScript poolManager;
 
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
@@ -31,12 +33,17 @@ public class BulletScript : MonoBehaviour {
                 fragmentPool[i] = fragment;
             }
         }
+
+        poolManager = GameObject.FindGameObjectWithTag("poolManager").GetComponent<PoolManagerScript>();
         // деактивируем снаряд при добавлении в пул
         BackToPool();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        Debug.Log(transform.name + " " + collision.transform.name);
+
         if (damager) damager.MakeDamage();
         TrailerOff();
         BackToPool();
@@ -44,6 +51,9 @@ public class BulletScript : MonoBehaviour {
 
     void OnEnable() {
         if (rigid) rigid.WakeUp();
+
+        //сообщаем менеджеру пула, что количество активных снарядов увеличилось
+        if (!first) poolManager.IncreaseActiveBullets();
     }
 
     public void TrailerOn() {
@@ -66,6 +76,11 @@ public class BulletScript : MonoBehaviour {
 
     public void BackToPool() {
         rigid.Sleep();
+
+        //сообщаем менеджеру пула, что снаряд деактивируется для учета конца залпа
+        if (!first) poolManager.DecreaseActiveBullets();
+        first = false;
+  
         gameObject.SetActive(false);
     }
 
@@ -77,4 +92,6 @@ public class BulletScript : MonoBehaviour {
     public GameObject[] GetFragmentPool() {
         return fragmentPool;
     }
+
+    //public void SetPoolManager() => poolManager = pool;
 }

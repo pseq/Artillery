@@ -8,26 +8,27 @@ public enum Direction : int {
 }
 public class TankScript : MonoBehaviour
 {
-public GameObject target;
-public float angleSearchStepGrad = 5f;
-public float angleSearchAccuracy = 1f;
-public GunScript gunScript;
-float leftAimPoint;
-float rightAimPoint;
-float lastHitPoint;
-float lastEnemyPosition;
-float gunPower;
-public float maxGunPower = 25;
-public float  angleChandeAccuracy;
+    public GameObject target;
+    public float angleSearchStepGrad = 5f;
+    public float angleSearchAccuracy = 1f;
+    public GunScript gunScript;
+    float leftAimPoint;
+    float rightAimPoint;
+    float lastHitPoint;
+    float lastEnemyPosition;
+    float gunPower;
+    public float maxGunPower = 25;
+    public float  angleChandeAccuracy;
 
-float gunAngleSpeed = 0f;
-int gunAngleCylesLimit = 200;
-public float gunRotTime = .5f;
+    float gunAngleSpeed = 0f;
+    int gunAngleCylesLimit = 200;
+    public float gunRotTime = .5f;
 
-public TerrainScript terrainScript;
-Transform selfTransform;
-Transform enemyTransform;
-TankAIScript aIScript;
+
+    public TerrainScript terrainScript;
+    Transform selfTransform;
+    Transform enemyTransform;
+    TankAIScript aIScript;
 
 
 ////// test
@@ -55,24 +56,6 @@ public int side = 1;
         aIScript = GetComponent<TankAIScript>();
     }
 
-/*
-    public void setTurn() {
-        myTurn = true;
-        tanks = FindObjectsOfType<TankScript>();
-        foreach (TankScript tank in tanks)
-            if (tank != this) tank.unsetTurn();
-    }
-
-    public void unsetTurn() {
-        myTurn = false;
-    }
-
-    public bool getTurn() {
-        return myTurn;
-    }
-*/
-
-    
     public void Aim() {
 
         //Transform selfTransform = gameObject.transform;
@@ -101,7 +84,7 @@ public int side = 1;
             }
 
         last = Mathf.Abs(Mathf.DeltaAngle(gunScript.transform.eulerAngles.z, transform.eulerAngles.z));
-        
+            Debug.Log("AngleChangeCoroutine");
         yield return new WaitForSeconds(Time.deltaTime);
         }
         Fire();
@@ -124,13 +107,11 @@ Debug.Log("lastHitPoint:" + Mathf.Round(lastHitPoint) + " enemyTransform.positio
         float enemyPosition = target.transform.position.x;
         if (Mathf.Round(lastHitPoint) > Mathf.Round(enemyTransform.position.x)) {
         //if (RoundedHitBigestEnemy()) {
-            Debug.Log("RoundedHitBigestEnemy");
             rightAimPoint = lastHitPoint;
             leftAimPoint = enemyTransform.position.x - lastEnemyPosition + leftAimPoint;
         }
         if (Mathf.Round(lastHitPoint) < Mathf.Round(enemyTransform.position.x)) {
         //if (!RoundedHitBigestEnemy()) {
-            Debug.Log("RoundedHitSmalestEnemy");
             leftAimPoint = lastHitPoint;
             rightAimPoint = enemyTransform.position.x - lastEnemyPosition + rightAimPoint;
         }
@@ -163,7 +144,8 @@ Debug.Log("lastHitPoint:" + Mathf.Round(lastHitPoint) + " enemyTransform.positio
         while(Mathf.Abs(Mathf.DeltaAngle(angle, selfTransform.eulerAngles.z - angleSide + 180)) > angleSearchAccuracy) {
             float powerHi = gunScript.GunPowerToPoint(hiTerrPoint, angle, side);
             float powerTg = gunScript.GunPowerToPoint(aimPoint, angle, side);
-    //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
+            //Debug.DrawLine(selfTransform.position, Quaternion.Euler(0, 0, angle) * Vector2.right * 120 + selfTransform.position, Color.yellow);
+            Debug.Log("ShootAngleSearch");
 
             // сравниваем мощности, чтобы добить до самой высокой точки, и до цели с макс мощностью
             if (powerTg < maxGunPower && powerTg > powerHi) {

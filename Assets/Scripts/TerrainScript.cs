@@ -240,10 +240,8 @@ public class TerrainScript : MonoBehaviour {
             a = first; b = second;
         }
         int i = 0; int j = 0;
-        while(i <= terrMap.Length && terrMap[i].x < a.x) i++;
-        while(j <= terrMap.Length && terrMap[j].x < b.x) j++;
+        while(i < terrMap.Length && terrMap[i].x < a.x) i++;
         j--;
-
         Vector2 maxH = terrMap[i]; 
         for (int k = i; k <= j; k++) if (terrMap[k].y >= maxH.y) maxH = terrMap[k];
 

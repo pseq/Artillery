@@ -47,6 +47,11 @@ public class TankAIScript : MonoBehaviour
         animator.SetBool("wasShooted", true);
     }
 
+    public void EndBattle()
+    {
+        animator.SetTrigger("halfDeath");
+    }
+
     // only player
     public void EndTurn() {
         animator.SetTrigger("endTurn");

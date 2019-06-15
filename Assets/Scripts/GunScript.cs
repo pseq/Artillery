@@ -30,6 +30,9 @@ public class GunScript : MonoBehaviour {
     int[] arsKeys;
     Transform hBar;
 
+    //TANK AI
+    GameObject tank;
+
     //TANK UI
     //public AimUIScript aimUI;
     public Transform aimSectorCurrent;
@@ -51,6 +54,7 @@ public class GunScript : MonoBehaviour {
         firePower = firePowerMultipler * 0.5f;
         // TODO изменить
         hBar = transform.parent.GetChild(3);
+        tank = transform.parent.gameObject;
 
         if (aimSectorCurrent) {
             aimSectorCurrent.GetChild(0).localScale = Vector3.one * aimSectorMax * firePower;
@@ -95,6 +99,9 @@ public class GunScript : MonoBehaviour {
 
     public void Fire ()
     {
+        // говорим менеджеру пула, что стреляем, для контроля окончания залпа
+        poolManager.SetFiringTank(tank);
+
         if (bullet) {
         // fire
         bullet.transform.SetParent(fireSpot);

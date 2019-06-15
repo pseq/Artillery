@@ -10,6 +10,7 @@ TagManager:
   - test
   - test2
   - test3
+  - poolManager
   layers:
   - Default
   - TransparentFX

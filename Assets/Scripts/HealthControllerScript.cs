@@ -31,8 +31,16 @@ public class HealthControllerScript : MonoBehaviour
         if(GetComponent<TankAIScript>()) GetComponent<TankAIScript>().Shooted();
     }
 
-    void Death() {
-//        Debug.Log(gameObject.name + " IS DEAD")
+    void Death()
+    {
+        //        Debug.Log(gameObject.name + " IS DEAD")
+        //ищем все танки, и говорим каждому, что бой закончен
+        GameObject[] aiControlled = GameObject.FindGameObjectsWithTag("AIControlled");
+        foreach (GameObject aiObject in aiControlled)
+        {
+            TankAIScript tankAIScript = aiObject.GetComponent<TankAIScript>();
+            tankAIScript.EndBattle();
+        }
     }
 
     void DecreaseHealthIndicator(int decrHealth) {
